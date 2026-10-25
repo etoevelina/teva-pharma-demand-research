@@ -1,0 +1,7 @@
+numpy
+pandas>=2.2,<3
+matplotlib
+seaborn
+statsmodels==0.14.5
+catboost==1.2.8
+jupyter
