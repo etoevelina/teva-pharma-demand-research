@@ -1,0 +1,6 @@
+check,value
+teva_sales.csv rows,13762
+teva_sales_small.csv rows,1730
+small-file IDs present in the full file,1730
+small-file rows identical to the full file (all columns),True
+INNs in the small file,20

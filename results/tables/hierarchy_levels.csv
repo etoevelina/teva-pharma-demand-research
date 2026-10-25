@@ -1,0 +1,8 @@
+level,groups,SKUs per group (median),SKUs per group (max),INNs per group (median),groups with >= 2 INNs,single-SKU groups
+ATC1,14,886.0,2136,132.5,14,0
+ATC2,90,100.0,982,16.0,84,2
+ATC3,224,30.5,567,5.0,195,10
+ATC4,586,10.0,229,2.0,381,62
+ATC5,1563,3.0,187,1.0,155,384
+INN,1776,3.0,167,1.0,0,514
+Form (NFC),16,190.0,6245,39.0,16,0

@@ -1,0 +1,21 @@
+| check                                                                  |   count | note                                       |
+|:-----------------------------------------------------------------------|--------:|:-------------------------------------------|
+| Missing attribute values in the raw file                               |       0 | but see the placeholders below             |
+| Placeholder '-' in INN (product without an INN), treated as missing    |     931 |                                            |
+| Placeholder '-' in ATC4, treated as missing                            |      14 |                                            |
+| Missing monthly sales values                                           |       0 |                                            |
+| Negative sales values                                                  |       0 |                                            |
+| Duplicate Morion IDs                                                   |       0 |                                            |
+| SKUs with an identical twin (same ATC5, brand, INN, form, description) |    1981 | 814 twin groups                            |
+| SKUs without any sale in 60 months                                     |       0 |                                            |
+| Zero SKU-months, total                                                 |  261130 | 31.6% of all cells                         |
+| before the first sale (not yet on market)                              |  100675 | 12.2% of all cells                         |
+| between first and last sale (gaps, possible stock-outs)                |   26538 | 4.5% of active span                        |
+| after the last sale (discontinued or right-censored)                   |  133917 | 16.2% of all cells                         |
+| SKUs with at least one interior gap                                    |    3254 |                                            |
+| SKUs with an interior gap of >= 3 consecutive months                   |    1856 |                                            |
+| Non-integer sales values (positive cells)                              |  562352 | 99.6% of positive cells                    |
+| Outlying months (robust z > 3.5 on log sales within SKU)               |   21263 | 3.77% of positive cells; kept, not removed |
+| ATC5 field holding a level-4 code (no substance-level code)            |     595 |                                            |
+| Non-standard ATC5 codes marked with '**'                               |    1525 |                                            |
+| On-market SKU-months                                                   |  725045 | 87.8% of all cells                         |

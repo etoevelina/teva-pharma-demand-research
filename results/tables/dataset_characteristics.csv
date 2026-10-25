@@ -1,0 +1,19 @@
+characteristic,value
+Source file,teva_sales.csv (full dataset)
+Raw shape (rows x columns),"13,762 x 70"
+Unit of observation,SKU (Morion ID) x calendar month
+Period,2019-01 to 2023-12 (60 months)
+Target variable,"quantity sold, number of packs per SKU per month"
+SKUs (Morion ID),"13,762"
+INNs (active substances or combinations),"1,776"
+ATC level 1 / 2 / 3 / 4 / 5 groups,"14 / 90 / 224 / 586 / 1,563"
+Brands (anonymised codes),"4,895"
+Dosage forms (NFC1),16
+Distinct descriptions,"8,449"
+SKU-month cells,"825,720"
+SKU-months on the market (after first sale),"725,045 (87.8%)"
+Zero sales among on-market SKU-months,22.1%
+Total volume 2019-2023,4.93 billion packs
+SKUs selling in 2019-01 (launch date unobserved),"9,712"
+SKUs first sold 2019-02 .. 2023-12 (observed launches),"4,050"
+Revenue / price / stock columns,not available

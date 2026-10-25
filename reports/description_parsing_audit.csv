@@ -1,0 +1,61 @@
+sku,description,manual_check
+11151,"sol.  for inj. amp. 2,2 ml, #5",correct
+168704,"tabs coated w/film 160 mg + 12,5 mg blister, #90",correct
+149164,"tabs coated w/film 10 mg, #60",correct
+128681,"sol. f/infus. 0,9 % flask 500 ml",correct
+180322,"tabs 5 mg + 25 mg blister, #30",correct
+105993,"tabs coated w/film 5 mg blister, #10",correct
+377038,"conc. for infus. sol. 100 mg flask 16,7 ml, #1",correct
+194469,"lollipops strip, in cardboard box, #8",correct
+20220,"ointment nasal 2 % tube 3 g, #1",correct
+150774,"caps. intest.-soluble 20 mg blister, #28",correct
+200552,"sol.  for inj. 5 mg/ml amp. 2 ml, in a pack, #10",correct
+763066,"cream 5 % tube 5 g, #1",correct
+662333,"cutaneous powder cont. 10 g, #1",correct
+790751,"sol. f/infus. 20 % flask 100 ml, #1",correct
+373802,"tabs 5 mg blister, #30",correct
+37686,"sol.  for inj. 0,05 mg/ml amp. 2 ml, #100",correct
+-193865,"tabs 50 mg blister, #2",correct
+99877,"caps. 50 mg blister, by box, #3",correct
+20765,"powd.fr-dr., f/sol. f/in. 200 mg flask, #10",correct
+313636,"eye drops, suspension 10 mg/g drop fl. 5 g, #1",correct
+328135,"powder for prep. of inj. sol. 2 g flask, #10",correct
+108599,"tabs 7,5 mg, #20",correct
+402610,"sol. f/mouth jar, can 125 ml",correct
+1479,"tabs coated w/film 5 mg, #50",correct
+41715,"tablets sublingual 0,0005 g cont., #40",correct
+131252,"sol.  for inj. 10 mg/ml flask 5 ml, #5",correct
+327176,"eye drops, solution 50 mcg/ml PET flask 2,5 ml, #1",correct
+66126,"caps. solid 5 mg blister, #20",correct
+711013,"tabs coated w/film 20 mg blister, #28",correct
+803021,"tabs 25 mg blister, #30",correct
+194710,"gran. jar 10 g, #1",correct
+184824,"tabs coated w/film 20 mg blister, #30",correct
+120986,"caps. solid 75 mg blister, #60",correct
+130427,"tabs coated w/film 15 mg blister, #28",correct
+180414,"tablets coated 125 mg blister, by box, #14",correct
+99731,"conc. for infus. sol. 30 mg flask 5 ml, #1",correct
+25357,"suspens. for inj. 10 mcg flask 0,5 ml, for children, #1",correct
+-841010,"tabs 500 mg blister, #40",correct
+136057,"nasal spray 0,05 % flask 10 ml, #1",correct
+831486,"tabs 250 mg blister, #50",correct
+188000,"caps. 140 mg flask, #5",correct
+18392,"caps. 2,5 mg blister, #30",correct
+263089,"tabs coated w/film 3 mg + 0,03 mg blister, #84",correct
+39931,"tabs coated w/film 20 mg blister, #14",correct
+19512,"gran. case 10 g, #1",error: package mass (10 g) read as strength
+22971,collect. fruit 40 g pack,error: package mass (40 g) read as strength
+64112,"tabs 5 mg blister, #30",correct
+434923,"syrup 10 mg/ml jar, can 125 ml",correct
+110493,"steam for inhalation, fluid 250 ml flask, #1",correct
+107811,"tablets coated 10 mg blister, #20",correct
+125393,"powder for prep. of inj. sol. 1000 mg flask, #1",correct
+98221,"rectal suppository 500000 IU cont. cell pack, #10",correct
+327103,"rectal caps. 100 mg blister, #5",correct
+118653,"sol.  for inj. amp. 1,1 ml, #100",correct
+5979,"sol.  for inj. 100 mg/ml amp. 5 ml, contour cell wrap, pack, #10",correct
+230063,sol. f/infus. bot. 500 ml,correct
+313635,"caps. 50 mg + 20 mg blister, #30",correct
+29431,tinct. 50 ml flask,correct
+221386,"sol. alcohol f/ext.applic. flask 40 ml, in a pack",correct
+512459,"granules for oral susp. 100 mg sachet, #10",correct

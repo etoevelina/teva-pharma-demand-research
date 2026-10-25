@@ -1,0 +1,8 @@
+field,share of SKUs
+strength parsed,0.7729254468827206
+  of which mass per unit (mg),0.5165673593954367
+"  of which concentration (mg/ml, mg/g, %, IU/ml, ...)",0.23535823281499782
+multiple strengths (combination product),0.03843918035169307
+package content parsed (ml or g),0.40415637262025866
+number of doses parsed,0.006830402557767766
+pack count parsed (#N),0.8823572155209999
