@@ -1,0 +1,15 @@
+check,value
+SKUs without an INN (placeholder '-' in the raw file),931.0
+SKUs with a missing ATC4 code (placeholder '-'),14.0
+INNs (excluding the placeholder),1776.0
+ATC2 codes with more than one ATC1 parent,0.0
+ATC3 codes with more than one ATC2 parent,0.0
+ATC4 codes with more than one ATC3 parent,0.0
+ATC5 codes with more than one ATC4 parent,0.0
+ATC5 codes containing more than one INN,155.0
+INNs appearing under more than one ATC5 code,188.0
+INNs appearing under more than one ATC2 group,137.0
+"Twin groups (identical ATC5, brand, INN, form, description)",814.0
+  of which all members are on sale together at some point,699.0
+Share of volume of the top 1% of SKUs,0.314
+Share of volume of the top 10% of SKUs,0.745

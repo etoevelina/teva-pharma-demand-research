@@ -1,0 +1,40 @@
+[2026-10-25 23:07:07] loss selection A RMSE: WAPE=0.6305
+[2026-10-25 23:07:53] loss selection A Tweedie:variance_power=1.5: WAPE=0.4489
+[2026-10-25 23:08:35] loss selection A MAE: WAPE=0.4653
+[2026-10-25 23:08:44] loss selection B RMSE: WAPE=1.5700
+[2026-10-25 23:09:14] loss selection B Tweedie:variance_power=1.5: WAPE=1.2617
+[2026-10-25 23:09:29] loss selection B MAE: WAPE=0.9432
+[2026-10-25 23:09:29] loss function: Tweedie:variance_power=1.5
+[2026-10-25 23:12:52] A fold 0: validation WAPE none=0.445, inn=0.453, atc=0.444, both=0.449, both_codes=0.432
+[2026-10-25 23:16:14] A fold 0: test WAPE none=0.339, inn=0.314, atc=0.333, both=0.302, both_codes=0.330
+[2026-10-25 23:18:36] N fold 0: validation WAPE none=1.425, inn=1.362, atc=1.250, both=1.287
+[2026-10-25 23:21:11] N fold 0: test WAPE none=0.960, inn=0.927, atc=0.927, both=0.933
+[2026-10-25 23:23:22] B fold 0: validation WAPE none=1.264, inn=1.253, atc=1.265, both=1.262, both_codes=1.395
+[2026-10-25 23:24:52] B fold 1: validation WAPE none=1.198, inn=1.162, atc=1.118, both=1.135, both_codes=1.163
+[2026-10-25 23:26:14] B fold 0: test WAPE none=1.145, inn=1.194, atc=1.054, both=1.118, both_codes=1.245
+[2026-10-25 23:28:16] B fold 1: test WAPE none=1.070, inn=1.026, atc=0.993, both=1.007, both_codes=1.085
+[2026-10-25 23:30:32] B fold 2: test WAPE none=1.132, inn=1.056, atc=1.036, both=1.052, both_codes=1.131
+[2026-10-25 23:32:41] B fold 3: test WAPE none=1.114, inn=1.064, atc=1.036, both=1.062, both_codes=1.139
+[2026-10-25 23:34:18] B fold 4: test WAPE none=1.145, inn=1.040, atc=1.054, both=1.047, both_codes=1.096
+[2026-10-25 23:34:58] C fold 0: validation WAPE none=1.468, inn=1.420, atc=1.253, both=1.219
+[2026-10-25 23:35:43] C fold 1: validation WAPE none=1.219, inn=1.220, atc=1.178, both=1.135
+[2026-10-25 23:36:15] C fold 0: test WAPE none=1.211, inn=1.243, atc=1.128, both=1.086
+[2026-10-25 23:36:44] C fold 1: test WAPE none=1.172, inn=1.165, atc=1.085, both=1.073
+[2026-10-25 23:37:18] C fold 2: test WAPE none=1.273, inn=1.209, atc=1.089, both=1.050
+[2026-10-25 23:37:43] C fold 3: test WAPE none=1.112, inn=1.105, atc=1.038, both=1.048
+[2026-10-25 23:38:08] C fold 4: test WAPE none=1.356, inn=1.334, atc=1.133, both=1.100
+[2026-10-25 23:38:39] D fold 0: validation WAPE none=1.447, inn=1.423, atc=1.344, both=1.296
+[2026-10-25 23:39:05] D fold 1: validation WAPE none=1.410, inn=1.369, atc=1.363, both=1.358
+[2026-10-25 23:39:13] D fold 0: test WAPE none=1.438, inn=1.467, atc=1.355, both=1.357
+[2026-10-25 23:39:24] D fold 1: test WAPE none=1.134, inn=1.101, atc=1.163, both=1.136
+[2026-10-25 23:39:35] D fold 2: test WAPE none=1.357, inn=1.314, atc=1.332, both=1.343
+[2026-10-25 23:39:46] D fold 3: test WAPE none=1.120, inn=1.098, atc=1.121, both=1.098
+[2026-10-25 23:39:57] D fold 4: test WAPE none=1.165, inn=1.133, atc=1.173, both=1.166
+[2026-10-25 23:40:27] D1 fold 0: validation WAPE none=1.215, inn=1.196, atc=1.239, both=1.198
+[2026-10-25 23:41:42] D1 fold 1: validation WAPE none=1.406, inn=1.389, atc=1.399, both=1.386
+[2026-10-25 23:42:59] D1 fold 0: test WAPE none=1.103, inn=1.111, atc=1.088, both=1.083
+[2026-10-25 23:43:11] D1 fold 1: test WAPE none=1.479, inn=1.490, atc=1.520, both=1.477
+[2026-10-25 23:43:22] D1 fold 2: test WAPE none=1.153, inn=1.158, atc=1.182, both=1.165
+[2026-10-25 23:43:33] D1 fold 3: test WAPE none=1.076, inn=1.110, atc=1.092, both=1.102
+[2026-10-25 23:43:45] D1 fold 4: test WAPE none=1.616, inn=1.672, atc=1.615, both=1.565
+[2026-10-25 23:43:45] done
