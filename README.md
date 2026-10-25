@@ -28,6 +28,24 @@ Test-year WAPE of CatBoost without and with INN + ATC peer statistics, with the 
 ![Effect of INN and ATC](results/figures/res_ablation_inn_atc.png)
 
 
+## WHO epidemiological validation of seasonality (separate module)
+
+A separate analysis compares the seasonality of the sales data with WHO influenza and respiratory surveillance ([report](reports/who_seasonality_comparison.md)). It does not touch the forecasting models or their results.
+
+* **Geography.** The dataset's totals reproduce published Proxima Research figures for the Ukrainian retail pharmacy market to within 0.08% ([evidence](results/tables/who_geography_evidence.csv)), so WHO data for Ukraine are used. The providers themselves do not state the country.
+* **Results.**
+  * Respiratory and anti-infective sales follow the seasonal pattern of acute respiratory infections (ARI) and correlate strongly with ARI notifications (Spearman ρ = 0.75–0.86).
+  * Control drugs without an expected epidemic link correlate too (ρ = 0.52–0.61). Shocks such as the 2022 war onset moved sales and surveillance in the same months and likely contribute. So the pre-specified analysis does not show a specific link.
+  * In a post hoc, exploratory check relative to chronic-medicine sales, the respiratory and anti-infective groups stay associated with ARI (ρ = 0.58–0.82, except nasal preparations, 0.37). Herpes antivirals lose the association; antihistamines lose it in levels but not in anomalies.
+  * There is no detectable association with influenza positivity beyond shared seasonality, with low power.
+  * These are statistical associations, not causal effects.
+* **Data.** WHO FluNet and FluID from the GISRS FluMart API (https://www.who.int/tools/flunet). Raw WHO files are downloaded, not committed: WHO's data terms allow public-health use with attribution. Derived monthly aggregates are in `results/tables/who_monthly_series.csv`. Attribution for these aggregates: *WHO, FluNet and FluID (Global Influenza Surveillance and Response System), accessed 25 October 2026; data provided by the national influenza surveillance of Ukraine.*
+
+```bash
+python scripts/analyze_who_seasonality.py    # downloads WHO data to data/raw/who/, writes results/tables/who_* and results/figures/who_*
+pytest -q tests/test_who_seasonality.py
+```
+
 ## Repository layout
 
 ```
@@ -40,6 +58,7 @@ Test-year WAPE of CatBoost without and with INN + ATC peer statistics, with the 
 │   └── 02_experiments_and_results.ipynb    # protocol, results, error analysis
 ├── reports/
 │   ├── report.md                # methodology, results and limitations
+│   ├── who_seasonality_comparison.md   # WHO epidemiological validation of seasonality
 │   └── data_dictionary.md       # fields, derived fields and model features
 ├── results/
 │   ├── figures/                 # EDA (eda_*) and result (res_*) figures

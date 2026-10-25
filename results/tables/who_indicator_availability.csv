@@ -1,0 +1,12 @@
+indicator,2019,2020,2021,2022,2023,total
+flu_specimens,12,12,12,12,12,60
+flu_positives,12,12,12,12,12,60
+flu_positivity,11,10,12,12,12,57
+rsv_specimens,12,12,12,12,12,60
+rsv_positivity,0,0,10,4,10,24
+flu_positivity_sentinel,6,10,12,12,12,52
+ari_per_100k,7,7,7,7,7,35
+ili_per_100k,12,12,12,12,12,60
+sari_per_100_inpatients,6,12,12,12,12,54
+ARI_POP_COV,9,9,8,8,8,42
+ILI_POP_COV,12,12,12,12,12,60

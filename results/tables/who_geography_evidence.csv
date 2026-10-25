@@ -1,0 +1,16 @@
+level,period,published_million_packs,dataset_million_packs,relative_difference,url,source,check
+annual,2019,1107.5,1107.3,-0.00018,https://www.apteka.ua/article/581310,"Weekly Apteka No. 3, 25 Jan 2021 (Proxima Research PharmXplorer/Pharmstandart); pharmacy sales excluding Crimea and the JFO zone",agent-verified
+annual,2020,1062.9,1062.9,0.0,https://www.apteka.ua/article/655830,"Weekly Apteka, 16 Jan 2023 (PharmXplorer); government-controlled territory; medicines line",agent-verified
+annual,2021,1067.7,1068.1,0.00037,https://www.apteka.ua/article/684747,"D. Kirsanov, 'Pharmacy sales: results of 2023' (in Ukrainian), Weekly Apteka 15 Jan 2024 (PharmXplorer)",re-verified 2026-10-26
+annual,2022,844.8,845.1,0.00036,https://www.apteka.ua/article/684747,same article; change -20.9% in both series,re-verified 2026-10-26
+annual,2023,848.7,848.8,0.00012,https://www.apteka.ua/article/684747,same article,re-verified 2026-10-26
+month,2019-02,90.343,90.33,-0.00014,https://www.apteka.ua/article/588234,"Weekly Apteka, 22 Mar 2021 (PharmXplorer/Pharmstandart); government-controlled territory",agent-verified
+month,2020-02,103.6,103.56,-0.00039,https://www.apteka.ua/article/588234,same article,agent-verified
+month,2021-02,82.3,82.29,-0.00012,https://www.apteka.ua/article/588234,same article,agent-verified
+month,2022-02,109.0,109.0,0.0,https://www.apteka.ua/article/660572,"Weekly Apteka, 13 Mar 2023 (PharmXplorer)",agent-verified
+month,2023-02,67.4,67.44,0.00059,https://www.apteka.ua/article/660572,same article,agent-verified
+month,2021-04,88.2,88.21,0.00011,https://www.apteka.ua/article/665965,"'Brief analysis of the pharmaceutical market: April 2023' (in Ukrainian), Weekly Apteka 29 May 2023 (PharmXplorer); government-controlled territory",re-verified 2026-10-26
+month,2022-04,54.0,53.97,-0.00056,https://www.apteka.ua/article/665965,same article; change -38.8%,re-verified 2026-10-26
+month,2023-04,68.1,68.05,-0.00073,https://www.apteka.ua/article/665965,same article,re-verified 2026-10-26
+identifier,MoH order No. 1041 (1 Jul 2025),,,,https://www.apteka.ua/article/725162,"National price catalogue list under MoH order No. 1041; column 'Morion codes' defined as an identifier formed from the State Register of Medicines. Codes 330107 (azithromycin 500 mg #6), 222190 (chloramphenicol 0.5 g #10), 1555 / 63578 / 83314 (fentanyl TTS 25 / 50 / 75 mcg/h #5) have the same INN, strength and pack size as the dataset IDs",re-verified 2026-10-26
+identifier,reference-price list,,,,https://www.apteka.ua/article/724441,"Reference-price list republished by Apteka; 10 of 20 sampled Morion codes are dataset IDs, all with the same INN, strength and pack size (e.g. 412493 atorvastatin 20 mg #30)",agent-verified

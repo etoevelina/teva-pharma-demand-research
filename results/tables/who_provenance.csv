@@ -1,0 +1,4 @@
+file,source,view,url,portal,accessed_utc,sha256,rows
+flunet_UKR.csv,WHO FluMart OData API,VIW_FNT,https://xmart-api-public.who.int/FLUMART/VIW_FNT?%24format=csv&%24filter=COUNTRY_CODE%20eq%20%27UKR%27,https://www.who.int/tools/flunet,2026-10-25T20:23:56Z,89606876654344a0fa497dc1e3f40d95765f4523fcb53460edd3f215e00030a8,1611
+fluid_UKR.csv,WHO FluMart OData API,VIW_FID_EPI,https://xmart-api-public.who.int/FLUMART/VIW_FID_EPI?%24format=csv&%24filter=COUNTRY_CODE%20eq%20%27UKR%27,https://www.who.int/teams/global-influenza-programme/surveillance-and-monitoring/influenza-surveillance-outputs,2026-10-25T20:23:59Z,62088668ed65f523b53504e5e361613d31cfefb3129ffce718ba11ddaa690161,7170
+metadata_all.csv,WHO FluMart OData API,VIW_FLU_METADATA,https://xmart-api-public.who.int/FLUMART/VIW_FLU_METADATA?%24format=csv,https://xmart-api-public.who.int/FLUMART,2026-10-25T20:24:01Z,44d4137709faa0901e04d26325fd4e3a19587501e819a75524ab48cb5c9647d0,116
