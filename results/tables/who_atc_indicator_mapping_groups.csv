@@ -1,0 +1,14 @@
+group,atc_column,codes,role,rationale
+R respiratory system,atc1,R,primary,requested ATC1 group
+J anti-infectives (systemic),atc1,J,primary,requested ATC1 group
+R05 cough and cold,atc2,R05,primary,symptomatic treatment of acute respiratory infections
+R01 nasal preparations,atc2,R01,primary,decongestants for upper respiratory infections
+R02 throat preparations,atc2,R02,primary,sore throat in upper respiratory infections
+N02BB+N02BE antipyretics,atc4,N02B B / N02B E,primary,metamizole and paracetamol: fever and pain
+J01 antibacterials,atc2,J01,primary,respiratory infections are a main driver of outpatient antibiotic use
+J05AH+J05AC influenza antivirals,atc4,J05A H / J05A C,primary,oseltamivir and rimantadine: influenza-specific
+J05AX other antivirals,atc4,J05A X,primary,"mainly inosine pranobex, tilorone, enisamium, a Calamagrostis/Deschampsia preparation and umifenovir: marketed for acute respiratory viral infections"
+R06 antihistamines,atc2,R06,control,seasonal but non-infectious (pollen allergy)
+J05AB herpes antivirals,atc4,J05A B,control,anti-infective without a respiratory link
+C09 renin-angiotensin agents,atc2,C09,control,"chronic treatment, no expected epidemic link"
+A10 antidiabetics,atc2,A10,control,"chronic treatment, no expected epidemic link"
