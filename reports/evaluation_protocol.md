@@ -6,11 +6,11 @@ This document describes the evaluation protocol of the INN/ATC study as revised 
 - variability is measured over CatBoost seeds and fold assignments;
 - a shuffled-peer placebo, a calibrated median baseline and a launch scenario without knowledge of the launch month are added.
 
-The original single-split analysis ([report.md](report.md)) is kept unchanged. All numbers of the new protocol are generated from saved predictions and run records by `scripts/analyze_results.py`:
+The original single-split analysis, its tables and its predictions are unchanged; [report.md](report.md) only gains a note on its scope. All numbers of the new protocol are generated from saved predictions and run records by `scripts/analyze_results.py`:
 - the generated tables are in `results/tables/`;
 - the results summary is generated into [evaluation_protocol_results.md](evaluation_protocol_results.md).
 
-No number in this document or in the generated summary is typed by hand.
+No result of the protocol is typed by hand. The few descriptive counts in the method sections below (numbers of groups and shares of products) were measured on the data.
 
 ## 1. Rolling cycles
 
@@ -23,9 +23,16 @@ A forecast is issued in December of year Y−1 for the 12 months of year Y. For 
 | 2022 | 2020 → 2021 | 2020–2021 → 2022 |
 | 2023 | 2020–2021 → 2022 | 2020–2022 → 2023 (the original split) |
 
-**First cycle (test 2022).** Its validation models are trained on a single year, 2020. An earlier training year is not possible without months before the data start. Year 2020 is the first target year whose origin (December 2019) has the 12 months of history that the features use; a 2019 target year would need an origin in December 2018. The test-2022 cycle also selects its own loss function on 2021, with the same rule and candidates as the original study (Tweedie, RMSE, MAE; lowest validation WAPE among losses whose validation total bias stays within ±50%). No 2022 target is used before the 2022 forecasts are made.
+**First cycle (test 2022).** Its validation models are trained on a single year, 2020. An earlier training year is not possible without months before the data start. Year 2020 is the first target year whose origin (December 2019) has the 12 months of history that the features use; a 2019 target year would need an origin in December 2018.
 
-Peer statistics, history features and baselines are computed at the origin of each row's year from months up to that origin (features.py). The tests listed in Section 8 perturb sales after the origin and check that nothing changes.
+The test-2022 cycle also selects its own loss function on 2021, with the same rule and candidates as the original study:
+- candidates are Tweedie, RMSE and MAE, each fit with the INN + ATC arm on scenario A and on fold 0 of scenario B;
+- the chosen loss is the one with the lowest mean validation WAPE over the two, among losses whose validation total bias stays within ±50% in both;
+- if no loss qualifies, all losses are eligible.
+
+No 2022 target is used before the 2022 forecasts are made.
+
+Peer statistics, history features and baselines are computed at the origin of each row's year from months up to that origin (features.py). The tests listed in Section 9 perturb sales after the origin and check that nothing changes.
 
 ## 2. Choices made on the validation year
 
@@ -45,9 +52,9 @@ Peer statistics, history features and baselines are computed at the origin of ea
 
 The primary forecast `catboost_selected` uses, for each fold, the arm chosen for that fold. `validation_selected_models.csv` reports the arm chosen on all validation folds together (which applies to folds 2–4) and the choice for every fold.
 
-The control arm (`none`, no INN/ATC information) is always reported. The primary comparison of each scenario and test year is the **validation-selected metadata arm against the control**. The other arms, including `both_codes` (raw codes as categories in A and B), are exploratory. `validation_selected_models.csv` also lists the arm that would have been best on the test year (`test_best_arm_exploratory`), only to show how often validation and test agree. It is never used for a conclusion.
+The control arm (`none`, no INN/ATC information) is always reported. The primary comparison of each scenario and test year is the **validation-selected metadata arm against the control**. The other arms, including `both_codes` (raw codes as categories in A and B), are exploratory. `validation_selected_models.csv` also lists the metadata arm (`inn`, `atc` or `both`) that would have been best on the test year (`test_best_arm_exploratory`). It is there only to show how often the choice made on all validation folds agrees with the test year, and it is never used for a conclusion.
 
-`validation_metrics` and `calibration_factor` read the year of the rows they receive and refuse anything other than the validation year; `select_metadata_arm` only accepts those validation metrics. The tests check the following:
+`validation_metrics` reads the year of the rows it receives and refuses anything other than the validation year; `select_metadata_arm` only accepts those validation metrics. The applied calibration factors come from `validation_baselines`, which builds the validation-year rows itself and checks their year. `calibration_factor`, a diagnostic over the validation folds, refuses rows from the test year or later. The tests check the following:
 - With a fake trainer whose validation and test winners differ, the cycle picks the validation winner before any test fit.
 - The arm and calibration of a test fold come from the other validation folds.
 - Changing the test targets, or the validation-year sales of a fold's own products, leaves its calibrated forecasts unchanged.
@@ -68,6 +75,7 @@ The hierarchical median is the original baseline: the median t−12 sales of the
 - the validation-selected CatBoost arm;
 - the hierarchical median and the calibrated median;
 - the zero forecast;
+- in B, C, D and D1, also the global, form and hierarchical group means;
 - in A, the naive (last month), seasonal naive and MA(12) forecasts;
 - in N, the launch-age mean;
 - in N0, the launch-cohort mean.
@@ -109,10 +117,10 @@ Every row then reads the peer statistics of the group π_T(g) instead of its own
 **What is kept:**
 - The statistics are the real donor statistics of some group, with the same time windows (all ending at T).
 - The control features (global and dosage-form statistics, presentation, calendar, history) and the number of ingredients are unchanged.
-- A row has statistics in the shuffled arm exactly when its group is active at T, so the group-level missingness at the origin is preserved.
+- A row has a 12-month mean (`*_mean12`) in the shuffled arm exactly when its true group is active at T, so the missingness of that statistic is preserved. The other statistics (`*_lag12`, `*_seas`, `*_trend6`, `*_n_selling`) depend on donor sales in single months or half-years, and their missingness or zeros can differ. `results/tables/placebo_feature_checks.csv` reports, for every statistic, the missing rates of the true and shuffled versions and how often the patterns agree.
 - In A, N and N0 the own twin cluster is subtracted only where the permutation leaves the group in place, because elsewhere the product is not a member of the group it reads. A row whose own group is active only through its own twin cluster therefore has missing true statistics but shuffled ones.
 
-Each run records, per grouping and for training and evaluation rows, the missing rates of the true and shuffled statistics and how often they agree (`placebo_diagnostics` in the run record; rows `feature check` in `shuffled_peer_placebo.csv`).
+Each run also records these checks for the 12-month mean (`placebo_diagnostics` in the run record; rows `feature check` in `shuffled_peer_placebo.csv`).
 
 **Why it cannot leak:**
 - Targets are never permuted.
@@ -120,9 +128,26 @@ Each run records, per grouping and for training and evaluation rows, the missing
 - The statistics are computed from the same donor SKUs and the same months as the true features.
 - Held-out SKUs are still never donors.
 
-The tests check reproducibility by seed, the single-cycle bijection of the active groups, the preserved missingness, unchanged control features, invariance to sales after the origin and to non-donor sales, and correct own-unit handling.
+The tests check:
+- reproducibility by seed;
+- that the permutation is a single cycle through the active groups that leaves inactive groups in place;
+- the preserved missingness of the 12-month mean;
+- unchanged control features;
+- invariance to sales after the origin and to non-donor sales;
+- correct own-unit handling.
 
-**Where it applies.** In D1 no INN or ATC group of a training or held-out product has donors: the halves are split by ATC1, and the INNs of the targets are removed from the donors. The INN/ATC peer statistics are therefore missing in every row, the shuffled arm would be identical to the true arm, and D1 is left out of the placebo. In D only the ATC1 statistics exist, so only they are shuffled. In D1 the INN and INN + ATC arms differ from the control only by the number of ingredients and by the feature layout.
+**Where it applies.** In D1 no INN or ATC group of a training or held-out product has donors: the halves are split by ATC1, and the INNs of the targets are removed from the donors.
+- The mean, trend, lag and seasonal peer statistics are missing in every D1 row, and `*_n_selling` is 0, or missing where the code is missing.
+- Every group is inactive and maps to itself, so the shuffled arm would equal the true arm, and D1 is left out of the placebo.
+- The INN and INN + ATC arms of D1 differ from the control only by the number of ingredients, by these constant or missing columns (including which products lack an INN or ATC4 code) and by the feature layout.
+
+In D only the ATC1 statistics exist, so only they are shuffled.
+
+**What the placebo can and cannot show.** The permutation is a bijection of groups. Products that share a true group therefore still share a (wrong) group in the shuffled arm, and they read identical statistics. The shuffled arm keeps the partition of the products into groups and destroys only the link between a group and its own sales history.
+- Wherever training products of a held-out product's group exist (B: same INN, C: same ATC, D: same ATC1), the model can still learn a group-level effect from them. It uses the shuffled statistics as an identifier of the group.
+- *Shuffled better than the control* means that group membership alone carries information.
+- *True better than shuffled* means that the true peer statistics add information beyond group membership.
+- *True no better than shuffled* means that the gain of the metadata arm is explained by group membership rather than by what the peer statistics say about the group.
 
 **Design.** Five permutation seeds (1–5), test 2023, CatBoost seed 42, the primary folds; scenarios A, B, C, D, N and N0.
 - Two configurations are shuffled: the INN + ATC arm (`both`, pre-specified) and the validation-selected arm of the rolling run, with the same per-fold arm choice.
@@ -188,7 +213,9 @@ The cohort is still selected by an outcome, a first sale in the test year, so N0
 | `results/tables/shuffled_peer_placebo{,_summary}.csv` | placebo per seed; summary |
 | `results/tables/scenario_n_vs_n0.csv` | N versus N0 |
 | `results/tables/variability_summary.csv` | mean / std / min / max over model seeds, fold seeds and placebo seeds |
-| `results/tables/paper_results_table.{csv,md}` | WAPE, bias and Spearman for the paper |
+| `results/tables/paper_results_table.{csv,md}` | WAPE, bias and Spearman for the paper (numeric) |
+| `results/tables/paper_results_table_compact.{csv,md}` | the same as formatted cells, "WAPE (bias, ρ)", ready to paste |
+| `results/tables/placebo_feature_checks.csv` | missing rates and agreement of every true vs shuffled peer statistic (fold 0, test 2023) |
 | `results/figures/res_wape_variability.png`, `res_placebo_true_vs_shuffled.png`, `res_selected_vs_calibrated_median.png` | figures |
 | `results/regression/` | snapshot of the committed single-split metrics and file checksums taken before the changes, and the comparison with the rebuilt 2023 cycle |
 

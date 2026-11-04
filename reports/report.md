@@ -6,6 +6,13 @@
 
 **Hypothesis.** Pharmaceutical attributes place a product among related products (same substance, same therapeutic group). Sales of these peers carry information about the level and seasonality of a new product, so a model that knows INN and ATC should forecast products without their own history better than a model that knows only the dosage form, strength and pack size.
 
+> **Scope of this report.** This report describes the original single-split analysis (validation 2022, test 2023). In it, the INN/ATC arms are compared on the test year, so any statement about the best arm is a post hoc choice. The primary analysis for review is the validation-selected rolling protocol in [evaluation_protocol.md](evaluation_protocol.md), with results in [evaluation_protocol_results.md](evaluation_protocol_results.md). That protocol:
+> - chooses every configuration on the previous year;
+> - reports test 2022 and test 2023;
+> - adds CatBoost-seed and fold-assignment robustness, a shuffled-peer placebo, a calibrated median baseline and scenario N0.
+>
+> Scenario N below is a retrospective cohort that uses the launch month.
+
 Every result in this report comes from the final code in this repository and can be reproduced with the commands in the README; the source of each number is given as a path under `results/`. A few diagnostic numbers from development runs (Section 3.4, the `max_ctr_complexity` speed check and the loss-selection note in Section 4) are marked as such: they describe pipeline versions or checks that are not reproduced by the final code.
 
 ## 2. Dataset description
