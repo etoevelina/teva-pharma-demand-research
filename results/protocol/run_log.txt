@@ -1,0 +1,121 @@
+[2026-11-04 23:08:20] loss selection test2022 A RMSE: validation WAPE=0.5271
+[2026-11-04 23:08:29] loss selection test2022 A Tweedie:variance_power=1.5: validation WAPE=0.3474
+[2026-11-04 23:08:42] loss selection test2022 A MAE: validation WAPE=0.3879
+[2026-11-04 23:08:46] loss selection test2022 B RMSE: validation WAPE=1.2882
+[2026-11-04 23:08:52] loss selection test2022 B Tweedie:variance_power=1.5: validation WAPE=1.1498
+[2026-11-04 23:08:59] loss selection test2022 B MAE: validation WAPE=0.9353
+[2026-11-04 23:08:59] loss for test2022: Tweedie:variance_power=1.5
+[2026-11-04 23:09:56] rolling__A__test2022__ms42__fs42__psnone: done in 57s, selected both (by fold {'0': 'both'}), calibration factor 2.124, test WAPE none=0.477, inn=0.458, atc=0.455, both=0.459, both_codes=0.454
+[2026-11-04 23:10:55] rolling__N__test2022__ms42__fs42__psnone: done in 60s, selected inn (by fold {'0': 'inn'}), calibration factor 0.373, test WAPE none=1.551, inn=1.557, atc=1.806, both=1.707
+[2026-11-04 23:12:20] rolling__N0__test2022__ms42__fs42__psnone: done in 84s, selected atc (by fold {'0': 'atc'}), calibration factor 0.184, test WAPE none=1.549, inn=1.621, atc=1.588, both=1.596
+[2026-11-04 23:14:12] rolling__B__test2022__ms42__fs42__psnone: done in 112s, selected atc (by fold {'0': 'atc', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 2.253, test WAPE none=1.277, inn=1.211, atc=1.223, both=1.217, both_codes=1.225
+[2026-11-04 23:15:10] rolling__C__test2022__ms42__fs42__psnone: done in 58s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.206, test WAPE none=1.429, inn=1.407, atc=1.318, both=1.293
+[2026-11-04 23:15:56] rolling__D__test2022__ms42__fs42__psnone: done in 46s, selected both (by fold {'0': 'inn', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 4.784, test WAPE none=1.417, inn=1.357, atc=1.393, both=1.367
+[2026-11-04 23:17:24] rolling__D1__test2022__ms42__fs42__psnone: done in 89s, selected inn (by fold {'0': 'inn', '1': 'inn', '2': 'inn', '3': 'inn', '4': 'inn'}), calibration factor 5.187, test WAPE none=1.419, inn=1.385, atc=1.414, both=1.412
+[2026-11-04 23:17:35] loss selection test2023 A RMSE: validation WAPE=0.6305
+[2026-11-04 23:18:02] loss selection test2023 A Tweedie:variance_power=1.5: validation WAPE=0.4489
+[2026-11-04 23:18:31] loss selection test2023 A MAE: validation WAPE=0.4653
+[2026-11-04 23:18:38] loss selection test2023 B RMSE: validation WAPE=1.5700
+[2026-11-04 23:18:56] loss selection test2023 B Tweedie:variance_power=1.5: validation WAPE=1.2617
+[2026-11-04 23:19:07] loss selection test2023 B MAE: validation WAPE=0.9432
+[2026-11-04 23:19:07] loss for test2023: Tweedie:variance_power=1.5
+[2026-11-04 23:24:08] rolling__A__test2023__ms42__fs42__psnone: done in 301s, selected atc (by fold {'0': 'atc'}), calibration factor 1.588, test WAPE none=0.339, inn=0.314, atc=0.333, both=0.302, both_codes=0.330
+[2026-11-04 23:27:39] rolling__N__test2023__ms42__fs42__psnone: done in 211s, selected atc (by fold {'0': 'atc'}), calibration factor 0.269, test WAPE none=0.960, inn=0.927, atc=0.927, both=0.933
+[2026-11-04 23:35:16] rolling__N0__test2023__ms42__fs42__psnone: done in 456s, selected both (by fold {'0': 'both'}), calibration factor 0.147, test WAPE none=1.034, inn=1.029, atc=1.022, both=1.029
+[2026-11-04 23:45:43] rolling__B__test2023__ms42__fs42__psnone: done in 627s, selected atc (by fold {'0': 'atc', '1': 'inn', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.740, test WAPE none=1.119, inn=1.068, atc=1.033, both=1.053, both_codes=1.132
+[2026-11-04 23:49:17] rolling__C__test2023__ms42__fs42__psnone: done in 214s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.326, test WAPE none=1.211, inn=1.198, atc=1.089, both=1.069
+[2026-11-04 23:50:54] rolling__D__test2023__ms42__fs42__psnone: done in 97s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.451, test WAPE none=1.220, inn=1.198, atc=1.211, both=1.200
+[2026-11-04 23:54:18] rolling__D1__test2023__ms42__fs42__psnone: done in 204s, selected both (by fold {'0': 'both', '1': 'inn', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.789, test WAPE none=1.251, inn=1.272, atc=1.264, both=1.246
+[2026-11-04 23:54:18] rolling protocol done
+[2026-11-04 23:54:20] rolling__A__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__B__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__C__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__D__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__D1__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__N__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:54:20] rolling__N0__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-04 23:57:20] model_seeds__A__test2023__ms7__fs42__psnone: done in 180s, selected inn (by fold {'0': 'inn'}), calibration factor 1.588, test WAPE none=0.376, inn=0.331, atc=0.325, both=0.305
+[2026-11-05 00:08:40] model_seeds__B__test2023__ms7__fs42__psnone: done in 680s, selected atc (by fold {'0': 'atc', '1': 'both', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.740, test WAPE none=1.102, inn=1.063, atc=1.025, both=1.041
+[2026-11-05 00:12:45] model_seeds__C__test2023__ms7__fs42__psnone: done in 245s, selected atc (by fold {'0': 'atc', '1': 'both', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 2.326, test WAPE none=1.202, inn=1.213, atc=1.081, both=1.070
+[2026-11-05 00:14:45] model_seeds__D__test2023__ms7__fs42__psnone: done in 119s, selected both (by fold {'0': 'inn', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.451, test WAPE none=1.219, inn=1.197, atc=1.211, both=1.195
+[2026-11-05 00:18:43] model_seeds__D1__test2023__ms7__fs42__psnone: done in 238s, selected inn (by fold {'0': 'inn', '1': 'both', '2': 'inn', '3': 'inn', '4': 'inn'}), calibration factor 3.789, test WAPE none=1.268, inn=1.264, atc=1.278, both=1.243
+[2026-11-05 00:22:29] model_seeds__N__test2023__ms7__fs42__psnone: done in 226s, selected atc (by fold {'0': 'atc'}), calibration factor 0.269, test WAPE none=0.963, inn=0.932, atc=0.932, both=0.934
+[2026-11-05 00:27:31] model_seeds__N0__test2023__ms7__fs42__psnone: done in 302s, selected atc (by fold {'0': 'atc'}), calibration factor 0.147, test WAPE none=1.027, inn=1.027, atc=1.019, both=1.041
+[2026-11-05 00:30:12] model_seeds__A__test2023__ms2024__fs42__psnone: done in 161s, selected inn (by fold {'0': 'inn'}), calibration factor 1.588, test WAPE none=0.389, inn=0.332, atc=0.315, both=0.309
+[2026-11-05 00:39:39] model_seeds__B__test2023__ms2024__fs42__psnone: done in 567s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE none=1.122, inn=1.069, atc=1.044, both=1.044
+[2026-11-05 00:43:17] model_seeds__C__test2023__ms2024__fs42__psnone: done in 217s, selected both (by fold {'0': 'both', '1': 'atc', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.326, test WAPE none=1.215, inn=1.192, atc=1.083, both=1.069
+[2026-11-05 00:44:59] model_seeds__D__test2023__ms2024__fs42__psnone: done in 102s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.451, test WAPE none=1.218, inn=1.210, atc=1.199, both=1.194
+[2026-11-05 00:48:37] model_seeds__D1__test2023__ms2024__fs42__psnone: done in 218s, selected both (by fold {'0': 'both', '1': 'inn', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.789, test WAPE none=1.269, inn=1.260, atc=1.278, both=1.249
+[2026-11-05 00:52:22] model_seeds__N__test2023__ms2024__fs42__psnone: done in 225s, selected atc (by fold {'0': 'atc'}), calibration factor 0.269, test WAPE none=0.966, inn=0.930, atc=0.925, both=0.931
+[2026-11-05 00:57:06] model_seeds__N0__test2023__ms2024__fs42__psnone: done in 284s, selected atc (by fold {'0': 'atc'}), calibration factor 0.147, test WAPE none=1.045, inn=1.029, atc=1.022, both=1.030
+[2026-11-05 01:00:18] model_seeds__A__test2023__ms11__fs42__psnone: done in 192s, selected inn (by fold {'0': 'inn'}), calibration factor 1.588, test WAPE none=0.348, inn=0.310, atc=0.292, both=0.305
+[2026-11-05 01:10:05] model_seeds__B__test2023__ms11__fs42__psnone: done in 587s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE none=1.112, inn=1.060, atc=1.034, both=1.041
+[2026-11-05 01:13:30] model_seeds__C__test2023__ms11__fs42__psnone: done in 206s, selected both (by fold {'0': 'both', '1': 'atc', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.326, test WAPE none=1.209, inn=1.208, atc=1.066, both=1.080
+[2026-11-05 01:15:18] model_seeds__D__test2023__ms11__fs42__psnone: done in 108s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.451, test WAPE none=1.225, inn=1.184, atc=1.217, both=1.180
+[2026-11-05 01:18:23] model_seeds__D1__test2023__ms11__fs42__psnone: done in 185s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.789, test WAPE none=1.277, inn=1.268, atc=1.265, both=1.258
+[2026-11-05 01:21:37] model_seeds__N__test2023__ms11__fs42__psnone: done in 194s, selected atc (by fold {'0': 'atc'}), calibration factor 0.269, test WAPE none=0.956, inn=0.936, atc=0.928, both=0.939
+[2026-11-05 01:25:42] model_seeds__N0__test2023__ms11__fs42__psnone: done in 244s, selected atc (by fold {'0': 'atc'}), calibration factor 0.147, test WAPE none=1.041, inn=1.030, atc=1.028, both=1.033
+[2026-11-05 01:28:06] model_seeds__A__test2023__ms99__fs42__psnone: done in 145s, selected atc (by fold {'0': 'atc'}), calibration factor 1.588, test WAPE none=0.403, inn=0.364, atc=0.291, both=0.303
+[2026-11-05 01:37:19] model_seeds__B__test2023__ms99__fs42__psnone: done in 552s, selected both (by fold {'0': 'atc', '1': 'inn', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE none=1.115, inn=1.061, atc=1.043, both=1.044
+[2026-11-05 01:40:42] model_seeds__C__test2023__ms99__fs42__psnone: done in 203s, selected atc (by fold {'0': 'both', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 2.326, test WAPE none=1.213, inn=1.206, atc=1.053, both=1.082
+[2026-11-05 01:42:10] model_seeds__D__test2023__ms99__fs42__psnone: done in 88s, selected both (by fold {'0': 'inn', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.451, test WAPE none=1.219, inn=1.205, atc=1.213, both=1.192
+[2026-11-05 01:45:15] model_seeds__D1__test2023__ms99__fs42__psnone: done in 186s, selected inn (by fold {'0': 'both', '1': 'inn', '2': 'inn', '3': 'inn', '4': 'inn'}), calibration factor 3.789, test WAPE none=1.261, inn=1.265, atc=1.264, both=1.249
+[2026-11-05 01:48:31] model_seeds__N__test2023__ms99__fs42__psnone: done in 196s, selected atc (by fold {'0': 'atc'}), calibration factor 0.269, test WAPE none=0.962, inn=0.936, atc=0.919, both=0.941
+[2026-11-05 01:52:41] model_seeds__N0__test2023__ms99__fs42__psnone: done in 250s, selected atc (by fold {'0': 'atc'}), calibration factor 0.147, test WAPE none=1.038, inn=1.052, atc=1.016, both=1.035
+[2026-11-05 01:58:31] fold_seeds__B__test2023__ms42__fs42r__psnone: done in 350s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.666, test WAPE none=1.107, inn=1.065, atc=1.034, both=1.030
+[2026-11-05 02:02:38] fold_seeds__C__test2023__ms42__fs42r__psnone: done in 247s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.310, test WAPE none=1.188, inn=1.184, atc=1.086, both=1.064
+[2026-11-05 02:04:25] fold_seeds__D__test2023__ms42__fs42r__psnone: done in 107s, selected both (by fold {'0': 'both', '1': 'inn', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.370, test WAPE none=1.196, inn=1.239, atc=1.229, both=1.192
+[2026-11-05 02:06:18] fold_seeds__D1__test2023__ms42__fs42r__psnone: done in 113s, selected inn (by fold {'0': 'inn', '1': 'inn', '2': 'inn', '3': 'inn', '4': 'inn'}), calibration factor 3.751, test WAPE none=1.262, inn=1.224, atc=1.231, both=1.222
+[2026-11-05 02:11:34] fold_seeds__B__test2023__ms42__fs7r__psnone: done in 316s, selected atc (by fold {'0': 'atc', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.716, test WAPE none=1.115, inn=1.075, atc=1.039, both=1.065
+[2026-11-05 02:14:36] fold_seeds__C__test2023__ms42__fs7r__psnone: done in 182s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.323, test WAPE none=1.185, inn=1.185, atc=1.078, both=1.064
+[2026-11-05 02:16:23] fold_seeds__D__test2023__ms42__fs7r__psnone: done in 107s, selected both (by fold {'0': 'both', '1': 'atc', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.305, test WAPE none=1.236, inn=1.221, atc=1.190, both=1.195
+[2026-11-05 02:17:35] fold_seeds__D1__test2023__ms42__fs7r__psnone: done in 73s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.721, test WAPE none=1.340, inn=1.320, atc=1.336, both=1.312
+[2026-11-05 02:23:40] fold_seeds__B__test2023__ms42__fs2024r__psnone: done in 365s, selected atc (by fold {'0': 'inn', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.664, test WAPE none=1.113, inn=1.078, atc=1.030, both=1.039
+[2026-11-05 02:27:50] fold_seeds__C__test2023__ms42__fs2024r__psnone: done in 250s, selected both (by fold {'0': 'atc', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.264, test WAPE none=1.165, inn=1.166, atc=1.083, both=1.083
+[2026-11-05 02:30:58] fold_seeds__D__test2023__ms42__fs2024r__psnone: done in 188s, selected both (by fold {'0': 'both', '1': 'atc', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.500, test WAPE none=1.236, inn=1.235, atc=1.166, both=1.173
+[2026-11-05 02:32:51] fold_seeds__D1__test2023__ms42__fs2024r__psnone: done in 113s, selected both (by fold {'0': 'both', '1': 'inn', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.661, test WAPE none=1.252, inn=1.242, atc=1.247, both=1.237
+[2026-11-05 02:38:44] fold_seeds__B__test2023__ms42__fs11r__psnone: done in 353s, selected atc (by fold {'0': 'atc', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.681, test WAPE none=1.121, inn=1.073, atc=1.029, both=1.066
+[2026-11-05 02:41:19] fold_seeds__C__test2023__ms42__fs11r__psnone: done in 155s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 2.289, test WAPE none=1.217, inn=1.177, atc=1.193, both=1.085
+[2026-11-05 02:43:22] fold_seeds__D__test2023__ms42__fs11r__psnone: done in 124s, selected atc (by fold {'0': 'both', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 3.281, test WAPE none=1.278, inn=1.276, atc=1.153, both=1.160
+[2026-11-05 02:45:56] fold_seeds__D1__test2023__ms42__fs11r__psnone: done in 154s, selected inn (by fold {'0': 'inn', '1': 'inn', '2': 'inn', '3': 'inn', '4': 'inn'}), calibration factor 3.630, test WAPE none=1.223, inn=1.197, atc=1.211, both=1.212
+[2026-11-05 02:51:55] fold_seeds__B__test2023__ms42__fs99r__psnone: done in 358s, selected atc (by fold {'0': 'atc', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.665, test WAPE none=1.119, inn=1.080, atc=1.043, both=1.061
+[2026-11-05 02:55:20] fold_seeds__C__test2023__ms42__fs99r__psnone: done in 205s, selected atc (by fold {'0': 'atc', '1': 'both', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 2.173, test WAPE none=1.157, inn=1.159, atc=1.077, both=1.073
+[2026-11-05 02:58:24] fold_seeds__D__test2023__ms42__fs99r__psnone: done in 184s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 3.776, test WAPE none=1.191, inn=1.174, atc=1.207, both=1.105
+[2026-11-05 02:59:56] fold_seeds__D1__test2023__ms42__fs99r__psnone: done in 92s, selected atc (by fold {'0': 'atc', '1': 'both', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 3.559, test WAPE none=1.315, inn=1.312, atc=1.315, both=1.315
+[2026-11-05 02:59:56] rolling__A__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 03:01:42] placebo__A__test2023__ms42__fs42__ps1: done in 105s, calibration factor 1.588, test WAPE atc=0.306, both=0.316
+[2026-11-05 03:03:45] placebo__A__test2023__ms42__fs42__ps2: done in 123s, calibration factor 1.588, test WAPE atc=0.353, both=0.316
+[2026-11-05 03:05:11] placebo__A__test2023__ms42__fs42__ps3: done in 87s, calibration factor 1.588, test WAPE atc=0.329, both=0.379
+[2026-11-05 03:07:18] placebo__A__test2023__ms42__fs42__ps4: done in 126s, calibration factor 1.588, test WAPE atc=0.299, both=0.300
+[2026-11-05 03:09:31] placebo__A__test2023__ms42__fs42__ps5: done in 134s, calibration factor 1.588, test WAPE atc=0.296, both=0.308
+[2026-11-05 03:09:31] rolling__B__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 03:16:23] placebo__B__test2023__ms42__fs42__ps1: done in 411s, selected atc (by fold {'0': 'both', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.740, test WAPE inn=1.085, atc=1.027, both=1.033
+[2026-11-05 03:22:58] placebo__B__test2023__ms42__fs42__ps2: done in 395s, selected both (by fold {'0': 'both', '1': 'atc', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE inn=1.070, atc=1.026, both=1.030
+[2026-11-05 03:29:29] placebo__B__test2023__ms42__fs42__ps3: done in 392s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE inn=1.074, atc=1.029, both=0.996
+[2026-11-05 03:35:28] placebo__B__test2023__ms42__fs42__ps4: done in 358s, selected atc (by fold {'0': 'atc', '1': 'atc', '2': 'atc', '3': 'atc', '4': 'atc'}), calibration factor 1.740, test WAPE inn=1.091, atc=1.007, both=1.027
+[2026-11-05 03:40:13] placebo__B__test2023__ms42__fs42__ps5: done in 285s, selected both (by fold {'0': 'both', '1': 'both', '2': 'both', '3': 'both', '4': 'both'}), calibration factor 1.740, test WAPE inn=1.088, atc=1.044, both=1.046
+[2026-11-05 03:40:13] rolling__C__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 03:41:22] placebo__C__test2023__ms42__fs42__ps1: done in 70s, calibration factor 2.326, test WAPE both=1.128
+[2026-11-05 03:42:33] placebo__C__test2023__ms42__fs42__ps2: done in 70s, calibration factor 2.326, test WAPE both=1.118
+[2026-11-05 03:43:41] placebo__C__test2023__ms42__fs42__ps3: done in 68s, calibration factor 2.326, test WAPE both=1.142
+[2026-11-05 03:45:17] placebo__C__test2023__ms42__fs42__ps4: done in 96s, calibration factor 2.326, test WAPE both=1.107
+[2026-11-05 03:46:47] placebo__C__test2023__ms42__fs42__ps5: done in 90s, calibration factor 2.326, test WAPE both=1.075
+[2026-11-05 03:46:47] rolling__D__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 03:47:40] placebo__D__test2023__ms42__fs42__ps1: done in 53s, calibration factor 3.451, test WAPE both=1.195
+[2026-11-05 03:48:33] placebo__D__test2023__ms42__fs42__ps2: done in 52s, calibration factor 3.451, test WAPE both=1.177
+[2026-11-05 03:49:24] placebo__D__test2023__ms42__fs42__ps3: done in 51s, calibration factor 3.451, test WAPE both=1.171
+[2026-11-05 03:50:17] placebo__D__test2023__ms42__fs42__ps4: done in 53s, calibration factor 3.451, test WAPE both=1.191
+[2026-11-05 03:51:13] placebo__D__test2023__ms42__fs42__ps5: done in 56s, calibration factor 3.451, test WAPE both=1.162
+[2026-11-05 03:51:13] rolling__N__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 03:53:18] placebo__N__test2023__ms42__fs42__ps1: done in 125s, calibration factor 0.269, test WAPE atc=0.956, both=0.950
+[2026-11-05 03:55:58] placebo__N__test2023__ms42__fs42__ps2: done in 160s, calibration factor 0.269, test WAPE atc=0.950, both=0.948
+[2026-11-05 03:58:07] placebo__N__test2023__ms42__fs42__ps3: done in 129s, calibration factor 0.269, test WAPE atc=0.937, both=0.949
+[2026-11-05 04:00:16] placebo__N__test2023__ms42__fs42__ps4: done in 129s, calibration factor 0.269, test WAPE atc=0.953, both=0.959
+[2026-11-05 04:02:25] placebo__N__test2023__ms42__fs42__ps5: done in 128s, calibration factor 0.269, test WAPE atc=0.945, both=0.939
+[2026-11-05 04:02:25] rolling__N0__test2023__ms42__fs42__psnone: already done, skipped
+[2026-11-05 04:04:12] placebo__N0__test2023__ms42__fs42__ps1: done in 107s, calibration factor 0.147, test WAPE both=1.045
+[2026-11-05 04:05:45] placebo__N0__test2023__ms42__fs42__ps2: done in 93s, calibration factor 0.147, test WAPE both=1.049
+[2026-11-05 04:07:01] placebo__N0__test2023__ms42__fs42__ps3: done in 76s, calibration factor 0.147, test WAPE both=1.049
+[2026-11-05 04:08:21] placebo__N0__test2023__ms42__fs42__ps4: done in 80s, calibration factor 0.147, test WAPE both=1.069
+[2026-11-05 04:09:36] placebo__N0__test2023__ms42__fs42__ps5: done in 75s, calibration factor 0.147, test WAPE both=1.056
+[2026-11-05 04:09:36] robustness studies done: model_seeds fold_seeds placebo

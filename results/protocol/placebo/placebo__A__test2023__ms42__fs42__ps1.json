@@ -1,0 +1,647 @@
+{
+ "run_id": "placebo__A__test2023__ms42__fs42__ps1",
+ "stage": "placebo",
+ "scenario": "A",
+ "started": "2026-11-05T02:59:56+0500",
+ "finished": "2026-11-05T03:01:42+0500",
+ "seconds": 105.3,
+ "git_commit": "ef97ad7a34ed2ab003a4bcb59454a526998f582c",
+ "git_dirty": false,
+ "source_sha256": "c1506b8af7dbe306f871c88146f90196caf7c1e97447d95b876c6ce7bb13630a",
+ "python": "3.12.10",
+ "platform": "macOS-26.5.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.5.4",
+  "pandas": "2.2.3",
+  "catboost": "1.2.8",
+  "scipy": "1.18.1",
+  "pyarrow": "26.0.0",
+  "matplotlib": "3.11.2"
+ },
+ "catboost_params": {
+  "iterations": 3000,
+  "learning_rate": 0.05,
+  "depth": 6,
+  "l2_leaf_reg": 3.0,
+  "max_ctr_complexity": 1,
+  "random_seed": 42,
+  "thread_count": -1,
+  "allow_writing_files": false
+ },
+ "early_stopping_rounds": 200,
+ "loss": "Tweedie:variance_power=1.5",
+ "model_seed": 42,
+ "fold_seed": 42,
+ "fold_method": "balanced",
+ "placebo_seed": 1,
+ "placebo_arms": [
+  "atc",
+  "both"
+ ],
+ "n_folds": 5,
+ "half_seed": 43,
+ "validation_years": {
+  "train_years": [
+   2020,
+   2021
+  ],
+  "eval_year": 2022
+ },
+ "test_years": {
+  "train_years": [
+   2020,
+   2021,
+   2022
+  ],
+  "eval_year": 2023
+ },
+ "selection_year": 2022,
+ "test_year": 2023,
+ "arms": [
+  "atc",
+  "both"
+ ],
+ "selected_arm": null,
+ "selected_arm_by_fold": {},
+ "calibration_factor": 1.587908792363484,
+ "calibration_factor_by_fold": {
+  "0": 1.587908792363484
+ },
+ "calibration_factor_validation_folds": 1.587908792363484,
+ "validation_baseline_totals": [
+  {
+   "fold": 0,
+   "actual": 840093323.7697558,
+   "median": 529056409.1652515
+  }
+ ],
+ "validation_metrics": [
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "atc",
+   "n": 124464,
+   "MAE": 3008.7996536984097,
+   "RMSE": 15109.99876991609,
+   "WAPE": 0.4457686182024159,
+   "bias": 0.1498804127084794,
+   "WAPE_annual": 0.3196124492401518,
+   "spearman": 0.9675848719422445,
+   "skus": 10372
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "both",
+   "n": 124464,
+   "MAE": 3013.840871981993,
+   "RMSE": 15661.65291146134,
+   "WAPE": 0.44651549973890087,
+   "bias": 0.09477737840689504,
+   "WAPE_annual": 0.30450166277403495,
+   "spearman": 0.9672036240673489,
+   "skus": 10372
+  }
+ ],
+ "validation_iterations": {
+  "0": {
+   "atc|0": 456,
+   "both|0": 432
+  }
+ },
+ "fits": [
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 456,
+   "n_features": 59,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 19.6,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.11519355141062892,
+      "nan_shuffled": 0.06617302465085763,
+      "nan_pattern_equal": 0.9509794732402287,
+      "value_unchanged": 0.06617302465085763
+     },
+     "inn_nfc": {
+      "nan_true": 0.13506420470522074,
+      "nan_shuffled": 0.06617302465085763,
+      "nan_pattern_equal": 0.9311088199456369,
+      "value_unchanged": 0.06617302465085763
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002811884900178086,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997188115099822,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013590777017527416,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986409222982473,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.007779548223826038,
+      "nan_shuffled": 0.0009372949667260286,
+      "nan_pattern_equal": 0.9931577467429,
+      "value_unchanged": 0.0009372949667260286
+     },
+     "atc5": {
+      "nan_true": 0.0359921267222795,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9640078732777205,
+      "value_unchanged": 0.0
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.11685306594677979,
+      "nan_shuffled": 0.06671808715773235,
+      "nan_pattern_equal": 0.9498650212109525,
+      "value_unchanged": 0.06671808715773235
+     },
+     "inn_nfc": {
+      "nan_true": 0.13623216351716158,
+      "nan_shuffled": 0.06671808715773235,
+      "nan_pattern_equal": 0.9304859236405708,
+      "value_unchanged": 0.06671808715773235
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00028924026224450445,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997107597377555,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0014462013112225222,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9985537986887775,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.006941766293868106,
+      "nan_shuffled": 0.0009641342074816814,
+      "nan_pattern_equal": 0.9940223679136135,
+      "value_unchanged": 0.0009641342074816814
+     },
+     "atc5": {
+      "nan_true": 0.03702275356729657,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9629772464327034,
+      "value_unchanged": 0.0
+     }
+    }
+   }
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 432,
+   "n_features": 70,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 23.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.11519355141062892,
+      "nan_shuffled": 0.06617302465085763,
+      "nan_pattern_equal": 0.9509794732402287,
+      "value_unchanged": 0.06617302465085763
+     },
+     "inn_nfc": {
+      "nan_true": 0.13506420470522074,
+      "nan_shuffled": 0.06617302465085763,
+      "nan_pattern_equal": 0.9311088199456369,
+      "value_unchanged": 0.06617302465085763
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002811884900178086,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997188115099822,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013590777017527416,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986409222982473,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.007779548223826038,
+      "nan_shuffled": 0.0009372949667260286,
+      "nan_pattern_equal": 0.9931577467429,
+      "value_unchanged": 0.0009372949667260286
+     },
+     "atc5": {
+      "nan_true": 0.0359921267222795,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9640078732777205,
+      "value_unchanged": 0.0
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.11685306594677979,
+      "nan_shuffled": 0.06671808715773235,
+      "nan_pattern_equal": 0.9498650212109525,
+      "value_unchanged": 0.06671808715773235
+     },
+     "inn_nfc": {
+      "nan_true": 0.13623216351716158,
+      "nan_shuffled": 0.06671808715773235,
+      "nan_pattern_equal": 0.9304859236405708,
+      "value_unchanged": 0.06671808715773235
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00028924026224450445,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997107597377555,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0014462013112225222,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9985537986887775,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.006941766293868106,
+      "nan_shuffled": 0.0009641342074816814,
+      "nan_pattern_equal": 0.9940223679136135,
+      "value_unchanged": 0.0009641342074816814
+     },
+     "atc5": {
+      "nan_true": 0.03702275356729657,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9629772464327034,
+      "value_unchanged": 0.0
+     }
+    }
+   }
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 456,
+   "n_features": 59,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 19.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.11573636076947336,
+      "nan_shuffled": 0.0663513087354147,
+      "nan_pattern_equal": 0.9506149479659414,
+      "value_unchanged": 0.0663513087354147
+     },
+     "inn_nfc": {
+      "nan_true": 0.13544623147272153,
+      "nan_shuffled": 0.0663513087354147,
+      "nan_pattern_equal": 0.9309050772626931,
+      "value_unchanged": 0.0663513087354147
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002838221381267739,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997161778618733,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013875748975086723,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986124251024914,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0075055187637969095,
+      "nan_shuffled": 0.000946073793755913,
+      "nan_pattern_equal": 0.993440555029959,
+      "value_unchanged": 0.000946073793755913
+     },
+     "atc5": {
+      "nan_true": 0.03632923368022706,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9636707663197729,
+      "value_unchanged": 0.0
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.11492149118582025,
+      "nan_shuffled": 0.06319237067719873,
+      "nan_pattern_equal": 0.9482708794913784,
+      "value_unchanged": 0.06319237067719873
+     },
+     "inn_nfc": {
+      "nan_true": 0.1334168191889028,
+      "nan_shuffled": 0.06319237067719873,
+      "nan_pattern_equal": 0.9297755514882959,
+      "value_unchanged": 0.06319237067719873
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002889895000481649,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997110104999518,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013486176668914363,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986513823331086,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.007610056834601676,
+      "nan_shuffled": 0.000963298333493883,
+      "nan_pattern_equal": 0.9933532414988923,
+      "value_unchanged": 0.000963298333493883
+     },
+     "atc5": {
+      "nan_true": 0.03910991233985165,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9608900876601484,
+      "value_unchanged": 0.0
+     }
+    }
+   }
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 432,
+   "n_features": 70,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 19.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.11573636076947336,
+      "nan_shuffled": 0.0663513087354147,
+      "nan_pattern_equal": 0.9506149479659414,
+      "value_unchanged": 0.0663513087354147
+     },
+     "inn_nfc": {
+      "nan_true": 0.13544623147272153,
+      "nan_shuffled": 0.0663513087354147,
+      "nan_pattern_equal": 0.9309050772626931,
+      "value_unchanged": 0.0663513087354147
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002838221381267739,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997161778618733,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013875748975086723,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986124251024914,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0075055187637969095,
+      "nan_shuffled": 0.000946073793755913,
+      "nan_pattern_equal": 0.993440555029959,
+      "value_unchanged": 0.000946073793755913
+     },
+     "atc5": {
+      "nan_true": 0.03632923368022706,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9636707663197729,
+      "value_unchanged": 0.0
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.11492149118582025,
+      "nan_shuffled": 0.06319237067719873,
+      "nan_pattern_equal": 0.9482708794913784,
+      "value_unchanged": 0.06319237067719873
+     },
+     "inn_nfc": {
+      "nan_true": 0.1334168191889028,
+      "nan_shuffled": 0.06319237067719873,
+      "nan_pattern_equal": 0.9297755514882959,
+      "value_unchanged": 0.06319237067719873
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0002889895000481649,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9997110104999518,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0013486176668914363,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9986513823331086,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.007610056834601676,
+      "nan_shuffled": 0.000963298333493883,
+      "nan_pattern_equal": 0.9933532414988923,
+      "value_unchanged": 0.000963298333493883
+     },
+     "atc5": {
+      "nan_true": 0.03910991233985165,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 0.9608900876601484,
+      "value_unchanged": 0.0
+     }
+    }
+   }
+  }
+ ],
+ "loss_selection": [
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "36",
+   "n": 124464,
+   "MAE": 4255.830077865177,
+   "RMSE": 15008.220804242315,
+   "WAPE": 0.6305223715318865,
+   "bias": 0.2187680819061681,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "578",
+   "n": 124464,
+   "MAE": 3029.723924604676,
+   "RMSE": 14528.43824826101,
+   "WAPE": 0.4488686529014076,
+   "bias": 0.1509276233513701,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "362",
+   "n": 124464,
+   "MAE": 3140.6286459311423,
+   "RMSE": 21730.59559460735,
+   "WAPE": 0.4652997384065704,
+   "bias": 0.0922342036031513,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "2/14",
+   "n": 19380,
+   "MAE": 8755.30584775353,
+   "RMSE": 15323.300610677612,
+   "WAPE": 1.5699578993041587,
+   "bias": 0.5421370815138231,
+   "eligible": false
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "581/357",
+   "n": 19380,
+   "MAE": 7035.965652330089,
+   "RMSE": 15171.041248502346,
+   "WAPE": 1.26165436675666,
+   "bias": 0.1997021955789439,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "50/60",
+   "n": 19380,
+   "MAE": 5259.835083584903,
+   "RMSE": 15595.884603408897,
+   "WAPE": 0.9431674669172256,
+   "bias": -0.6728397547334839,
+   "eligible": false
+  }
+ ],
+ "fingerprint": {
+  "loss": "Tweedie:variance_power=1.5",
+  "arms": [
+   "atc",
+   "both"
+  ],
+  "catboost_params": {
+   "iterations": 3000,
+   "learning_rate": 0.05,
+   "depth": 6,
+   "l2_leaf_reg": 3.0,
+   "max_ctr_complexity": 1,
+   "random_seed": 42,
+   "thread_count": -1,
+   "allow_writing_files": false
+  },
+  "early_stopping_rounds": 200,
+  "n_folds": 5,
+  "model_seed": 42,
+  "fold_seed": 42,
+  "fold_method": "balanced",
+  "placebo_seed": 1,
+  "dataset": {
+   "n_skus": 13762,
+   "sha256": "67f6dc7acf7c443c6f74a67b26528a0104c53bc245e03af3148bbffa270dd22f"
+  }
+ }
+}

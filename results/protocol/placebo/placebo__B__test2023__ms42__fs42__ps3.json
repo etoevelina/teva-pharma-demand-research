@@ -1,0 +1,4734 @@
+{
+ "run_id": "placebo__B__test2023__ms42__fs42__ps3",
+ "stage": "placebo",
+ "scenario": "B",
+ "started": "2026-11-05T03:22:58+0500",
+ "finished": "2026-11-05T03:29:29+0500",
+ "seconds": 391.6,
+ "git_commit": "ef97ad7a34ed2ab003a4bcb59454a526998f582c",
+ "git_dirty": false,
+ "source_sha256": "c1506b8af7dbe306f871c88146f90196caf7c1e97447d95b876c6ce7bb13630a",
+ "python": "3.12.10",
+ "platform": "macOS-26.5.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.5.4",
+  "pandas": "2.2.3",
+  "catboost": "1.2.8",
+  "scipy": "1.18.1",
+  "pyarrow": "26.0.0",
+  "matplotlib": "3.11.2"
+ },
+ "catboost_params": {
+  "iterations": 3000,
+  "learning_rate": 0.05,
+  "depth": 6,
+  "l2_leaf_reg": 3.0,
+  "max_ctr_complexity": 1,
+  "random_seed": 42,
+  "thread_count": -1,
+  "allow_writing_files": false
+ },
+ "early_stopping_rounds": 200,
+ "loss": "Tweedie:variance_power=1.5",
+ "model_seed": 42,
+ "fold_seed": 42,
+ "fold_method": "balanced",
+ "placebo_seed": 3,
+ "placebo_arms": [
+  "inn",
+  "atc",
+  "both"
+ ],
+ "n_folds": 5,
+ "half_seed": 43,
+ "validation_years": {
+  "train_years": [
+   2020,
+   2021
+  ],
+  "eval_year": 2022
+ },
+ "test_years": {
+  "train_years": [
+   2020,
+   2021,
+   2022
+  ],
+  "eval_year": 2023
+ },
+ "selection_year": 2022,
+ "test_year": 2023,
+ "arms": [
+  "inn",
+  "atc",
+  "both"
+ ],
+ "selected_arm": "both",
+ "selected_arm_by_fold": {
+  "0": "both",
+  "1": "both",
+  "2": "both",
+  "3": "both",
+  "4": "both"
+ },
+ "calibration_factor": 1.74020579359372,
+ "calibration_factor_by_fold": {
+  "0": 1.900977280016381,
+  "1": 1.6578270842119929,
+  "2": 1.6834764598451932,
+  "3": 1.7648786394645974,
+  "4": 1.7012904848433454
+ },
+ "calibration_factor_validation_folds": 1.5964954195724441,
+ "validation_baseline_totals": [
+  {
+   "fold": 0,
+   "actual": 108077947.44347508,
+   "median": 92302524.71141024
+  },
+  {
+   "fold": 1,
+   "actual": 163024830.83481467,
+   "median": 77508659.80855128
+  },
+  {
+   "fold": 2,
+   "actual": 155581538.22130105,
+   "median": 78292480.93747924
+  },
+  {
+   "fold": 3,
+   "actual": 149350411.14214316,
+   "median": 90483267.68159637
+  },
+  {
+   "fold": 4,
+   "actual": 153369136.16635022,
+   "median": 80561116.18551055
+  }
+ ],
+ "validation_metrics": [
+  {
+   "scenario": "B",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "inn",
+   "n": 39012,
+   "MAE": 8115.9833488096765,
+   "RMSE": 29446.05250676481,
+   "WAPE": 1.1678992904998884,
+   "bias": -0.14612911971912557,
+   "WAPE_annual": 1.1333920601874852,
+   "spearman": 0.2828168324064829,
+   "skus": 3251
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "atc",
+   "n": 39012,
+   "MAE": 7807.879976347525,
+   "RMSE": 29360.737660753395,
+   "WAPE": 1.123562862659392,
+   "bias": -0.2103048622755107,
+   "WAPE_annual": 1.0912356738919613,
+   "spearman": 0.3230562138474245,
+   "skus": 3251
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "both",
+   "n": 39012,
+   "MAE": 7622.854233058887,
+   "RMSE": 29227.110338132283,
+   "WAPE": 1.0969374464869073,
+   "bias": -0.2402252087139295,
+   "WAPE_annual": 1.0668231476527688,
+   "spearman": 0.3343151471069761,
+   "skus": 3251
+  }
+ ],
+ "validation_iterations": {
+  "0": {
+   "inn|0": 728,
+   "atc|0": 657,
+   "both|0": 708,
+   "inn|1": 302,
+   "atc|1": 168,
+   "both|1": 564
+  },
+  "1": {
+   "inn|0": 323,
+   "atc|0": 286,
+   "both|0": 454,
+   "inn|1": 469,
+   "atc|1": 398,
+   "both|1": 486
+  }
+ },
+ "fits": [
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 728,
+   "n_features": 33,
+   "train_rows": 101808,
+   "train_skus": 4669,
+   "donor_skus": 5542,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 10.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13543140028288544,
+      "nan_shuffled": 0.13543140028288544,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13543140028288544
+     },
+     "inn_nfc": {
+      "nan_true": 0.17975011786892975,
+      "nan_shuffled": 0.17975011786892975,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.17975011786892975
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0010608203677510608,
+      "nan_shuffled": 0.0010608203677510608,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0010608203677510608
+     },
+     "atc3": {
+      "nan_true": 0.0022395096652522394,
+      "nan_shuffled": 0.0022395096652522394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0022395096652522394
+     },
+     "atc4": {
+      "nan_true": 0.01661951909476662,
+      "nan_shuffled": 0.01661951909476662,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661951909476662
+     },
+     "atc5": {
+      "nan_true": 0.06176331918906176,
+      "nan_shuffled": 0.06176331918906176,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06176331918906176
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06811145510835913,
+      "nan_shuffled": 0.06811145510835913,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06811145510835913
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.0173374613003096,
+      "nan_shuffled": 0.0173374613003096,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0173374613003096
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 657,
+   "n_features": 47,
+   "train_rows": 101808,
+   "train_skus": 4669,
+   "donor_skus": 5542,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 11.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13543140028288544,
+      "nan_shuffled": 0.13543140028288544,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13543140028288544
+     },
+     "inn_nfc": {
+      "nan_true": 0.17975011786892975,
+      "nan_shuffled": 0.17975011786892975,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.17975011786892975
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0010608203677510608,
+      "nan_shuffled": 0.0010608203677510608,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0010608203677510608
+     },
+     "atc3": {
+      "nan_true": 0.0022395096652522394,
+      "nan_shuffled": 0.0022395096652522394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0022395096652522394
+     },
+     "atc4": {
+      "nan_true": 0.01661951909476662,
+      "nan_shuffled": 0.01661951909476662,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661951909476662
+     },
+     "atc5": {
+      "nan_true": 0.06176331918906176,
+      "nan_shuffled": 0.06176331918906176,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06176331918906176
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06811145510835913,
+      "nan_shuffled": 0.06811145510835913,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06811145510835913
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.0173374613003096,
+      "nan_shuffled": 0.0173374613003096,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0173374613003096
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 708,
+   "n_features": 58,
+   "train_rows": 101808,
+   "train_skus": 4669,
+   "donor_skus": 5542,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 13.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13543140028288544,
+      "nan_shuffled": 0.13543140028288544,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13543140028288544
+     },
+     "inn_nfc": {
+      "nan_true": 0.17975011786892975,
+      "nan_shuffled": 0.17975011786892975,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.17975011786892975
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0010608203677510608,
+      "nan_shuffled": 0.0010608203677510608,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0010608203677510608
+     },
+     "atc3": {
+      "nan_true": 0.0022395096652522394,
+      "nan_shuffled": 0.0022395096652522394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0022395096652522394
+     },
+     "atc4": {
+      "nan_true": 0.01661951909476662,
+      "nan_shuffled": 0.01661951909476662,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661951909476662
+     },
+     "atc5": {
+      "nan_true": 0.06176331918906176,
+      "nan_shuffled": 0.06176331918906176,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06176331918906176
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06811145510835913,
+      "nan_shuffled": 0.06811145510835913,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06811145510835913
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.0173374613003096,
+      "nan_shuffled": 0.0173374613003096,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0173374613003096
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 302,
+   "n_features": 33,
+   "train_rows": 103440,
+   "train_skus": 4719,
+   "donor_skus": 5467,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 6.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14095127610208816,
+      "nan_shuffled": 0.14095127610208816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14095127610208816
+     },
+     "inn_nfc": {
+      "nan_true": 0.1863109048723898,
+      "nan_shuffled": 0.1863109048723898,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1863109048723898
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00034802784222737816,
+      "nan_shuffled": 0.00034802784222737816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00034802784222737816
+     },
+     "atc3": {
+      "nan_true": 0.0030162412993039443,
+      "nan_shuffled": 0.0030162412993039443,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030162412993039443
+     },
+     "atc4": {
+      "nan_true": 0.0154292343387471,
+      "nan_shuffled": 0.0154292343387471,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0154292343387471
+     },
+     "atc5": {
+      "nan_true": 0.062180974477958235,
+      "nan_shuffled": 0.062180974477958235,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.062180974477958235
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06501547987616099,
+      "nan_shuffled": 0.06501547987616099,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06501547987616099
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.021671826625386997,
+      "nan_shuffled": 0.021671826625386997,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.021671826625386997
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 168,
+   "n_features": 47,
+   "train_rows": 103440,
+   "train_skus": 4719,
+   "donor_skus": 5467,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 5.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14095127610208816,
+      "nan_shuffled": 0.14095127610208816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14095127610208816
+     },
+     "inn_nfc": {
+      "nan_true": 0.1863109048723898,
+      "nan_shuffled": 0.1863109048723898,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1863109048723898
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00034802784222737816,
+      "nan_shuffled": 0.00034802784222737816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00034802784222737816
+     },
+     "atc3": {
+      "nan_true": 0.0030162412993039443,
+      "nan_shuffled": 0.0030162412993039443,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030162412993039443
+     },
+     "atc4": {
+      "nan_true": 0.0154292343387471,
+      "nan_shuffled": 0.0154292343387471,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0154292343387471
+     },
+     "atc5": {
+      "nan_true": 0.062180974477958235,
+      "nan_shuffled": 0.062180974477958235,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.062180974477958235
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06501547987616099,
+      "nan_shuffled": 0.06501547987616099,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06501547987616099
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.021671826625386997,
+      "nan_shuffled": 0.021671826625386997,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.021671826625386997
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 564,
+   "n_features": 58,
+   "train_rows": 103440,
+   "train_skus": 4719,
+   "donor_skus": 5467,
+   "eval_rows": 19380,
+   "eval_skus": 1615,
+   "fit_seconds": 11.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14095127610208816,
+      "nan_shuffled": 0.14095127610208816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14095127610208816
+     },
+     "inn_nfc": {
+      "nan_true": 0.1863109048723898,
+      "nan_shuffled": 0.1863109048723898,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1863109048723898
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00034802784222737816,
+      "nan_shuffled": 0.00034802784222737816,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00034802784222737816
+     },
+     "atc3": {
+      "nan_true": 0.0030162412993039443,
+      "nan_shuffled": 0.0030162412993039443,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030162412993039443
+     },
+     "atc4": {
+      "nan_true": 0.0154292343387471,
+      "nan_shuffled": 0.0154292343387471,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0154292343387471
+     },
+     "atc5": {
+      "nan_true": 0.062180974477958235,
+      "nan_shuffled": 0.062180974477958235,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.062180974477958235
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06501547987616099,
+      "nan_shuffled": 0.06501547987616099,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06501547987616099
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002476780185758514,
+      "nan_shuffled": 0.002476780185758514,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002476780185758514
+     },
+     "atc5": {
+      "nan_true": 0.021671826625386997,
+      "nan_shuffled": 0.021671826625386997,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.021671826625386997
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 323,
+   "n_features": 33,
+   "train_rows": 102048,
+   "train_skus": 4698,
+   "donor_skus": 5476,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 6.7,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13805268109125118,
+      "nan_shuffled": 0.13805268109125118,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13805268109125118
+     },
+     "inn_nfc": {
+      "nan_true": 0.18238476011288804,
+      "nan_shuffled": 0.18238476011288804,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18238476011288804
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003527751646284102,
+      "nan_shuffled": 0.0003527751646284102,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003527751646284102
+     },
+     "atc3": {
+      "nan_true": 0.0031749764816556914,
+      "nan_shuffled": 0.0031749764816556914,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0031749764816556914
+     },
+     "atc4": {
+      "nan_true": 0.01810912511759172,
+      "nan_shuffled": 0.01810912511759172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01810912511759172
+     },
+     "atc5": {
+      "nan_true": 0.05832549388523048,
+      "nan_shuffled": 0.05832549388523048,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05832549388523048
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0488997555012225,
+      "nan_shuffled": 0.0488997555012225,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0488997555012225
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.004889975550122249,
+      "nan_shuffled": 0.004889975550122249,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004889975550122249
+     },
+     "atc5": {
+      "nan_true": 0.01589242053789731,
+      "nan_shuffled": 0.01589242053789731,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01589242053789731
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 286,
+   "n_features": 47,
+   "train_rows": 102048,
+   "train_skus": 4698,
+   "donor_skus": 5476,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 6.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13805268109125118,
+      "nan_shuffled": 0.13805268109125118,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13805268109125118
+     },
+     "inn_nfc": {
+      "nan_true": 0.18238476011288804,
+      "nan_shuffled": 0.18238476011288804,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18238476011288804
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003527751646284102,
+      "nan_shuffled": 0.0003527751646284102,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003527751646284102
+     },
+     "atc3": {
+      "nan_true": 0.0031749764816556914,
+      "nan_shuffled": 0.0031749764816556914,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0031749764816556914
+     },
+     "atc4": {
+      "nan_true": 0.01810912511759172,
+      "nan_shuffled": 0.01810912511759172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01810912511759172
+     },
+     "atc5": {
+      "nan_true": 0.05832549388523048,
+      "nan_shuffled": 0.05832549388523048,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05832549388523048
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0488997555012225,
+      "nan_shuffled": 0.0488997555012225,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0488997555012225
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.004889975550122249,
+      "nan_shuffled": 0.004889975550122249,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004889975550122249
+     },
+     "atc5": {
+      "nan_true": 0.01589242053789731,
+      "nan_shuffled": 0.01589242053789731,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01589242053789731
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 454,
+   "n_features": 58,
+   "train_rows": 102048,
+   "train_skus": 4698,
+   "donor_skus": 5476,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 8.7,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13805268109125118,
+      "nan_shuffled": 0.13805268109125118,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13805268109125118
+     },
+     "inn_nfc": {
+      "nan_true": 0.18238476011288804,
+      "nan_shuffled": 0.18238476011288804,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18238476011288804
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003527751646284102,
+      "nan_shuffled": 0.0003527751646284102,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003527751646284102
+     },
+     "atc3": {
+      "nan_true": 0.0031749764816556914,
+      "nan_shuffled": 0.0031749764816556914,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0031749764816556914
+     },
+     "atc4": {
+      "nan_true": 0.01810912511759172,
+      "nan_shuffled": 0.01810912511759172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01810912511759172
+     },
+     "atc5": {
+      "nan_true": 0.05832549388523048,
+      "nan_shuffled": 0.05832549388523048,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05832549388523048
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0488997555012225,
+      "nan_shuffled": 0.0488997555012225,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0488997555012225
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.004889975550122249,
+      "nan_shuffled": 0.004889975550122249,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004889975550122249
+     },
+     "atc5": {
+      "nan_true": 0.01589242053789731,
+      "nan_shuffled": 0.01589242053789731,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01589242053789731
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 469,
+   "n_features": 33,
+   "train_rows": 102324,
+   "train_skus": 4669,
+   "donor_skus": 5533,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 7.6,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13674211328720534,
+      "nan_shuffled": 0.13674211328720534,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13674211328720534
+     },
+     "inn_nfc": {
+      "nan_true": 0.18670106719831125,
+      "nan_shuffled": 0.18670106719831125,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18670106719831125
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001055470857276885,
+      "nan_shuffled": 0.001055470857276885,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001055470857276885
+     },
+     "atc3": {
+      "nan_true": 0.004690981587897268,
+      "nan_shuffled": 0.004690981587897268,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004690981587897268
+     },
+     "atc4": {
+      "nan_true": 0.018177553653101912,
+      "nan_shuffled": 0.018177553653101912,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018177553653101912
+     },
+     "atc5": {
+      "nan_true": 0.06649466400844377,
+      "nan_shuffled": 0.06649466400844377,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06649466400844377
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0647921760391198,
+      "nan_shuffled": 0.0647921760391198,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0647921760391198
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006112469437652812,
+      "nan_shuffled": 0.0006112469437652812,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006112469437652812
+     },
+     "atc3": {
+      "nan_true": 0.0012224938875305623,
+      "nan_shuffled": 0.0012224938875305623,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012224938875305623
+     },
+     "atc4": {
+      "nan_true": 0.003056234718826406,
+      "nan_shuffled": 0.003056234718826406,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003056234718826406
+     },
+     "atc5": {
+      "nan_true": 0.015281173594132029,
+      "nan_shuffled": 0.015281173594132029,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.015281173594132029
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 398,
+   "n_features": 47,
+   "train_rows": 102324,
+   "train_skus": 4669,
+   "donor_skus": 5533,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 7.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13674211328720534,
+      "nan_shuffled": 0.13674211328720534,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13674211328720534
+     },
+     "inn_nfc": {
+      "nan_true": 0.18670106719831125,
+      "nan_shuffled": 0.18670106719831125,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18670106719831125
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001055470857276885,
+      "nan_shuffled": 0.001055470857276885,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001055470857276885
+     },
+     "atc3": {
+      "nan_true": 0.004690981587897268,
+      "nan_shuffled": 0.004690981587897268,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004690981587897268
+     },
+     "atc4": {
+      "nan_true": 0.018177553653101912,
+      "nan_shuffled": 0.018177553653101912,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018177553653101912
+     },
+     "atc5": {
+      "nan_true": 0.06649466400844377,
+      "nan_shuffled": 0.06649466400844377,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06649466400844377
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0647921760391198,
+      "nan_shuffled": 0.0647921760391198,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0647921760391198
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006112469437652812,
+      "nan_shuffled": 0.0006112469437652812,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006112469437652812
+     },
+     "atc3": {
+      "nan_true": 0.0012224938875305623,
+      "nan_shuffled": 0.0012224938875305623,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012224938875305623
+     },
+     "atc4": {
+      "nan_true": 0.003056234718826406,
+      "nan_shuffled": 0.003056234718826406,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003056234718826406
+     },
+     "atc5": {
+      "nan_true": 0.015281173594132029,
+      "nan_shuffled": 0.015281173594132029,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.015281173594132029
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "validation",
+   "fold": 1,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 486,
+   "n_features": 58,
+   "train_rows": 102324,
+   "train_skus": 4669,
+   "donor_skus": 5533,
+   "eval_rows": 19632,
+   "eval_skus": 1636,
+   "fit_seconds": 9.3,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13674211328720534,
+      "nan_shuffled": 0.13674211328720534,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13674211328720534
+     },
+     "inn_nfc": {
+      "nan_true": 0.18670106719831125,
+      "nan_shuffled": 0.18670106719831125,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18670106719831125
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001055470857276885,
+      "nan_shuffled": 0.001055470857276885,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001055470857276885
+     },
+     "atc3": {
+      "nan_true": 0.004690981587897268,
+      "nan_shuffled": 0.004690981587897268,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004690981587897268
+     },
+     "atc4": {
+      "nan_true": 0.018177553653101912,
+      "nan_shuffled": 0.018177553653101912,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018177553653101912
+     },
+     "atc5": {
+      "nan_true": 0.06649466400844377,
+      "nan_shuffled": 0.06649466400844377,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06649466400844377
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.0647921760391198,
+      "nan_shuffled": 0.0647921760391198,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0647921760391198
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006112469437652812,
+      "nan_shuffled": 0.0006112469437652812,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006112469437652812
+     },
+     "atc3": {
+      "nan_true": 0.0012224938875305623,
+      "nan_shuffled": 0.0012224938875305623,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012224938875305623
+     },
+     "atc4": {
+      "nan_true": 0.003056234718826406,
+      "nan_shuffled": 0.003056234718826406,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003056234718826406
+     },
+     "atc5": {
+      "nan_true": 0.015281173594132029,
+      "nan_shuffled": 0.015281173594132029,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.015281173594132029
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 323,
+   "n_features": 33,
+   "train_rows": 150936,
+   "train_skus": 4967,
+   "donor_skus": 5542,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 5.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13634918110987437,
+      "nan_shuffled": 0.13634918110987437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13634918110987437
+     },
+     "inn_nfc": {
+      "nan_true": 0.18158689775799014,
+      "nan_shuffled": 0.18158689775799014,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18158689775799014
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001113054539672444,
+      "nan_shuffled": 0.001113054539672444,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001113054539672444
+     },
+     "atc3": {
+      "nan_true": 0.002226109079344888,
+      "nan_shuffled": 0.002226109079344888,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002226109079344888
+     },
+     "atc4": {
+      "nan_true": 0.01661631419939577,
+      "nan_shuffled": 0.01661631419939577,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661631419939577
+     },
+     "atc5": {
+      "nan_true": 0.06312609317856575,
+      "nan_shuffled": 0.06312609317856575,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06312609317856575
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06499080318822809,
+      "nan_shuffled": 0.06499080318822809,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06499080318822809
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0030656039239730227,
+      "nan_shuffled": 0.0030656039239730227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030656039239730227
+     },
+     "atc5": {
+      "nan_true": 0.01655426118945432,
+      "nan_shuffled": 0.01655426118945432,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01655426118945432
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 286,
+   "n_features": 47,
+   "train_rows": 150936,
+   "train_skus": 4967,
+   "donor_skus": 5542,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 5.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13634918110987437,
+      "nan_shuffled": 0.13634918110987437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13634918110987437
+     },
+     "inn_nfc": {
+      "nan_true": 0.18158689775799014,
+      "nan_shuffled": 0.18158689775799014,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18158689775799014
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001113054539672444,
+      "nan_shuffled": 0.001113054539672444,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001113054539672444
+     },
+     "atc3": {
+      "nan_true": 0.002226109079344888,
+      "nan_shuffled": 0.002226109079344888,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002226109079344888
+     },
+     "atc4": {
+      "nan_true": 0.01661631419939577,
+      "nan_shuffled": 0.01661631419939577,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661631419939577
+     },
+     "atc5": {
+      "nan_true": 0.06312609317856575,
+      "nan_shuffled": 0.06312609317856575,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06312609317856575
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06499080318822809,
+      "nan_shuffled": 0.06499080318822809,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06499080318822809
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0030656039239730227,
+      "nan_shuffled": 0.0030656039239730227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030656039239730227
+     },
+     "atc5": {
+      "nan_true": 0.01655426118945432,
+      "nan_shuffled": 0.01655426118945432,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01655426118945432
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 454,
+   "n_features": 58,
+   "train_rows": 150936,
+   "train_skus": 4967,
+   "donor_skus": 5542,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 8.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13634918110987437,
+      "nan_shuffled": 0.13634918110987437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13634918110987437
+     },
+     "inn_nfc": {
+      "nan_true": 0.18158689775799014,
+      "nan_shuffled": 0.18158689775799014,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18158689775799014
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001113054539672444,
+      "nan_shuffled": 0.001113054539672444,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001113054539672444
+     },
+     "atc3": {
+      "nan_true": 0.002226109079344888,
+      "nan_shuffled": 0.002226109079344888,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002226109079344888
+     },
+     "atc4": {
+      "nan_true": 0.01661631419939577,
+      "nan_shuffled": 0.01661631419939577,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01661631419939577
+     },
+     "atc5": {
+      "nan_true": 0.06312609317856575,
+      "nan_shuffled": 0.06312609317856575,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06312609317856575
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06499080318822809,
+      "nan_shuffled": 0.06499080318822809,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06499080318822809
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0030656039239730227,
+      "nan_shuffled": 0.0030656039239730227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030656039239730227
+     },
+     "atc5": {
+      "nan_true": 0.01655426118945432,
+      "nan_shuffled": 0.01655426118945432,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01655426118945432
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 469,
+   "n_features": 33,
+   "train_rows": 153792,
+   "train_skus": 5047,
+   "donor_skus": 5467,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 7.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14169787765293385,
+      "nan_shuffled": 0.14169787765293385,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14169787765293385
+     },
+     "inn_nfc": {
+      "nan_true": 0.18828027465667915,
+      "nan_shuffled": 0.18828027465667915,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18828027465667915
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003901373283395755,
+      "nan_shuffled": 0.0003901373283395755,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003901373283395755
+     },
+     "atc3": {
+      "nan_true": 0.003433208489388265,
+      "nan_shuffled": 0.003433208489388265,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003433208489388265
+     },
+     "atc4": {
+      "nan_true": 0.01630774032459426,
+      "nan_shuffled": 0.01630774032459426,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01630774032459426
+     },
+     "atc5": {
+      "nan_true": 0.06390449438202248,
+      "nan_shuffled": 0.06390449438202248,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06390449438202248
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06866952789699571,
+      "nan_shuffled": 0.06866952789699571,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06866952789699571
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002452483139178418,
+      "nan_shuffled": 0.002452483139178418,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002452483139178418
+     },
+     "atc5": {
+      "nan_true": 0.02145922746781116,
+      "nan_shuffled": 0.02145922746781116,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02145922746781116
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 398,
+   "n_features": 47,
+   "train_rows": 153792,
+   "train_skus": 5047,
+   "donor_skus": 5467,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 6.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14169787765293385,
+      "nan_shuffled": 0.14169787765293385,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14169787765293385
+     },
+     "inn_nfc": {
+      "nan_true": 0.18828027465667915,
+      "nan_shuffled": 0.18828027465667915,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18828027465667915
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003901373283395755,
+      "nan_shuffled": 0.0003901373283395755,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003901373283395755
+     },
+     "atc3": {
+      "nan_true": 0.003433208489388265,
+      "nan_shuffled": 0.003433208489388265,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003433208489388265
+     },
+     "atc4": {
+      "nan_true": 0.01630774032459426,
+      "nan_shuffled": 0.01630774032459426,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01630774032459426
+     },
+     "atc5": {
+      "nan_true": 0.06390449438202248,
+      "nan_shuffled": 0.06390449438202248,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06390449438202248
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06866952789699571,
+      "nan_shuffled": 0.06866952789699571,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06866952789699571
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002452483139178418,
+      "nan_shuffled": 0.002452483139178418,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002452483139178418
+     },
+     "atc5": {
+      "nan_true": 0.02145922746781116,
+      "nan_shuffled": 0.02145922746781116,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02145922746781116
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 486,
+   "n_features": 58,
+   "train_rows": 153792,
+   "train_skus": 5047,
+   "donor_skus": 5467,
+   "eval_rows": 19572,
+   "eval_skus": 1631,
+   "fit_seconds": 9.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14169787765293385,
+      "nan_shuffled": 0.14169787765293385,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14169787765293385
+     },
+     "inn_nfc": {
+      "nan_true": 0.18828027465667915,
+      "nan_shuffled": 0.18828027465667915,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18828027465667915
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003901373283395755,
+      "nan_shuffled": 0.0003901373283395755,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003901373283395755
+     },
+     "atc3": {
+      "nan_true": 0.003433208489388265,
+      "nan_shuffled": 0.003433208489388265,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003433208489388265
+     },
+     "atc4": {
+      "nan_true": 0.01630774032459426,
+      "nan_shuffled": 0.01630774032459426,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01630774032459426
+     },
+     "atc5": {
+      "nan_true": 0.06390449438202248,
+      "nan_shuffled": 0.06390449438202248,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06390449438202248
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06866952789699571,
+      "nan_shuffled": 0.06866952789699571,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06866952789699571
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.002452483139178418,
+      "nan_shuffled": 0.002452483139178418,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002452483139178418
+     },
+     "atc5": {
+      "nan_true": 0.02145922746781116,
+      "nan_shuffled": 0.02145922746781116,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02145922746781116
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 728,
+   "n_features": 33,
+   "train_rows": 151464,
+   "train_skus": 5032,
+   "donor_skus": 5476,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 11.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1395183013785454,
+      "nan_shuffled": 0.1395183013785454,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1395183013785454
+     },
+     "inn_nfc": {
+      "nan_true": 0.18277610521311996,
+      "nan_shuffled": 0.18277610521311996,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18277610521311996
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023768024084931072,
+      "nan_shuffled": 0.00023768024084931072,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023768024084931072
+     },
+     "atc3": {
+      "nan_true": 0.003010616384091269,
+      "nan_shuffled": 0.003010616384091269,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003010616384091269
+     },
+     "atc4": {
+      "nan_true": 0.017905244810648074,
+      "nan_shuffled": 0.017905244810648074,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017905244810648074
+     },
+     "atc5": {
+      "nan_true": 0.059895420694026306,
+      "nan_shuffled": 0.059895420694026306,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.059895420694026306
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.047503045066991476,
+      "nan_shuffled": 0.047503045066991476,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.047503045066991476
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0048721071863581,
+      "nan_shuffled": 0.0048721071863581,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0048721071863581
+     },
+     "atc5": {
+      "nan_true": 0.01705237515225335,
+      "nan_shuffled": 0.01705237515225335,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01705237515225335
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 657,
+   "n_features": 47,
+   "train_rows": 151464,
+   "train_skus": 5032,
+   "donor_skus": 5476,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 11.8,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1395183013785454,
+      "nan_shuffled": 0.1395183013785454,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1395183013785454
+     },
+     "inn_nfc": {
+      "nan_true": 0.18277610521311996,
+      "nan_shuffled": 0.18277610521311996,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18277610521311996
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023768024084931072,
+      "nan_shuffled": 0.00023768024084931072,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023768024084931072
+     },
+     "atc3": {
+      "nan_true": 0.003010616384091269,
+      "nan_shuffled": 0.003010616384091269,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003010616384091269
+     },
+     "atc4": {
+      "nan_true": 0.017905244810648074,
+      "nan_shuffled": 0.017905244810648074,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017905244810648074
+     },
+     "atc5": {
+      "nan_true": 0.059895420694026306,
+      "nan_shuffled": 0.059895420694026306,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.059895420694026306
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.047503045066991476,
+      "nan_shuffled": 0.047503045066991476,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.047503045066991476
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0048721071863581,
+      "nan_shuffled": 0.0048721071863581,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0048721071863581
+     },
+     "atc5": {
+      "nan_true": 0.01705237515225335,
+      "nan_shuffled": 0.01705237515225335,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01705237515225335
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 708,
+   "n_features": 58,
+   "train_rows": 151464,
+   "train_skus": 5032,
+   "donor_skus": 5476,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 12.7,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1395183013785454,
+      "nan_shuffled": 0.1395183013785454,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1395183013785454
+     },
+     "inn_nfc": {
+      "nan_true": 0.18277610521311996,
+      "nan_shuffled": 0.18277610521311996,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18277610521311996
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023768024084931072,
+      "nan_shuffled": 0.00023768024084931072,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023768024084931072
+     },
+     "atc3": {
+      "nan_true": 0.003010616384091269,
+      "nan_shuffled": 0.003010616384091269,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003010616384091269
+     },
+     "atc4": {
+      "nan_true": 0.017905244810648074,
+      "nan_shuffled": 0.017905244810648074,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017905244810648074
+     },
+     "atc5": {
+      "nan_true": 0.059895420694026306,
+      "nan_shuffled": 0.059895420694026306,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.059895420694026306
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.047503045066991476,
+      "nan_shuffled": 0.047503045066991476,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.047503045066991476
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0048721071863581,
+      "nan_shuffled": 0.0048721071863581,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0048721071863581
+     },
+     "atc5": {
+      "nan_true": 0.01705237515225335,
+      "nan_shuffled": 0.01705237515225335,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01705237515225335
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 302,
+   "n_features": 33,
+   "train_rows": 152244,
+   "train_skus": 4974,
+   "donor_skus": 5533,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 4.8,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1369906203200126,
+      "nan_shuffled": 0.1369906203200126,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1369906203200126
+     },
+     "inn_nfc": {
+      "nan_true": 0.18790888310869394,
+      "nan_shuffled": 0.18790888310869394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18790888310869394
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001103491763222196,
+      "nan_shuffled": 0.001103491763222196,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001103491763222196
+     },
+     "atc3": {
+      "nan_true": 0.004886892094269725,
+      "nan_shuffled": 0.004886892094269725,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004886892094269725
+     },
+     "atc4": {
+      "nan_true": 0.018365255773626545,
+      "nan_shuffled": 0.018365255773626545,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018365255773626545
+     },
+     "atc5": {
+      "nan_true": 0.06739181839678411,
+      "nan_shuffled": 0.06739181839678411,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06739181839678411
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06333739342265529,
+      "nan_shuffled": 0.06333739342265529,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06333739342265529
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006090133982947625,
+      "nan_shuffled": 0.0006090133982947625,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006090133982947625
+     },
+     "atc4": {
+      "nan_true": 0.00243605359317905,
+      "nan_shuffled": 0.00243605359317905,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00243605359317905
+     },
+     "atc5": {
+      "nan_true": 0.014616321559074299,
+      "nan_shuffled": 0.014616321559074299,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014616321559074299
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 168,
+   "n_features": 47,
+   "train_rows": 152244,
+   "train_skus": 4974,
+   "donor_skus": 5533,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 3.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1369906203200126,
+      "nan_shuffled": 0.1369906203200126,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1369906203200126
+     },
+     "inn_nfc": {
+      "nan_true": 0.18790888310869394,
+      "nan_shuffled": 0.18790888310869394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18790888310869394
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001103491763222196,
+      "nan_shuffled": 0.001103491763222196,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001103491763222196
+     },
+     "atc3": {
+      "nan_true": 0.004886892094269725,
+      "nan_shuffled": 0.004886892094269725,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004886892094269725
+     },
+     "atc4": {
+      "nan_true": 0.018365255773626545,
+      "nan_shuffled": 0.018365255773626545,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018365255773626545
+     },
+     "atc5": {
+      "nan_true": 0.06739181839678411,
+      "nan_shuffled": 0.06739181839678411,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06739181839678411
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06333739342265529,
+      "nan_shuffled": 0.06333739342265529,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06333739342265529
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006090133982947625,
+      "nan_shuffled": 0.0006090133982947625,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006090133982947625
+     },
+     "atc4": {
+      "nan_true": 0.00243605359317905,
+      "nan_shuffled": 0.00243605359317905,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00243605359317905
+     },
+     "atc5": {
+      "nan_true": 0.014616321559074299,
+      "nan_shuffled": 0.014616321559074299,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014616321559074299
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 1,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 564,
+   "n_features": 58,
+   "train_rows": 152244,
+   "train_skus": 4974,
+   "donor_skus": 5533,
+   "eval_rows": 19704,
+   "eval_skus": 1642,
+   "fit_seconds": 10.6,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1369906203200126,
+      "nan_shuffled": 0.1369906203200126,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1369906203200126
+     },
+     "inn_nfc": {
+      "nan_true": 0.18790888310869394,
+      "nan_shuffled": 0.18790888310869394,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18790888310869394
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001103491763222196,
+      "nan_shuffled": 0.001103491763222196,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001103491763222196
+     },
+     "atc3": {
+      "nan_true": 0.004886892094269725,
+      "nan_shuffled": 0.004886892094269725,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004886892094269725
+     },
+     "atc4": {
+      "nan_true": 0.018365255773626545,
+      "nan_shuffled": 0.018365255773626545,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018365255773626545
+     },
+     "atc5": {
+      "nan_true": 0.06739181839678411,
+      "nan_shuffled": 0.06739181839678411,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06739181839678411
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06333739342265529,
+      "nan_shuffled": 0.06333739342265529,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06333739342265529
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006090133982947625,
+      "nan_shuffled": 0.0006090133982947625,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006090133982947625
+     },
+     "atc4": {
+      "nan_true": 0.00243605359317905,
+      "nan_shuffled": 0.00243605359317905,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00243605359317905
+     },
+     "atc5": {
+      "nan_true": 0.014616321559074299,
+      "nan_shuffled": 0.014616321559074299,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014616321559074299
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 728,
+   "n_features": 33,
+   "train_rows": 151812,
+   "train_skus": 5023,
+   "donor_skus": 5495,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 11.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13809185044660502,
+      "nan_shuffled": 0.13809185044660502,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13809185044660502
+     },
+     "inn_nfc": {
+      "nan_true": 0.18267330645798752,
+      "nan_shuffled": 0.18267330645798752,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18267330645798752
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023713540431586437,
+      "nan_shuffled": 0.00023713540431586437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023713540431586437
+     },
+     "atc3": {
+      "nan_true": 0.0011856770215793219,
+      "nan_shuffled": 0.0011856770215793219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0011856770215793219
+     },
+     "atc4": {
+      "nan_true": 0.014149079124179906,
+      "nan_shuffled": 0.014149079124179906,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014149079124179906
+     },
+     "atc5": {
+      "nan_true": 0.06371037862619555,
+      "nan_shuffled": 0.06371037862619555,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06371037862619555
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.046987951807228916,
+      "nan_shuffled": 0.046987951807228916,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.046987951807228916
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006024096385542169,
+      "nan_shuffled": 0.0006024096385542169,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006024096385542169
+     },
+     "atc3": {
+      "nan_true": 0.0012048192771084338,
+      "nan_shuffled": 0.0012048192771084338,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012048192771084338
+     },
+     "atc4": {
+      "nan_true": 0.0030120481927710845,
+      "nan_shuffled": 0.0030120481927710845,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030120481927710845
+     },
+     "atc5": {
+      "nan_true": 0.01746987951807229,
+      "nan_shuffled": 0.01746987951807229,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01746987951807229
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 657,
+   "n_features": 47,
+   "train_rows": 151812,
+   "train_skus": 5023,
+   "donor_skus": 5495,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 11.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13809185044660502,
+      "nan_shuffled": 0.13809185044660502,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13809185044660502
+     },
+     "inn_nfc": {
+      "nan_true": 0.18267330645798752,
+      "nan_shuffled": 0.18267330645798752,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18267330645798752
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023713540431586437,
+      "nan_shuffled": 0.00023713540431586437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023713540431586437
+     },
+     "atc3": {
+      "nan_true": 0.0011856770215793219,
+      "nan_shuffled": 0.0011856770215793219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0011856770215793219
+     },
+     "atc4": {
+      "nan_true": 0.014149079124179906,
+      "nan_shuffled": 0.014149079124179906,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014149079124179906
+     },
+     "atc5": {
+      "nan_true": 0.06371037862619555,
+      "nan_shuffled": 0.06371037862619555,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06371037862619555
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.046987951807228916,
+      "nan_shuffled": 0.046987951807228916,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.046987951807228916
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006024096385542169,
+      "nan_shuffled": 0.0006024096385542169,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006024096385542169
+     },
+     "atc3": {
+      "nan_true": 0.0012048192771084338,
+      "nan_shuffled": 0.0012048192771084338,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012048192771084338
+     },
+     "atc4": {
+      "nan_true": 0.0030120481927710845,
+      "nan_shuffled": 0.0030120481927710845,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030120481927710845
+     },
+     "atc5": {
+      "nan_true": 0.01746987951807229,
+      "nan_shuffled": 0.01746987951807229,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01746987951807229
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 708,
+   "n_features": 58,
+   "train_rows": 151812,
+   "train_skus": 5023,
+   "donor_skus": 5495,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 12.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13809185044660502,
+      "nan_shuffled": 0.13809185044660502,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13809185044660502
+     },
+     "inn_nfc": {
+      "nan_true": 0.18267330645798752,
+      "nan_shuffled": 0.18267330645798752,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18267330645798752
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00023713540431586437,
+      "nan_shuffled": 0.00023713540431586437,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00023713540431586437
+     },
+     "atc3": {
+      "nan_true": 0.0011856770215793219,
+      "nan_shuffled": 0.0011856770215793219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0011856770215793219
+     },
+     "atc4": {
+      "nan_true": 0.014149079124179906,
+      "nan_shuffled": 0.014149079124179906,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014149079124179906
+     },
+     "atc5": {
+      "nan_true": 0.06371037862619555,
+      "nan_shuffled": 0.06371037862619555,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06371037862619555
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.046987951807228916,
+      "nan_shuffled": 0.046987951807228916,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.046987951807228916
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006024096385542169,
+      "nan_shuffled": 0.0006024096385542169,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006024096385542169
+     },
+     "atc3": {
+      "nan_true": 0.0012048192771084338,
+      "nan_shuffled": 0.0012048192771084338,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012048192771084338
+     },
+     "atc4": {
+      "nan_true": 0.0030120481927710845,
+      "nan_shuffled": 0.0030120481927710845,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030120481927710845
+     },
+     "atc5": {
+      "nan_true": 0.01746987951807229,
+      "nan_shuffled": 0.01746987951807229,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01746987951807229
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 302,
+   "n_features": 33,
+   "train_rows": 153360,
+   "train_skus": 5006,
+   "donor_skus": 5515,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 4.6,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13615023474178403,
+      "nan_shuffled": 0.13615023474178403,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13615023474178403
+     },
+     "inn_nfc": {
+      "nan_true": 0.18419405320813773,
+      "nan_shuffled": 0.18419405320813773,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18419405320813773
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006259780907668231,
+      "nan_shuffled": 0.0006259780907668231,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006259780907668231
+     },
+     "atc3": {
+      "nan_true": 0.0034428794992175274,
+      "nan_shuffled": 0.0034428794992175274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0034428794992175274
+     },
+     "atc4": {
+      "nan_true": 0.01564945226917058,
+      "nan_shuffled": 0.01564945226917058,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01564945226917058
+     },
+     "atc5": {
+      "nan_true": 0.06032863849765258,
+      "nan_shuffled": 0.06032863849765258,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06032863849765258
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05542168674698795,
+      "nan_shuffled": 0.05542168674698795,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05542168674698795
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0018072289156626507,
+      "nan_shuffled": 0.0018072289156626507,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018072289156626507
+     },
+     "atc5": {
+      "nan_true": 0.012650602409638554,
+      "nan_shuffled": 0.012650602409638554,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.012650602409638554
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 168,
+   "n_features": 47,
+   "train_rows": 153360,
+   "train_skus": 5006,
+   "donor_skus": 5515,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 3.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13615023474178403,
+      "nan_shuffled": 0.13615023474178403,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13615023474178403
+     },
+     "inn_nfc": {
+      "nan_true": 0.18419405320813773,
+      "nan_shuffled": 0.18419405320813773,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18419405320813773
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006259780907668231,
+      "nan_shuffled": 0.0006259780907668231,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006259780907668231
+     },
+     "atc3": {
+      "nan_true": 0.0034428794992175274,
+      "nan_shuffled": 0.0034428794992175274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0034428794992175274
+     },
+     "atc4": {
+      "nan_true": 0.01564945226917058,
+      "nan_shuffled": 0.01564945226917058,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01564945226917058
+     },
+     "atc5": {
+      "nan_true": 0.06032863849765258,
+      "nan_shuffled": 0.06032863849765258,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06032863849765258
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05542168674698795,
+      "nan_shuffled": 0.05542168674698795,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05542168674698795
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0018072289156626507,
+      "nan_shuffled": 0.0018072289156626507,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018072289156626507
+     },
+     "atc5": {
+      "nan_true": 0.012650602409638554,
+      "nan_shuffled": 0.012650602409638554,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.012650602409638554
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 2,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 564,
+   "n_features": 58,
+   "train_rows": 153360,
+   "train_skus": 5006,
+   "donor_skus": 5515,
+   "eval_rows": 19920,
+   "eval_skus": 1660,
+   "fit_seconds": 10.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13615023474178403,
+      "nan_shuffled": 0.13615023474178403,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13615023474178403
+     },
+     "inn_nfc": {
+      "nan_true": 0.18419405320813773,
+      "nan_shuffled": 0.18419405320813773,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18419405320813773
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006259780907668231,
+      "nan_shuffled": 0.0006259780907668231,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006259780907668231
+     },
+     "atc3": {
+      "nan_true": 0.0034428794992175274,
+      "nan_shuffled": 0.0034428794992175274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0034428794992175274
+     },
+     "atc4": {
+      "nan_true": 0.01564945226917058,
+      "nan_shuffled": 0.01564945226917058,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01564945226917058
+     },
+     "atc5": {
+      "nan_true": 0.06032863849765258,
+      "nan_shuffled": 0.06032863849765258,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06032863849765258
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05542168674698795,
+      "nan_shuffled": 0.05542168674698795,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05542168674698795
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc4": {
+      "nan_true": 0.0018072289156626507,
+      "nan_shuffled": 0.0018072289156626507,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018072289156626507
+     },
+     "atc5": {
+      "nan_true": 0.012650602409638554,
+      "nan_shuffled": 0.012650602409638554,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.012650602409638554
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 728,
+   "n_features": 33,
+   "train_rows": 151596,
+   "train_skus": 4993,
+   "donor_skus": 5510,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 11.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14248397055331274,
+      "nan_shuffled": 0.14248397055331274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14248397055331274
+     },
+     "inn_nfc": {
+      "nan_true": 0.1922742024855537,
+      "nan_shuffled": 0.1922742024855537,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1922742024855537
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001029050898440592,
+      "nan_shuffled": 0.001029050898440592,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001029050898440592
+     },
+     "atc3": {
+      "nan_true": 0.0030079949339032693,
+      "nan_shuffled": 0.0030079949339032693,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030079949339032693
+     },
+     "atc4": {
+      "nan_true": 0.020581017968811843,
+      "nan_shuffled": 0.020581017968811843,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020581017968811843
+     },
+     "atc5": {
+      "nan_true": 0.06609673078445341,
+      "nan_shuffled": 0.06609673078445341,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06609673078445341
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06012269938650307,
+      "nan_shuffled": 0.06012269938650307,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06012269938650307
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006134969325153375,
+      "nan_shuffled": 0.0006134969325153375,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006134969325153375
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.018404907975460124,
+      "nan_shuffled": 0.018404907975460124,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018404907975460124
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 657,
+   "n_features": 47,
+   "train_rows": 151596,
+   "train_skus": 4993,
+   "donor_skus": 5510,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 11.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14248397055331274,
+      "nan_shuffled": 0.14248397055331274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14248397055331274
+     },
+     "inn_nfc": {
+      "nan_true": 0.1922742024855537,
+      "nan_shuffled": 0.1922742024855537,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1922742024855537
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001029050898440592,
+      "nan_shuffled": 0.001029050898440592,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001029050898440592
+     },
+     "atc3": {
+      "nan_true": 0.0030079949339032693,
+      "nan_shuffled": 0.0030079949339032693,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030079949339032693
+     },
+     "atc4": {
+      "nan_true": 0.020581017968811843,
+      "nan_shuffled": 0.020581017968811843,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020581017968811843
+     },
+     "atc5": {
+      "nan_true": 0.06609673078445341,
+      "nan_shuffled": 0.06609673078445341,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06609673078445341
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06012269938650307,
+      "nan_shuffled": 0.06012269938650307,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06012269938650307
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006134969325153375,
+      "nan_shuffled": 0.0006134969325153375,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006134969325153375
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.018404907975460124,
+      "nan_shuffled": 0.018404907975460124,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018404907975460124
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 708,
+   "n_features": 58,
+   "train_rows": 151596,
+   "train_skus": 4993,
+   "donor_skus": 5510,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 13.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.14248397055331274,
+      "nan_shuffled": 0.14248397055331274,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.14248397055331274
+     },
+     "inn_nfc": {
+      "nan_true": 0.1922742024855537,
+      "nan_shuffled": 0.1922742024855537,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1922742024855537
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.001029050898440592,
+      "nan_shuffled": 0.001029050898440592,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001029050898440592
+     },
+     "atc3": {
+      "nan_true": 0.0030079949339032693,
+      "nan_shuffled": 0.0030079949339032693,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0030079949339032693
+     },
+     "atc4": {
+      "nan_true": 0.020581017968811843,
+      "nan_shuffled": 0.020581017968811843,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020581017968811843
+     },
+     "atc5": {
+      "nan_true": 0.06609673078445341,
+      "nan_shuffled": 0.06609673078445341,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06609673078445341
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06012269938650307,
+      "nan_shuffled": 0.06012269938650307,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06012269938650307
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0006134969325153375,
+      "nan_shuffled": 0.0006134969325153375,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006134969325153375
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.018404907975460124,
+      "nan_shuffled": 0.018404907975460124,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.018404907975460124
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 302,
+   "n_features": 33,
+   "train_rows": 153468,
+   "train_skus": 5040,
+   "donor_skus": 5500,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 4.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13988583939322854,
+      "nan_shuffled": 0.13988583939322854,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13988583939322854
+     },
+     "inn_nfc": {
+      "nan_true": 0.18492454453045587,
+      "nan_shuffled": 0.18492454453045587,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18492454453045587
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003127687856751896,
+      "nan_shuffled": 0.0003127687856751896,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003127687856751896
+     },
+     "atc3": {
+      "nan_true": 0.0033622644460082883,
+      "nan_shuffled": 0.0033622644460082883,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033622644460082883
+     },
+     "atc4": {
+      "nan_true": 0.02072093205098131,
+      "nan_shuffled": 0.02072093205098131,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02072093205098131
+     },
+     "atc5": {
+      "nan_true": 0.06349206349206349,
+      "nan_shuffled": 0.06349206349206349,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06349206349206349
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05766871165644172,
+      "nan_shuffled": 0.05766871165644172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05766871165644172
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.001226993865030675,
+      "nan_shuffled": 0.001226993865030675,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001226993865030675
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.016564417177914112,
+      "nan_shuffled": 0.016564417177914112,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016564417177914112
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 168,
+   "n_features": 47,
+   "train_rows": 153468,
+   "train_skus": 5040,
+   "donor_skus": 5500,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 3.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13988583939322854,
+      "nan_shuffled": 0.13988583939322854,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13988583939322854
+     },
+     "inn_nfc": {
+      "nan_true": 0.18492454453045587,
+      "nan_shuffled": 0.18492454453045587,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18492454453045587
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003127687856751896,
+      "nan_shuffled": 0.0003127687856751896,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003127687856751896
+     },
+     "atc3": {
+      "nan_true": 0.0033622644460082883,
+      "nan_shuffled": 0.0033622644460082883,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033622644460082883
+     },
+     "atc4": {
+      "nan_true": 0.02072093205098131,
+      "nan_shuffled": 0.02072093205098131,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02072093205098131
+     },
+     "atc5": {
+      "nan_true": 0.06349206349206349,
+      "nan_shuffled": 0.06349206349206349,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06349206349206349
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05766871165644172,
+      "nan_shuffled": 0.05766871165644172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05766871165644172
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.001226993865030675,
+      "nan_shuffled": 0.001226993865030675,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001226993865030675
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.016564417177914112,
+      "nan_shuffled": 0.016564417177914112,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016564417177914112
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 3,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 564,
+   "n_features": 58,
+   "train_rows": 153468,
+   "train_skus": 5040,
+   "donor_skus": 5500,
+   "eval_rows": 19560,
+   "eval_skus": 1630,
+   "fit_seconds": 10.5,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13988583939322854,
+      "nan_shuffled": 0.13988583939322854,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13988583939322854
+     },
+     "inn_nfc": {
+      "nan_true": 0.18492454453045587,
+      "nan_shuffled": 0.18492454453045587,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18492454453045587
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0003127687856751896,
+      "nan_shuffled": 0.0003127687856751896,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0003127687856751896
+     },
+     "atc3": {
+      "nan_true": 0.0033622644460082883,
+      "nan_shuffled": 0.0033622644460082883,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033622644460082883
+     },
+     "atc4": {
+      "nan_true": 0.02072093205098131,
+      "nan_shuffled": 0.02072093205098131,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02072093205098131
+     },
+     "atc5": {
+      "nan_true": 0.06349206349206349,
+      "nan_shuffled": 0.06349206349206349,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06349206349206349
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.05766871165644172,
+      "nan_shuffled": 0.05766871165644172,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.05766871165644172
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.001226993865030675,
+      "nan_shuffled": 0.001226993865030675,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.001226993865030675
+     },
+     "atc4": {
+      "nan_true": 0.0049079754601227,
+      "nan_shuffled": 0.0049079754601227,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0049079754601227
+     },
+     "atc5": {
+      "nan_true": 0.016564417177914112,
+      "nan_shuffled": 0.016564417177914112,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016564417177914112
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 728,
+   "n_features": 33,
+   "train_rows": 151584,
+   "train_skus": 4994,
+   "donor_skus": 5517,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 11.3,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13782457251424954,
+      "nan_shuffled": 0.13782457251424954,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13782457251424954
+     },
+     "inn_nfc": {
+      "nan_true": 0.18975617479417353,
+      "nan_shuffled": 0.18975617479417353,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18975617479417353
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006333122229259025,
+      "nan_shuffled": 0.0006333122229259025,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006333122229259025
+     },
+     "atc3": {
+      "nan_true": 0.004037365421152629,
+      "nan_shuffled": 0.004037365421152629,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004037365421152629
+     },
+     "atc4": {
+      "nan_true": 0.01812856238125396,
+      "nan_shuffled": 0.01812856238125396,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01812856238125396
+     },
+     "atc5": {
+      "nan_true": 0.06697276757441419,
+      "nan_shuffled": 0.06697276757441419,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06697276757441419
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06856084002470661,
+      "nan_shuffled": 0.06856084002470661,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06856084002470661
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0012353304508956147,
+      "nan_shuffled": 0.0012353304508956147,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012353304508956147
+     },
+     "atc4": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc5": {
+      "nan_true": 0.016676961087090797,
+      "nan_shuffled": 0.016676961087090797,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016676961087090797
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 657,
+   "n_features": 47,
+   "train_rows": 151584,
+   "train_skus": 4994,
+   "donor_skus": 5517,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 11.3,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13782457251424954,
+      "nan_shuffled": 0.13782457251424954,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13782457251424954
+     },
+     "inn_nfc": {
+      "nan_true": 0.18975617479417353,
+      "nan_shuffled": 0.18975617479417353,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18975617479417353
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006333122229259025,
+      "nan_shuffled": 0.0006333122229259025,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006333122229259025
+     },
+     "atc3": {
+      "nan_true": 0.004037365421152629,
+      "nan_shuffled": 0.004037365421152629,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004037365421152629
+     },
+     "atc4": {
+      "nan_true": 0.01812856238125396,
+      "nan_shuffled": 0.01812856238125396,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01812856238125396
+     },
+     "atc5": {
+      "nan_true": 0.06697276757441419,
+      "nan_shuffled": 0.06697276757441419,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06697276757441419
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06856084002470661,
+      "nan_shuffled": 0.06856084002470661,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06856084002470661
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0012353304508956147,
+      "nan_shuffled": 0.0012353304508956147,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012353304508956147
+     },
+     "atc4": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc5": {
+      "nan_true": 0.016676961087090797,
+      "nan_shuffled": 0.016676961087090797,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016676961087090797
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 708,
+   "n_features": 58,
+   "train_rows": 151584,
+   "train_skus": 4994,
+   "donor_skus": 5517,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 13.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13782457251424954,
+      "nan_shuffled": 0.13782457251424954,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13782457251424954
+     },
+     "inn_nfc": {
+      "nan_true": 0.18975617479417353,
+      "nan_shuffled": 0.18975617479417353,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18975617479417353
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006333122229259025,
+      "nan_shuffled": 0.0006333122229259025,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006333122229259025
+     },
+     "atc3": {
+      "nan_true": 0.004037365421152629,
+      "nan_shuffled": 0.004037365421152629,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.004037365421152629
+     },
+     "atc4": {
+      "nan_true": 0.01812856238125396,
+      "nan_shuffled": 0.01812856238125396,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01812856238125396
+     },
+     "atc5": {
+      "nan_true": 0.06697276757441419,
+      "nan_shuffled": 0.06697276757441419,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06697276757441419
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.06856084002470661,
+      "nan_shuffled": 0.06856084002470661,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06856084002470661
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0012353304508956147,
+      "nan_shuffled": 0.0012353304508956147,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0012353304508956147
+     },
+     "atc4": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc5": {
+      "nan_true": 0.016676961087090797,
+      "nan_shuffled": 0.016676961087090797,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.016676961087090797
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "inn",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 302,
+   "n_features": 33,
+   "train_rows": 151824,
+   "train_skus": 5012,
+   "donor_skus": 5493,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 4.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13752766361049637,
+      "nan_shuffled": 0.13752766361049637,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13752766361049637
+     },
+     "inn_nfc": {
+      "nan_true": 0.18787543471387924,
+      "nan_shuffled": 0.18787543471387924,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18787543471387924
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0007903888713246917,
+      "nan_shuffled": 0.0007903888713246917,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0007903888713246917
+     },
+     "atc3": {
+      "nan_true": 0.0033986721466961745,
+      "nan_shuffled": 0.0033986721466961745,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033986721466961745
+     },
+     "atc4": {
+      "nan_true": 0.017704710717673097,
+      "nan_shuffled": 0.017704710717673097,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017704710717673097
+     },
+     "atc5": {
+      "nan_true": 0.06362630414163768,
+      "nan_shuffled": 0.06362630414163768,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06362630414163768
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.07164916615194565,
+      "nan_shuffled": 0.07164916615194565,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.07164916615194565
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc4": {
+      "nan_true": 0.0037059913526868438,
+      "nan_shuffled": 0.0037059913526868438,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0037059913526868438
+     },
+     "atc5": {
+      "nan_true": 0.014206300185299567,
+      "nan_shuffled": 0.014206300185299567,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014206300185299567
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 168,
+   "n_features": 47,
+   "train_rows": 151824,
+   "train_skus": 5012,
+   "donor_skus": 5493,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 3.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13752766361049637,
+      "nan_shuffled": 0.13752766361049637,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13752766361049637
+     },
+     "inn_nfc": {
+      "nan_true": 0.18787543471387924,
+      "nan_shuffled": 0.18787543471387924,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18787543471387924
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0007903888713246917,
+      "nan_shuffled": 0.0007903888713246917,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0007903888713246917
+     },
+     "atc3": {
+      "nan_true": 0.0033986721466961745,
+      "nan_shuffled": 0.0033986721466961745,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033986721466961745
+     },
+     "atc4": {
+      "nan_true": 0.017704710717673097,
+      "nan_shuffled": 0.017704710717673097,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017704710717673097
+     },
+     "atc5": {
+      "nan_true": 0.06362630414163768,
+      "nan_shuffled": 0.06362630414163768,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06362630414163768
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.07164916615194565,
+      "nan_shuffled": 0.07164916615194565,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.07164916615194565
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc4": {
+      "nan_true": 0.0037059913526868438,
+      "nan_shuffled": 0.0037059913526868438,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0037059913526868438
+     },
+     "atc5": {
+      "nan_true": 0.014206300185299567,
+      "nan_shuffled": 0.014206300185299567,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014206300185299567
+     }
+    }
+   }
+  },
+  {
+   "scenario": "B",
+   "split": "test",
+   "fold": 4,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 564,
+   "n_features": 58,
+   "train_rows": 151824,
+   "train_skus": 5012,
+   "donor_skus": 5493,
+   "eval_rows": 19428,
+   "eval_skus": 1619,
+   "fit_seconds": 10.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.13752766361049637,
+      "nan_shuffled": 0.13752766361049637,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.13752766361049637
+     },
+     "inn_nfc": {
+      "nan_true": 0.18787543471387924,
+      "nan_shuffled": 0.18787543471387924,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.18787543471387924
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0007903888713246917,
+      "nan_shuffled": 0.0007903888713246917,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0007903888713246917
+     },
+     "atc3": {
+      "nan_true": 0.0033986721466961745,
+      "nan_shuffled": 0.0033986721466961745,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0033986721466961745
+     },
+     "atc4": {
+      "nan_true": 0.017704710717673097,
+      "nan_shuffled": 0.017704710717673097,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.017704710717673097
+     },
+     "atc5": {
+      "nan_true": 0.06362630414163768,
+      "nan_shuffled": 0.06362630414163768,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.06362630414163768
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "inn_nfc": {
+      "nan_true": 0.07164916615194565,
+      "nan_shuffled": 0.07164916615194565,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.07164916615194565
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0018529956763434219,
+      "nan_shuffled": 0.0018529956763434219,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018529956763434219
+     },
+     "atc4": {
+      "nan_true": 0.0037059913526868438,
+      "nan_shuffled": 0.0037059913526868438,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0037059913526868438
+     },
+     "atc5": {
+      "nan_true": 0.014206300185299567,
+      "nan_shuffled": 0.014206300185299567,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014206300185299567
+     }
+    }
+   }
+  }
+ ],
+ "loss_selection": [
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "36",
+   "n": 124464,
+   "MAE": 4255.830077865177,
+   "RMSE": 15008.220804242315,
+   "WAPE": 0.6305223715318865,
+   "bias": 0.2187680819061681,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "578",
+   "n": 124464,
+   "MAE": 3029.723924604676,
+   "RMSE": 14528.43824826101,
+   "WAPE": 0.4488686529014076,
+   "bias": 0.1509276233513701,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "362",
+   "n": 124464,
+   "MAE": 3140.6286459311423,
+   "RMSE": 21730.59559460735,
+   "WAPE": 0.4652997384065704,
+   "bias": 0.0922342036031513,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "2/14",
+   "n": 19380,
+   "MAE": 8755.30584775353,
+   "RMSE": 15323.300610677612,
+   "WAPE": 1.5699578993041587,
+   "bias": 0.5421370815138231,
+   "eligible": false
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "581/357",
+   "n": 19380,
+   "MAE": 7035.965652330089,
+   "RMSE": 15171.041248502346,
+   "WAPE": 1.26165436675666,
+   "bias": 0.1997021955789439,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "50/60",
+   "n": 19380,
+   "MAE": 5259.835083584903,
+   "RMSE": 15595.884603408897,
+   "WAPE": 0.9431674669172256,
+   "bias": -0.6728397547334839,
+   "eligible": false
+  }
+ ],
+ "fingerprint": {
+  "loss": "Tweedie:variance_power=1.5",
+  "arms": [
+   "inn",
+   "atc",
+   "both"
+  ],
+  "catboost_params": {
+   "iterations": 3000,
+   "learning_rate": 0.05,
+   "depth": 6,
+   "l2_leaf_reg": 3.0,
+   "max_ctr_complexity": 1,
+   "random_seed": 42,
+   "thread_count": -1,
+   "allow_writing_files": false
+  },
+  "early_stopping_rounds": 200,
+  "n_folds": 5,
+  "model_seed": 42,
+  "fold_seed": 42,
+  "fold_method": "balanced",
+  "placebo_seed": 3,
+  "dataset": {
+   "n_skus": 13762,
+   "sha256": "67f6dc7acf7c443c6f74a67b26528a0104c53bc245e03af3148bbffa270dd22f"
+  }
+ }
+}
