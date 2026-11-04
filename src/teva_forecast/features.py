@@ -43,6 +43,8 @@ HISTORY = [
 ]
 INN_CAT = ["inn"]
 ATC_CAT = ["atc1", "atc2", "atc3", "atc4", "atc5"]
+# Groupings that carry INN or ATC information; the shuffled-peer placebo permutes only these.
+METADATA_GROUPINGS = ["inn", "inn_nfc", "atc1", "atc2", "atc3", "atc4", "atc5"]
 
 
 def agg_columns(grouping):
@@ -75,7 +77,7 @@ def make_rows(ds, sku_mask, year, from_launch=False):
     """Row index for the 12 target months of `year` for the selected SKUs.
 
     With from_launch=True only months on or after the SKU's first sale are kept
-    (used for new launches whose planned launch month is assumed to be known).
+    (used in scenario N, where the planned launch month is assumed to be known).
     """
     idx = np.flatnonzero(sku_mask)
     months = year_months(year)
@@ -166,6 +168,13 @@ def age_at_target(ds, rows):
     return pd.Series(age, index=rows.index, name="age_at_target")
 
 
+def on_market_at_origin(ds, rows):
+    """1 if the SKU sold in the 12 months up to the origin T, else 0 (known at T)."""
+    i, T = rows["i"].to_numpy(), rows["T"].to_numpy()
+    sold = (_window(ds.sales0, i, T, 12) > 0).any(axis=1)
+    return pd.Series(sold.astype(float), index=rows.index, name="on_market_at_origin")
+
+
 def group_codes(ds, grouping):
     """Integer group code per SKU; -1 when any key of the grouping is missing (e.g. no INN)."""
     keys = GROUPINGS[grouping]
@@ -179,13 +188,36 @@ def group_codes(ds, grouping):
     return codes, max(int(codes.max()) + 1, 1)
 
 
-def group_aggregates(ds, rows, donor_mask, exclude_unit=None, groupings=tuple(GROUPINGS)):
+def placebo_permutation(n_groups, active, seed, grouping):
+    """Seeded single-cycle permutation of the active groups of one grouping (shuffled-peer placebo).
+
+    `active` marks the groups with at least one donor that sold in the 12 months up to the origin.
+    One seeded random cyclic order of all groups is drawn per (seed, grouping); every active group
+    is mapped to the next active group in that order, so no active group keeps its own statistics
+    (unless it is the only one) and inactive groups map to themselves, which keeps the group-level
+    missingness of the true features at the origin. The draw uses neither sales values nor
+    anything after the origin.
+    """
+    order = np.random.default_rng([int(seed), METADATA_GROUPINGS.index(grouping)]).permutation(n_groups)
+    perm = np.arange(n_groups)
+    cycle = order[np.asarray(active, dtype=bool)[order]]
+    if len(cycle) > 1:
+        perm[cycle] = np.roll(cycle, -1)
+    return perm
+
+
+def group_aggregates(ds, rows, donor_mask, exclude_unit=None, groupings=tuple(GROUPINGS), placebo_seed=None):
     """Peer-group statistics at the origin, computed from donor SKUs only.
 
     For group g and month m: S[g, m] = total sales of the donors, N[g, m] = number of donors with
     positive sales; per-SKU averages are S / N ("sales per selling SKU"). With exclude_unit
     (an integer unit code per SKU that is nested in every grouping, i.e. the twin cluster) the
     row's own unit is subtracted from its group.
+
+    With placebo_seed, every row of an INN or ATC grouping reads the statistics of the group that
+    placebo_permutation assigns to its own group at the row's origin (same donors, same time
+    windows, wrong group). The own unit is then subtracted only where the permutation leaves the
+    group in place, because elsewhere the row's unit is not a member of the group it reads.
     """
     Y0 = ds.sales0
     selling = (Y0 > 0).astype(float)
@@ -209,11 +241,20 @@ def group_aggregates(ds, rows, donor_mask, exclude_unit=None, groupings=tuple(GR
         g = codes[i]
         has_group = g >= 0
         gg = np.where(has_group, g, 0)
+        own_member = np.ones(len(i), dtype=bool)
+        if placebo_seed is not None and name in METADATA_GROUPINGS:
+            mapped = gg.copy()
+            for origin in np.unique(T):
+                at = T == origin
+                active = N[:, origin - 11:origin + 1].sum(axis=1) > 0
+                mapped[at] = placebo_permutation(n_groups, active, placebo_seed, name)[gg[at]]
+            own_member = mapped == gg
+            gg = mapped
 
         def window_sum(M, end, length, own=None):
             total = np.nansum(_window(M, gg, end, length), axis=1)
             if own is not None:
-                total = total - np.nansum(_window(own, u, end, length), axis=1)
+                total = total - np.where(own_member, np.nansum(_window(own, u, end, length), axis=1), 0.0)
             return total
 
         own_s = US if exclude_unit is not None else None
@@ -223,9 +264,9 @@ def group_aggregates(ds, rows, donor_mask, exclude_unit=None, groupings=tuple(GR
         sp6, np6 = window_sum(S, T - 6, 6, own_s), window_sum(N, T - 6, 6, own_n)
         s_lag, n_lag, n_origin = S[gg, t - 12], N[gg, t - 12], N[gg, T]
         if exclude_unit is not None:
-            s_lag = s_lag - US[u, t - 12]
-            n_lag = n_lag - UN[u, t - 12]
-            n_origin = n_origin - UN[u, T]
+            s_lag = s_lag - np.where(own_member, US[u, t - 12], 0.0)
+            n_lag = n_lag - np.where(own_member, UN[u, t - 12], 0.0)
+            n_origin = n_origin - np.where(own_member, UN[u, T], 0.0)
         mean12 = _safe_ratio(s12, n12)
         lag12 = _safe_ratio(s_lag, n_lag)
         cols = {
@@ -240,7 +281,19 @@ def group_aggregates(ds, rows, donor_mask, exclude_unit=None, groupings=tuple(GR
     return pd.DataFrame(out, index=rows.index)
 
 
-def build_frame(ds, rows, donor_mask, exclude_unit=None, with_history=False, with_launch_age=False):
+def placebo_diagnostics(true, shuffled):
+    """Per INN/ATC grouping: missing rates of the true and shuffled statistics and how often they agree."""
+    out = {}
+    for g in METADATA_GROUPINGS:
+        a, b = true[f"{g}_mean12"], shuffled[f"{g}_mean12"]
+        out[g] = {"nan_true": float(a.isna().mean()), "nan_shuffled": float(b.isna().mean()),
+                  "nan_pattern_equal": float((a.isna() == b.isna()).mean()),
+                  "value_unchanged": float(((a == b) | (a.isna() & b.isna())).mean())}
+    return out
+
+
+def build_frame(ds, rows, donor_mask, exclude_unit=None, with_history=False, with_launch_age=False,
+                with_market_flag=False, placebo_seed=None):
     """Assemble the full feature frame plus target and identifiers for the given rows."""
     parts = [
         rows[["i", "t"]],
@@ -251,10 +304,12 @@ def build_frame(ds, rows, donor_mask, exclude_unit=None, with_history=False, wit
         }, index=rows.index),
         calendar_features(ds, rows),
         static_features(ds, rows),
-        group_aggregates(ds, rows, donor_mask, exclude_unit),
+        group_aggregates(ds, rows, donor_mask, exclude_unit, placebo_seed=placebo_seed),
     ]
     if with_history:
         parts.append(history_features(ds, rows))
     if with_launch_age:
         parts.append(age_at_target(ds, rows).to_frame())
+    if with_market_flag:
+        parts.append(on_market_at_origin(ds, rows).to_frame())
     return pd.concat(parts, axis=1)

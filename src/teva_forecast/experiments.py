@@ -33,11 +33,13 @@ SCENARIOS = {
     "C": "New INN, known ATC: all SKUs of the INN held out",
     "D": "Unseen ATC group: ATC level-2 group and its INNs held out (only ATC1 known)",
     "D1": "Unseen ATC group, strict: ATC level-1 group and its INNs held out",
-    "N": "Real new launches: SKUs first sold in the evaluation year",
+    "N": "Real new launches: SKUs first sold in the evaluation year (retrospective; launch month known)",
+    "N0": "Launch cohort of the evaluation year, all 12 months, launch month unknown at the origin",
 }
+LAUNCH_SCENARIOS = ("N", "N0")
 COLD_START_FOLD_LABEL = {"B": "twin_cluster", "C": "inn_unit", "D": "atc2", "D1": "atc1"}
-HALF_LABEL = {"N": "twin_cluster", **COLD_START_FOLD_LABEL}
-BOOTSTRAP_CLUSTER = {"A": "sku", "B": "twin_cluster", "C": "inn_unit", "D": "atc2", "D1": "atc1", "N": "sku"}
+HALF_LABEL = {"N": "twin_cluster", "N0": "twin_cluster", **COLD_START_FOLD_LABEL}
+BOOTSTRAP_CLUSTER = {"A": "sku", "B": "twin_cluster", "C": "inn_unit", "D": "atc2", "D1": "atc1", "N": "sku", "N0": "sku"}
 SCENARIO_ARMS = {"A": M.ARMS + [M.CODES_ARM], "B": M.ARMS + [M.CODES_ARM]}
 
 
@@ -45,11 +47,21 @@ def arms_for(scenario):
     return SCENARIO_ARMS.get(scenario, M.ARMS)
 
 
-def assign_folds(labels, n_folds=config.N_FOLDS, seed=config.SEED):
-    """Group k-fold: every label goes to exactly one fold; folds are balanced by number of SKUs."""
+def assign_folds(labels, n_folds=config.N_FOLDS, seed=config.SEED, method="balanced"):
+    """Group k-fold: every label goes to exactly one fold; folds are balanced by number of SKUs.
+
+    method="balanced" (the primary assignment) places labels from the largest to the smallest on
+    the least-loaded fold, so the seed only breaks ties between labels of equal size; with few large
+    groups (ATC1, ATC2) the folds are then almost the same for every seed. method="random_order"
+    places the labels in a seeded random order on the least-loaded fold, which gives a different
+    balanced assignment for every seed and is used for the fold-assignment robustness study.
+    """
     uniq, inverse, counts = np.unique(np.asarray(labels).astype(str), return_inverse=True, return_counts=True)
     order = np.random.default_rng(seed).permutation(len(uniq))
-    order = order[np.argsort(-counts[order], kind="stable")]
+    if method == "balanced":
+        order = order[np.argsort(-counts[order], kind="stable")]
+    elif method != "random_order":
+        raise ValueError(f"unknown fold assignment method: {method}")
     load = np.zeros(n_folds)
     fold_of_label = np.empty(len(uniq), dtype=int)
     for g in order:
@@ -132,16 +144,24 @@ def known_atc_depth(ds, test_idx, donor_sets):
     return depth
 
 
-def training_rows(ds, skus, years, include_launches=False):
+def training_rows(ds, skus, years, include_launches=False, launch_full_year=False):
+    """Rows of SKUs on the market at each origin, plus (optionally) the launches of each training year.
+
+    Launches enter from their first sale (scenario N) or with all 12 months of the launch year
+    (launch_full_year, scenario N0).
+    """
     parts = [F.make_rows(ds, skus & F.active_at_origin(ds, y), y) for y in years]
     if include_launches:
-        parts += [F.make_rows(ds, skus & F.launched_in(ds, y), y, from_launch=True) for y in years]
+        parts += [F.make_rows(ds, skus & F.launched_in(ds, y), y, from_launch=not launch_full_year) for y in years]
     return pd.concat(parts, ignore_index=True)
 
 
 def evaluation_rows(ds, scenario, test_mask, year):
     if scenario == "N":
         return F.make_rows(ds, test_mask & F.launched_in(ds, year), year, from_launch=True)
+    if scenario == "N0":
+        # Same retrospective cohort as N, but every month of the year is forecast from the origin.
+        return F.make_rows(ds, test_mask & F.launched_in(ds, year), year)
     return F.make_rows(ds, test_mask & F.active_at_origin(ds, year), year)
 
 
@@ -153,7 +173,7 @@ def prepare_unit(ds, scenario, year, test_mask, pool_mask):
     else:
         # In N an evaluated launch may have an older identical twin among the donors of one model;
         # removing the own twin cluster keeps evaluation rows like training rows (a no-op for those).
-        exclude = twins if scenario == "N" else None
+        exclude = twins if scenario in LAUNCH_SCENARIOS else None
         roles = [(m, t, d, exclude) for m, (t, d) in enumerate(donor_halves(ds, scenario, pool_mask))]
     if scenario == "B":
         # "Known INN": sold in the 12 months before the origin by donors of both cross-fitted models.
@@ -163,17 +183,22 @@ def prepare_unit(ds, scenario, year, test_mask, pool_mask):
 
 
 def run_unit(ds, scenario, split_name, test_mask, pool_mask, loss, arms=None,
-             iterations=None, fold=0, keep_models=False):
+             iterations=None, fold=0, keep_models=False, split=None, seed=None, placebo_seed=None,
+             peer_baselines=False):
     """Train every ablation arm for one (scenario, fold, split) and return predictions + run info.
 
     On the validation split each model is early-stopped on the evaluation year; on the test split
     it is retrained on all training years with the number of trees found on validation
-    (`iterations` maps (arm, half) to a tree count).
+    (`iterations` maps (arm, half) to a tree count). `split` overrides the years of SPLITS[split_name]
+    (rolling protocol), `seed` the CatBoost seed, and `placebo_seed` replaces the INN/ATC peer
+    statistics by those of permuted groups (shuffled-peer placebo). With peer_baselines, scenario A
+    also gets the peer-group reference forecasts of the cold-start scenarios.
     """
     arms = arms or arms_for(scenario)
-    split = SPLITS[split_name]
-    history, launch = scenario == "A", scenario == "N"
+    split = split or SPLITS[split_name]
+    history, launch, launch_n0 = scenario == "A", scenario == "N", scenario == "N0"
     roles, ev_rows = prepare_unit(ds, scenario, split["eval_year"], test_mask, pool_mask)
+    frame_opts = {"with_history": history, "with_launch_age": launch, "with_market_flag": launch_n0}
 
     out = pd.DataFrame({
         "fold": fold,
@@ -183,7 +208,7 @@ def run_unit(ds, scenario, split_name, test_mask, pool_mask, loss, arms=None,
         "t": ev_rows["t"].to_numpy(),
         "sales": ds.sales0[ev_rows["i"].to_numpy(), ev_rows["t"].to_numpy()],
     })
-    if not history:
+    if not history or peer_baselines:
         # Reference forecasts use the whole training pool (they are not trained, so nothing can leak).
         base = F.build_frame(ds, ev_rows, pool_mask, with_launch_age=launch)
         out = out.join(B.cold_start_baselines(ds, base, pool_mask))
@@ -191,26 +216,35 @@ def run_unit(ds, scenario, split_name, test_mask, pool_mask, loss, arms=None,
             out["launch_age_mean"] = B.launch_age_baseline(ds, training_rows(
                 ds, pool_mask, split["train_years"], include_launches=True), ev_rows)
             out["age_at_target"] = base["age_at_target"].to_numpy()
+        if launch_n0:
+            cohorts = pd.concat([F.make_rows(ds, pool_mask & F.launched_in(ds, y), y) for y in split["train_years"]],
+                                ignore_index=True)
+            out["launch_cohort_mean"] = B.launch_cohort_baseline(ds, cohorts, ev_rows)
         if scenario in ("C", "D", "D1"):
             out["known_atc_depth"] = known_atc_depth(ds, out["i"].to_numpy(), [r[2] for r in roles])
 
     preds = {arm: [] for arm in arms}
     info, models, importances = [], {}, []
     for half, targets, donors, exclude in roles:
-        tr_rows = training_rows(ds, targets, split["train_years"], include_launches=launch)
-        train = F.build_frame(ds, tr_rows, donors, exclude, with_history=history, with_launch_age=launch)
-        ev = F.build_frame(ds, ev_rows, donors, exclude, with_history=history, with_launch_age=launch)
+        tr_rows = training_rows(ds, targets, split["train_years"], include_launches=launch or launch_n0,
+                                launch_full_year=launch_n0)
+        train = F.build_frame(ds, tr_rows, donors, exclude, placebo_seed=placebo_seed, **frame_opts)
+        ev = F.build_frame(ds, ev_rows, donors, exclude, placebo_seed=placebo_seed, **frame_opts)
+        diagnostics = None
+        if placebo_seed is not None:
+            diagnostics = {name: F.placebo_diagnostics(F.group_aggregates(ds, rows, donors, exclude), frame)
+                           for name, rows, frame in (("train", tr_rows, train), ("eval", ev_rows, ev))}
         if history and half == 0:
             out = out.join(B.existing_drug_baselines(ev))
         for arm in arms:
-            cat, num = M.feature_columns(arm, history=history, launch_age=launch)
+            cat, num = M.feature_columns(arm, history=history, launch_age=launch, market_flag=launch_n0)
             start = time.time()
             if split_name == "validation":
-                model = M.fit(train, cat, num, loss, eval_frame=ev)
+                model = M.fit(train, cat, num, loss, eval_frame=ev, seed=seed)
                 n_iter = M.best_iterations(model)
             else:
                 n_iter = iterations[(arm, half)]
-                model = M.fit(train, cat, num, loss, iterations=n_iter)
+                model = M.fit(train, cat, num, loss, iterations=n_iter, seed=seed)
             preds[arm].append(M.predict(model, ev, cat, num))
             info.append({
                 "scenario": scenario, "split": split_name, "fold": fold, "arm": arm, "half": half,
@@ -219,6 +253,7 @@ def run_unit(ds, scenario, split_name, test_mask, pool_mask, loss, arms=None,
                 "donor_skus": int(np.asarray(donors).sum()),
                 "eval_rows": len(ev), "eval_skus": int(ev["sku"].nunique()),
                 "fit_seconds": round(time.time() - start, 1),
+                **({"placebo_diagnostics": diagnostics} if diagnostics else {}),
             })
             if keep_models:
                 models[(arm, half)] = model
@@ -232,10 +267,10 @@ def run_unit(ds, scenario, split_name, test_mask, pool_mask, loss, arms=None,
     return out, info, models, importances
 
 
-def scenario_units(ds, scenario):
+def scenario_units(ds, scenario, fold_seed=config.SEED, fold_method="balanced"):
     """(fold, test_mask, pool_mask) triples for a scenario."""
     n = len(ds.attrs)
-    if scenario in ("A", "N"):
+    if scenario in ("A",) + LAUNCH_SCENARIOS:
         return [(0, np.ones(n, dtype=bool), np.ones(n, dtype=bool))]
-    folds = assign_folds(ds.attrs[COLD_START_FOLD_LABEL[scenario]].to_numpy())
+    folds = assign_folds(ds.attrs[COLD_START_FOLD_LABEL[scenario]].to_numpy(), seed=fold_seed, method=fold_method)
     return [(k, *cold_start_masks(ds, scenario, folds, k)) for k in range(config.N_FOLDS)]

@@ -1,0 +1,5 @@
+{
+  "snapshot_of_commit": "f9267505faf72d0979419a6767382fe43b4ea7e0",
+  "source": "results/predictions/*.parquet (committed)",
+  "metrics": "teva_forecast.analysis.overall_metrics"
+}

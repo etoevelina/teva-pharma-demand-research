@@ -14,7 +14,7 @@ ARM_LABELS = {"none": "no INN/ATC", "inn": "INN only", "atc": "ATC only", "both"
               CODES_ARM: "INN + ATC + category codes"}
 
 
-def feature_columns(arm, history=False, launch_age=False):
+def feature_columns(arm, history=False, launch_age=False, market_flag=False):
     """Categorical and numeric columns for an ablation arm.
 
     Control features shared by every arm: calendar, parsed product presentation (form, strength,
@@ -25,6 +25,9 @@ def feature_columns(arm, history=False, launch_age=False):
     Raw codes are not used there: for an unseen INN or ATC group the code carries nothing at
     prediction time, while in training CatBoost's target statistics for it are in-sample.
     The sensitivity arm adds the codes as categories to measure what they contribute beyond that.
+    Scenario N adds the months since launch at the target month (launch_age); scenario N0, which
+    does not know the launch month, adds only whether the SKU sold in the year before the origin
+    (market_flag).
     """
     cat = list(PRODUCT_CAT)
     num = CALENDAR + PRODUCT_NUM + agg_columns("global") + agg_columns("nfc")
@@ -32,6 +35,8 @@ def feature_columns(arm, history=False, launch_age=False):
         num = num + HISTORY
     if launch_age:
         num = num + ["age_at_target"]
+    if market_flag:
+        num = num + ["on_market_at_origin"]
     if arm in ("inn", "both", CODES_ARM):
         num = num + ["n_ingredients"] + agg_columns("inn") + agg_columns("inn_nfc")
     if arm in ("atc", "both", CODES_ARM):
