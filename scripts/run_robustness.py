@@ -13,7 +13,7 @@ the test-year fits; see src/teva_forecast/protocol.py):
   several tree counts (descriptive, nothing feeds back into model selection).
 
 Usage:
-    python scripts/run_robustness.py                         # model_seeds fold_seeds placebo (about 4 h)
+    python scripts/run_robustness.py                         # model_seeds fold_seeds placebo (about 4 h 15 min on an Apple M2)
     python scripts/run_robustness.py --studies placebo --scenarios A B
     python scripts/run_robustness.py --studies trees         # original tree-count curves (about 60 min)
 """

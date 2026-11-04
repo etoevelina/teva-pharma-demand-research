@@ -3,7 +3,7 @@ test 2023); write predictions, run logs and models. The rolling, validation-sele
 scripts/run_rolling.py.
 
 Usage:
-    python scripts/run_experiments.py                    # everything (about 1.5 h on 8 free CPU cores)
+    python scripts/run_experiments.py                    # everything (about 40 min on an Apple M2)
     python scripts/run_experiments.py --scenarios A B    # a subset
     python scripts/run_experiments.py --loss "Tweedie:variance_power=1.5"   # skip loss selection
 """

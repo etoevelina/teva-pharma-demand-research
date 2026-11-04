@@ -67,11 +67,19 @@ def protocol_results():
                         ("shuffled_peer_placebo", placebo_runs), ("shuffled_peer_placebo_summary", placebo_summary)):
         if len(table):
             write_table(table, name)
+    if len(placebo_runs):
+        write_table(PA.placebo_feature_checks(data.load_processed("teva")), "placebo_feature_checks")
     variability = PA.variability_summary(model_summary, fold_summary, placebo_summary)
     if len(variability):
         write_table(variability, "variability_summary")
-    write_table(PA.paper_table(selected, calibrated, model_summary, fold_summary, placebo_summary),
-                "paper_results_table", floatfmt=".3f")
+    check = PA.regression_check(rolling)
+    if len(check):
+        (config.RESULTS_DIR / "regression").mkdir(exist_ok=True)
+        check.to_csv(config.RESULTS_DIR / "regression" / "rolling2023_vs_committed.csv", index=False)
+        print("regression check: largest prediction difference", check["max_abs_diff"].max())
+    paper = PA.paper_table(selected, calibrated, model_summary, fold_summary, placebo_summary)
+    write_table(paper, "paper_results_table", floatfmt=".3f")
+    write_table(PA.paper_table_compact(paper), "paper_results_table_compact")
     RESULTS_REPORT.write_text(PA.results_markdown(
         selected, calibrated, model_summary, fold_summary, placebo_summary, nn0, "scripts/analyze_results.py"))
     save_figure(PA.fig_selected_vs_calibrated(calibrated), "res_selected_vs_calibrated_median")

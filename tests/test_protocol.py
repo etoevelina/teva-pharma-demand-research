@@ -262,10 +262,10 @@ def test_placebo_is_reproducible_and_permutes_whole_groups(ds):
     for grouping, key in (("inn", "inn"), ("atc2", "atc2")):
         spread = frame.dropna(subset=[key]).groupby([key, "t"])[F.agg_columns(grouping)].nunique(dropna=False)
         assert (spread.max() <= 1).all()                              # one shuffled group per true group
-    # Missingness at the origin is kept: a row has shuffled statistics exactly when it has true ones.
+    # A row has a shuffled 12-month mean exactly when it has a true one (its group is active at the origin).
     for grouping in F.METADATA_GROUPINGS:
-        col = f"{grouping}_n_selling"
-        assert ((true[col].fillna(0) > 0) == (a[col].fillna(0) > 0)).all(), grouping
+        col = f"{grouping}_mean12"
+        assert (true[col].isna() == a[col].isna()).all(), grouping
 
 
 def test_placebo_permutation_is_a_derangement_of_the_active_groups():
@@ -277,6 +277,11 @@ def test_placebo_permutation_is_a_derangement_of_the_active_groups():
         assert (perm[~active] == np.flatnonzero(~active)).all()      # inactive groups stay
         assert (perm[active] != np.flatnonzero(active)).all()        # no active group keeps its own statistics
         assert active[perm[active]].all()
+        start = np.flatnonzero(active)[0]                            # one cycle through all active groups
+        seen, g = 1, perm[start]
+        while g != start:
+            seen, g = seen + 1, perm[g]
+        assert seen == active.sum()
         np.testing.assert_array_equal(perm, F.placebo_permutation(50, active, 3, grouping))
         assert not np.array_equal(perm, F.placebo_permutation(50, active, 4, grouping))
 

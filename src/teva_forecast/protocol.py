@@ -45,7 +45,7 @@ ROBUSTNESS_TEST_YEAR = 2023
 ROBUSTNESS_SCENARIOS = ["A", "B", "C", "D", "D1", "N", "N0"]
 FOLD_SCENARIOS = ["B", "C", "D", "D1"]
 # D1 is left out of the placebo: no INN or ATC group of its training or held-out products has donors,
-# so the INN/ATC peer statistics are missing in every row and shuffling them changes nothing.
+# so every group is inactive, maps to itself and the shuffled features equal the true ones.
 PLACEBO_SCENARIOS = ["A", "B", "C", "D", "N", "N0"]
 ROLLING_ORDER = ["A", "N", "N0", "B", "C", "D", "D1"]
 PROTOCOL_DIR = config.RESULTS_DIR / "protocol"
@@ -132,6 +132,7 @@ def validation_baselines(ds, scenario, units, split):
     rows = []
     for fold, test, pool in units:
         _, ev = E.prepare_unit(ds, scenario, split["eval_year"], test, pool)
+        assert frame_years(ev) == {split["eval_year"]}
         base = F.build_frame(ds, ev, pool, with_launch_age=scenario == "N")
         med = B.cold_start_baselines(ds, base, pool)["hierarchical_median"]
         rows.append({"fold": fold, "actual": float(base["sales"].sum()), "median": float(med.sum())})

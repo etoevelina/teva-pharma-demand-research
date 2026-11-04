@@ -6,7 +6,7 @@ are kept as exploratory results; the primary result is the arm selected on valid
 Writes results/protocol/rolling/ (predictions and one JSON record per run) and results/protocol/run_log.txt.
 
 Usage:
-    python scripts/run_rolling.py                          # both cycles, all scenarios (about 75 min)
+    python scripts/run_rolling.py                          # both cycles, all scenarios (about 46 min on an Apple M2)
     python scripts/run_rolling.py --test-years 2023 --scenarios A B
 """
 import argparse

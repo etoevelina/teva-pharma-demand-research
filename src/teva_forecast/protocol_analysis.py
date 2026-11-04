@@ -16,7 +16,10 @@ from . import plotting as P
 from .analysis import SCENARIO_SHORT
 from .experiments import BOOTSTRAP_CLUSTER
 from .modeling import ARM_LABELS, ARMS
-from .protocol import CONTROL_ARM, PLACEBO_ARM, PROTOCOL_DIR, ROBUSTNESS_TEST_YEAR, scores
+from . import experiments as E
+from . import features as F
+from .protocol import (CONTROL_ARM, METADATA_ARMS, PLACEBO_ARM, PLACEBO_SCENARIOS, PLACEBO_SEEDS, PROTOCOL_DIR,
+                       ROBUSTNESS_TEST_YEAR, cycle_splits, scores)
 
 SCENARIOS = ["A", "B", "C", "D", "D1", "N", "N0"]
 SHORT = {**SCENARIO_SHORT, "N": "N: launches, launch month known (retrospective)",
@@ -43,8 +46,11 @@ def baselines_for(scenario):
 # --- Loading --------------------------------------------------------------------------------
 
 def load_records(stage):
+    """Run records of a stage, in scenario order, then by test year and seeds."""
     folder = PROTOCOL_DIR / stage
-    return [json.loads(p.read_text()) for p in sorted(folder.glob("*.json"))] if folder.exists() else []
+    records = [json.loads(p.read_text()) for p in folder.glob("*.json")] if folder.exists() else []
+    return sorted(records, key=lambda r: (SCENARIOS.index(r["scenario"]), r["test_year"], r["model_seed"],
+                                          r["fold_seed"], r["placebo_seed"] or 0))
 
 
 def load_frame(record, split):
@@ -110,7 +116,7 @@ def rolling_tables(records, attrs):
         ctl = f"catboost_{CONTROL_ARM}"
         cmp = _compare(tst, s, attrs, SELECTED, ctl)
         vm = pd.DataFrame(r["validation_metrics"]).set_index("arm")["WAPE"]
-        test_wape = {a: metrics.wape(tst["sales"], tst[f"catboost_{a}"]) for a in r["arms"] if a != CONTROL_ARM}
+        test_wape = {a: metrics.wape(tst["sales"], tst[f"catboost_{a}"]) for a in METADATA_ARMS}
         selected.append({
             "scenario": s, "selection_year": r["selection_year"], "test_year": year,
             "selected_arm": _selected_label(r), "selected_arm_pooled_validation": arm,
@@ -306,6 +312,33 @@ def variability_summary(model_seed_summary, fold_seed_summary, placebo_summary):
     return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
 
 
+def paper_table_compact(paper):
+    """The paper table with one formatted cell per model: WAPE (bias, Spearman)."""
+    def triple(r, prefix):
+        return f"{r[prefix + '_WAPE']:.3f} ({r[prefix + '_bias']:+.0%}, {r[prefix + '_spearman']:.2f})"
+
+    def spread(r, name):
+        key = f"{name}_selected_rel_mean"
+        if key not in r or pd.isna(r[key]):
+            return ""
+        return (f"{r[key]:+.1%} [{r[name + '_selected_rel_min']:+.1%}, {r[name + '_selected_rel_max']:+.1%}], "
+                f"{r[name + '_runs_better']}")
+    rows = []
+    for _, r in paper.iterrows():
+        placebo = (f"{r['placebo_true_rel']:+.1%} vs {r['placebo_shuffled_rel_mean']:+.1%}, {r['placebo_true_better']}"
+                   if "placebo_true_rel" in r and pd.notna(r["placebo_true_rel"]) else "")
+        rows.append({
+            "Scenario": r["scenario"], "Test year": int(r["test_year"]), "Selected arm": r["selected_arm"],
+            "Control: WAPE (bias, ρ)": triple(r, "control"), "Selected: WAPE (bias, ρ)": triple(r, "selected"),
+            "Change vs control [95% CI]": f"{r['rel_change_vs_control']:+.1%} [{r['rel_change_lo']:+.1%}, {r['rel_change_hi']:+.1%}]",
+            "Calibrated median: WAPE (bias, ρ)": triple(r, "calibrated_median"),
+            "5 CatBoost seeds: mean change [min, max], runs better": spread(r, "model_seed"),
+            "5 fold seeds: mean change [min, max], runs better": spread(r, "fold_seed"),
+            "Placebo: true vs shuffled change, seeds true better": placebo,
+        })
+    return pd.DataFrame(rows)
+
+
 def paper_table(selected, calibrated, model_seed_summary, fold_seed_summary, placebo_summary):
     """One row per scenario and test year: control, validation-selected arm, calibrated median, variability."""
     rows = []
@@ -395,6 +428,9 @@ def fig_placebo(placebo_runs):
     return fig
 
 
+WAPE_AXIS_MAX = 2.0
+
+
 def fig_selected_vs_calibrated(calibrated):
     years = sorted(set(calibrated["test_year"]))
     fig, axes = plt.subplots(1, len(years), figsize=(5.2 * len(years), 4.4), sharey=True, squeeze=False)
@@ -412,12 +448,20 @@ def fig_selected_vs_calibrated(calibrated):
             else:
                 v = t[t["model"] == kind]
             x = v["scenario"].map({s: i for i, s in enumerate(scen)}).to_numpy() + (k - 1.5) * 0.15
-            ax.scatter(x, v["WAPE"], marker=marker, color=color, s=24, label=label, zorder=3)
+            y = v["WAPE"].to_numpy()
+            ax.scatter(x, np.minimum(y, WAPE_AXIS_MAX), marker=marker, color=color, s=24, label=label, zorder=3)
+            for xi, yi in zip(x, y):
+                if yi > WAPE_AXIS_MAX:   # off-scale points are drawn at the top with their value
+                    ax.annotate(f"{yi:.2f}", (xi, WAPE_AXIS_MAX), xytext=(0, -12), textcoords="offset points",
+                                ha="center", fontsize=7, color=color)
+        ax.axhline(1.0, color=P.INK_2, lw=0.8, ls=(0, (4, 3)), label="zero forecast (WAPE 1)")
+        ax.set_ylim(0, WAPE_AXIS_MAX * 1.04)
         ax.set_xticks(range(len(scen)), scen)
         ax.set_title(f"Test {year} (choices made on {year - 1})")
         ax.set_ylabel("WAPE (monthly)")
         ax.grid(axis="x", visible=False)
-    axes[0][-1].legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), fontsize=8)
+    handles, labels = axes[0][-1].get_legend_handles_labels()
+    axes[0][-1].legend(handles[:5], labels[:5], loc="upper left", bbox_to_anchor=(1.0, 1.0), fontsize=8)
     fig.tight_layout()
     return fig
 
@@ -447,8 +491,9 @@ def results_markdown(selected, calibrated, model_summary, fold_summary, placebo_
               f"Scenario-years: {len(sel)}. The selected arm has a lower test WAPE than the control in "
               f"{int((sel['rel_change_vs_control'] < 0).sum())}; the 95% cluster-bootstrap interval of the relative "
               f"change lies entirely below zero in {int(better.sum())} and entirely above zero in {int(worse.sum())}. "
-              f"The selected arm equals the arm that would have been best on the test year in "
-              f"{int((sel['selected_arm'] == sel['test_best_arm_exploratory']).sum())} of {len(sel)}.", "",
+              f"The arm chosen on all validation folds (applied to folds 2-4 and to A, N, N0) equals the metadata arm that "
+              f"would have been best on the test year in "
+              f"{int((sel['selected_arm_pooled_validation'] == sel['test_best_arm_exploratory']).sum())} of {len(sel)}.", "",
               _md(sel[["scenario", "selection_year", "test_year", "selected_arm", "selected_arm_by_fold", "validation_WAPE",
                        "control_validation_WAPE",
                        "test_WAPE", "control_test_WAPE", "rel_change_vs_control", "CI", "bias", "spearman",
@@ -473,3 +518,73 @@ def results_markdown(selected, calibrated, model_summary, fold_summary, placebo_
         cols = ["test_year", "evaluation", "model", "selected_arm", "WAPE", "bias", "spearman", "WAPE_annual", "n", "skus"]
         lines += ["## 6. Launch month known (N) versus unknown (N0)", "", _md(nn0[cols]), ""]
     return "\n".join(lines) + "\n"
+
+
+# --- Regression check against the committed single split ------------------------------------------
+
+def regression_check(rolling):
+    """Rebuilt test-2023 cycle (seed 42, primary folds) against the committed single-split predictions.
+
+    For every scenario and every prediction column the two runs share: rows matched, the largest
+    absolute prediction difference, and WAPE / bias / Spearman of both. The 2023 cycle uses the same
+    split, loss, folds, halves, tree-count rule and seed as the original study, so equal numbers show
+    that the refactoring changed nothing.
+    """
+    rows = []
+    for r in rolling:
+        if r["test_year"] != 2023 or r["model_seed"] != config.SEED:
+            continue
+        for split in ("validation", "test"):
+            path = config.PREDICTIONS_DIR / f"{r['scenario']}_{split}.parquet"
+            if not path.exists():
+                continue
+            old = pd.read_parquet(path)
+            new = load_frame(r, split)
+            m = old.merge(new, on=["sku", "t"], suffixes=("_committed", ""), validate="one_to_one")
+            cols = [c for c in old.columns if c in new.columns and c not in ("scenario", "fold", "sku", "t", "i", "date", "sales")
+                    and old[c].dtype.kind == "f"]
+            for col in cols:
+                a, b = m[col + "_committed"].astype(float), m[col].astype(float)
+                rows.append({"scenario": r["scenario"], "split": split, "model": col,
+                             "rows_committed": len(old), "rows_rebuilt": len(new), "rows_matched": len(m),
+                             "max_abs_diff": float(np.abs(a - b).max()),
+                             "WAPE_committed": metrics.wape(m["sales_committed"], a), "WAPE_rebuilt": metrics.wape(m["sales"], b),
+                             "bias_committed": metrics.bias(m["sales_committed"], a), "bias_rebuilt": metrics.bias(m["sales"], b),
+                             "spearman_committed": scores(m.assign(p=a, sales=m["sales_committed"]), "p")["spearman"],
+                             "spearman_rebuilt": scores(m.assign(p=b), "p")["spearman"]})
+    return pd.DataFrame(rows)
+
+
+# --- Placebo feature checks -------------------------------------------------------------------
+
+def placebo_feature_checks(ds, seeds=PLACEBO_SEEDS, year=ROBUSTNESS_TEST_YEAR):
+    """Missingness and value agreement of every true vs shuffled INN/ATC peer statistic.
+
+    Built from the features only (no model), for fold 0 of each placebo scenario, both cross-fitting
+    halves, the test-year training and evaluation rows and every permutation seed; averaged over
+    halves and seeds.
+    """
+    rows = []
+    split = cycle_splits(year)["test"]
+    for scenario in PLACEBO_SCENARIOS:
+        _, test, pool = E.scenario_units(ds, scenario)[0]
+        roles, ev_rows = E.prepare_unit(ds, scenario, year, test, pool)
+        for half, targets, donors, exclude in roles:
+            tr_rows = E.training_rows(ds, targets, split["train_years"], include_launches=scenario in E.LAUNCH_SCENARIOS,
+                                      launch_full_year=scenario == "N0")
+            for part, part_rows in (("train", tr_rows), ("eval", ev_rows)):
+                true = F.group_aggregates(ds, part_rows, donors, exclude)
+                for seed in seeds:
+                    shuffled = F.group_aggregates(ds, part_rows, donors, exclude, placebo_seed=seed)
+                    for g in F.METADATA_GROUPINGS:
+                        for stat in F.AGG_STATS:
+                            a, b = true[f"{g}_{stat}"], shuffled[f"{g}_{stat}"]
+                            rows.append({"scenario": scenario, "rows": part, "grouping": g, "statistic": stat,
+                                         "half": half, "placebo_seed": seed,
+                                         "missing_true": float(a.isna().mean()), "missing_shuffled": float(b.isna().mean()),
+                                         "missing_pattern_equal": float((a.isna() == b.isna()).mean()),
+                                         "value_unchanged_where_present": float(((a == b) & a.notna()).sum() / max(a.notna().sum(), 1))})
+    t = pd.DataFrame(rows)
+    return (t.groupby(["scenario", "rows", "grouping", "statistic"], sort=False)
+            [["missing_true", "missing_shuffled", "missing_pattern_equal", "value_unchanged_where_present"]]
+            .mean().reset_index())
