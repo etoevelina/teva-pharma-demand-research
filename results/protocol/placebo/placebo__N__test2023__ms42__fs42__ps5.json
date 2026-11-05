@@ -1,0 +1,1073 @@
+{
+ "run_id": "placebo__N__test2023__ms42__fs42__ps5",
+ "stage": "placebo",
+ "scenario": "N",
+ "started": "2026-11-05T04:00:16+0500",
+ "finished": "2026-11-05T04:02:25+0500",
+ "seconds": 128.4,
+ "git_commit": "ef97ad7a34ed2ab003a4bcb59454a526998f582c",
+ "git_dirty": false,
+ "source_sha256": "c1506b8af7dbe306f871c88146f90196caf7c1e97447d95b876c6ce7bb13630a",
+ "python": "3.12.10",
+ "platform": "macOS-26.5.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.5.4",
+  "pandas": "2.2.3",
+  "catboost": "1.2.8",
+  "scipy": "1.18.1",
+  "pyarrow": "26.0.0",
+  "matplotlib": "3.11.2"
+ },
+ "catboost_params": {
+  "iterations": 3000,
+  "learning_rate": 0.05,
+  "depth": 6,
+  "l2_leaf_reg": 3.0,
+  "max_ctr_complexity": 1,
+  "random_seed": 42,
+  "thread_count": -1,
+  "allow_writing_files": false
+ },
+ "early_stopping_rounds": 200,
+ "loss": "Tweedie:variance_power=1.5",
+ "model_seed": 42,
+ "fold_seed": 42,
+ "fold_method": "balanced",
+ "placebo_seed": 5,
+ "placebo_arms": [
+  "atc",
+  "both"
+ ],
+ "n_folds": 5,
+ "half_seed": 43,
+ "validation_years": {
+  "train_years": [
+   2020,
+   2021
+  ],
+  "eval_year": 2022
+ },
+ "test_years": {
+  "train_years": [
+   2020,
+   2021,
+   2022
+  ],
+  "eval_year": 2023
+ },
+ "selection_year": 2022,
+ "test_year": 2023,
+ "arms": [
+  "atc",
+  "both"
+ ],
+ "selected_arm": null,
+ "selected_arm_by_fold": {},
+ "calibration_factor": 0.2693568604052029,
+ "calibration_factor_by_fold": {
+  "0": 0.2693568604052029
+ },
+ "calibration_factor_validation_folds": 0.2693568604052029,
+ "validation_baseline_totals": [
+  {
+   "fold": 0,
+   "actual": 4950810.073213195,
+   "median": 18380115.01086521
+  }
+ ],
+ "validation_metrics": [
+  {
+   "scenario": "N",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "atc",
+   "n": 4095,
+   "MAE": 1484.9433340693008,
+   "RMSE": 4017.190208884618,
+   "WAPE": 1.228252116944404,
+   "bias": -0.024122646104770773,
+   "WAPE_annual": 1.0393289278322597,
+   "spearman": 0.6315800959735107,
+   "skus": 623
+  },
+  {
+   "scenario": "N",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "both",
+   "n": 4095,
+   "MAE": 1488.4538300699558,
+   "RMSE": 4072.2563207652706,
+   "WAPE": 1.2311557793572405,
+   "bias": -0.06192266917801703,
+   "WAPE_annual": 1.0471043225326893,
+   "spearman": 0.6338873726651976,
+   "skus": 623
+  }
+ ],
+ "validation_iterations": {
+  "0": {
+   "atc|0": 604,
+   "both|0": 496,
+   "atc|1": 600,
+   "both|1": 758
+  }
+ },
+ "fits": [
+  {
+   "scenario": "N",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 604,
+   "n_features": 48,
+   "train_rows": 133047,
+   "train_skus": 6261,
+   "donor_skus": 6881,
+   "eval_rows": 4095,
+   "eval_skus": 623,
+   "fit_seconds": 13.2,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.17175885213495984,
+      "nan_shuffled": 0.17175885213495984,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.17175885213495984
+     },
+     "inn_nfc": {
+      "nan_true": 0.2182161191158012,
+      "nan_shuffled": 0.2182161191158012,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.2182161191158012
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.000706517245785324,
+      "nan_shuffled": 0.000706517245785324,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.000706517245785324
+     },
+     "atc3": {
+      "nan_true": 0.00438191015205153,
+      "nan_shuffled": 0.00438191015205153,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00438191015205153
+     },
+     "atc4": {
+      "nan_true": 0.020413838718648297,
+      "nan_shuffled": 0.020413838718648297,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020413838718648297
+     },
+     "atc5": {
+      "nan_true": 0.08339909956631866,
+      "nan_shuffled": 0.08339909956631866,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08339909956631866
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.10354090354090355,
+      "nan_shuffled": 0.09792429792429792,
+      "nan_pattern_equal": 0.9943833943833944,
+      "value_unchanged": 0.09792429792429792
+     },
+     "inn_nfc": {
+      "nan_true": 0.1326007326007326,
+      "nan_shuffled": 0.1242979242979243,
+      "nan_pattern_equal": 0.9916971916971917,
+      "value_unchanged": 0.1242979242979243
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0017094017094017094,
+      "nan_shuffled": 0.0017094017094017094,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0017094017094017094
+     },
+     "atc4": {
+      "nan_true": 0.014163614163614164,
+      "nan_shuffled": 0.014163614163614164,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014163614163614164
+     },
+     "atc5": {
+      "nan_true": 0.060073260073260075,
+      "nan_shuffled": 0.060073260073260075,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.060073260073260075
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 496,
+   "n_features": 59,
+   "train_rows": 133047,
+   "train_skus": 6261,
+   "donor_skus": 6881,
+   "eval_rows": 4095,
+   "eval_skus": 623,
+   "fit_seconds": 12.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.17175885213495984,
+      "nan_shuffled": 0.17175885213495984,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.17175885213495984
+     },
+     "inn_nfc": {
+      "nan_true": 0.2182161191158012,
+      "nan_shuffled": 0.2182161191158012,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.2182161191158012
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.000706517245785324,
+      "nan_shuffled": 0.000706517245785324,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.000706517245785324
+     },
+     "atc3": {
+      "nan_true": 0.00438191015205153,
+      "nan_shuffled": 0.00438191015205153,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00438191015205153
+     },
+     "atc4": {
+      "nan_true": 0.020413838718648297,
+      "nan_shuffled": 0.020413838718648297,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020413838718648297
+     },
+     "atc5": {
+      "nan_true": 0.08339909956631866,
+      "nan_shuffled": 0.08339909956631866,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08339909956631866
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.10354090354090355,
+      "nan_shuffled": 0.09792429792429792,
+      "nan_pattern_equal": 0.9943833943833944,
+      "value_unchanged": 0.09792429792429792
+     },
+     "inn_nfc": {
+      "nan_true": 0.1326007326007326,
+      "nan_shuffled": 0.1242979242979243,
+      "nan_pattern_equal": 0.9916971916971917,
+      "value_unchanged": 0.1242979242979243
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0017094017094017094,
+      "nan_shuffled": 0.0017094017094017094,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0017094017094017094
+     },
+     "atc4": {
+      "nan_true": 0.014163614163614164,
+      "nan_shuffled": 0.014163614163614164,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.014163614163614164
+     },
+     "atc5": {
+      "nan_true": 0.060073260073260075,
+      "nan_shuffled": 0.060073260073260075,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.060073260073260075
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 600,
+   "n_features": 48,
+   "train_rows": 132471,
+   "train_skus": 6261,
+   "donor_skus": 6881,
+   "eval_rows": 4095,
+   "eval_skus": 623,
+   "fit_seconds": 13.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1705354379449087,
+      "nan_shuffled": 0.1705354379449087,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1705354379449087
+     },
+     "inn_nfc": {
+      "nan_true": 0.2100988140800628,
+      "nan_shuffled": 0.2100988140800628,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.2100988140800628
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0007246869126072876,
+      "nan_shuffled": 0.0007246869126072876,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0007246869126072876
+     },
+     "atc3": {
+      "nan_true": 0.0034498116568909424,
+      "nan_shuffled": 0.0034498116568909424,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0034498116568909424
+     },
+     "atc4": {
+      "nan_true": 0.020615832899276067,
+      "nan_shuffled": 0.020615832899276067,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020615832899276067
+     },
+     "atc5": {
+      "nan_true": 0.08185187701459187,
+      "nan_shuffled": 0.08185187701459187,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08185187701459187
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.1076923076923077,
+      "nan_shuffled": 0.10451770451770452,
+      "nan_pattern_equal": 0.9968253968253968,
+      "value_unchanged": 0.10451770451770452
+     },
+     "inn_nfc": {
+      "nan_true": 0.16263736263736264,
+      "nan_shuffled": 0.15311355311355312,
+      "nan_pattern_equal": 0.9904761904761905,
+      "value_unchanged": 0.15311355311355312
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0004884004884004884,
+      "nan_shuffled": 0.0004884004884004884,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0004884004884004884
+     },
+     "atc4": {
+      "nan_true": 0.02271062271062271,
+      "nan_shuffled": 0.01978021978021978,
+      "nan_pattern_equal": 0.9970695970695971,
+      "value_unchanged": 0.01978021978021978
+     },
+     "atc5": {
+      "nan_true": 0.06886446886446887,
+      "nan_shuffled": 0.06568986568986569,
+      "nan_pattern_equal": 0.9968253968253968,
+      "value_unchanged": 0.06568986568986569
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 758,
+   "n_features": 59,
+   "train_rows": 132471,
+   "train_skus": 6261,
+   "donor_skus": 6881,
+   "eval_rows": 4095,
+   "eval_skus": 623,
+   "fit_seconds": 16.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1705354379449087,
+      "nan_shuffled": 0.1705354379449087,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1705354379449087
+     },
+     "inn_nfc": {
+      "nan_true": 0.2100988140800628,
+      "nan_shuffled": 0.2100988140800628,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.2100988140800628
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0007246869126072876,
+      "nan_shuffled": 0.0007246869126072876,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0007246869126072876
+     },
+     "atc3": {
+      "nan_true": 0.0034498116568909424,
+      "nan_shuffled": 0.0034498116568909424,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0034498116568909424
+     },
+     "atc4": {
+      "nan_true": 0.020615832899276067,
+      "nan_shuffled": 0.020615832899276067,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020615832899276067
+     },
+     "atc5": {
+      "nan_true": 0.08185187701459187,
+      "nan_shuffled": 0.08185187701459187,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08185187701459187
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.1076923076923077,
+      "nan_shuffled": 0.10451770451770452,
+      "nan_pattern_equal": 0.9968253968253968,
+      "value_unchanged": 0.10451770451770452
+     },
+     "inn_nfc": {
+      "nan_true": 0.16263736263736264,
+      "nan_shuffled": 0.15311355311355312,
+      "nan_pattern_equal": 0.9904761904761905,
+      "value_unchanged": 0.15311355311355312
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.0004884004884004884,
+      "nan_shuffled": 0.0004884004884004884,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0004884004884004884
+     },
+     "atc4": {
+      "nan_true": 0.02271062271062271,
+      "nan_shuffled": 0.01978021978021978,
+      "nan_pattern_equal": 0.9970695970695971,
+      "value_unchanged": 0.01978021978021978
+     },
+     "atc5": {
+      "nan_true": 0.06886446886446887,
+      "nan_shuffled": 0.06568986568986569,
+      "nan_pattern_equal": 0.9968253968253968,
+      "value_unchanged": 0.06568986568986569
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 604,
+   "n_features": 48,
+   "train_rows": 197435,
+   "train_skus": 6557,
+   "donor_skus": 6881,
+   "eval_rows": 4259,
+   "eval_skus": 617,
+   "fit_seconds": 13.9,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1731607870944868,
+      "nan_shuffled": 0.1731607870944868,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1731607870944868
+     },
+     "inn_nfc": {
+      "nan_true": 0.21883151416922025,
+      "nan_shuffled": 0.21883151416922025,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.21883151416922025
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00047610606022235164,
+      "nan_shuffled": 0.00047610606022235164,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00047610606022235164
+     },
+     "atc3": {
+      "nan_true": 0.003900017727353306,
+      "nan_shuffled": 0.003900017727353306,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003900017727353306
+     },
+     "atc4": {
+      "nan_true": 0.020204117810925116,
+      "nan_shuffled": 0.020204117810925116,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020204117810925116
+     },
+     "atc5": {
+      "nan_true": 0.08378960164104642,
+      "nan_shuffled": 0.08378960164104642,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08378960164104642
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.1321906550833529,
+      "nan_shuffled": 0.1300774829772247,
+      "nan_pattern_equal": 0.9978868278938718,
+      "value_unchanged": 0.1300774829772247
+     },
+     "inn_nfc": {
+      "nan_true": 0.15660953275416764,
+      "nan_shuffled": 0.15449636064803945,
+      "nan_pattern_equal": 0.9978868278938718,
+      "value_unchanged": 0.15449636064803945
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.000704390702042733,
+      "nan_shuffled": 0.000704390702042733,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.000704390702042733
+     },
+     "atc4": {
+      "nan_true": 0.01150504813336464,
+      "nan_shuffled": 0.01150504813336464,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01150504813336464
+     },
+     "atc5": {
+      "nan_true": 0.07536980511857244,
+      "nan_shuffled": 0.07137825780699694,
+      "nan_pattern_equal": 0.9960084526884245,
+      "value_unchanged": 0.07137825780699694
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 496,
+   "n_features": 59,
+   "train_rows": 197435,
+   "train_skus": 6557,
+   "donor_skus": 6881,
+   "eval_rows": 4259,
+   "eval_skus": 617,
+   "fit_seconds": 12.4,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.1731607870944868,
+      "nan_shuffled": 0.1731607870944868,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.1731607870944868
+     },
+     "inn_nfc": {
+      "nan_true": 0.21883151416922025,
+      "nan_shuffled": 0.21883151416922025,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.21883151416922025
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.00047610606022235164,
+      "nan_shuffled": 0.00047610606022235164,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.00047610606022235164
+     },
+     "atc3": {
+      "nan_true": 0.003900017727353306,
+      "nan_shuffled": 0.003900017727353306,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.003900017727353306
+     },
+     "atc4": {
+      "nan_true": 0.020204117810925116,
+      "nan_shuffled": 0.020204117810925116,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.020204117810925116
+     },
+     "atc5": {
+      "nan_true": 0.08378960164104642,
+      "nan_shuffled": 0.08378960164104642,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08378960164104642
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.1321906550833529,
+      "nan_shuffled": 0.1300774829772247,
+      "nan_pattern_equal": 0.9978868278938718,
+      "value_unchanged": 0.1300774829772247
+     },
+     "inn_nfc": {
+      "nan_true": 0.15660953275416764,
+      "nan_shuffled": 0.15449636064803945,
+      "nan_pattern_equal": 0.9978868278938718,
+      "value_unchanged": 0.15449636064803945
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc3": {
+      "nan_true": 0.000704390702042733,
+      "nan_shuffled": 0.000704390702042733,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.000704390702042733
+     },
+     "atc4": {
+      "nan_true": 0.01150504813336464,
+      "nan_shuffled": 0.01150504813336464,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.01150504813336464
+     },
+     "atc5": {
+      "nan_true": 0.07536980511857244,
+      "nan_shuffled": 0.07137825780699694,
+      "nan_pattern_equal": 0.9960084526884245,
+      "value_unchanged": 0.07137825780699694
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 600,
+   "n_features": 48,
+   "train_rows": 196642,
+   "train_skus": 6588,
+   "donor_skus": 6881,
+   "eval_rows": 4259,
+   "eval_skus": 617,
+   "fit_seconds": 13.0,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.16989249499089717,
+      "nan_shuffled": 0.16989249499089717,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.16989249499089717
+     },
+     "inn_nfc": {
+      "nan_true": 0.20994497614955096,
+      "nan_shuffled": 0.20994497614955096,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.20994497614955096
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006712706339439184,
+      "nan_shuffled": 0.0006712706339439184,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006712706339439184
+     },
+     "atc3": {
+      "nan_true": 0.002934266331709401,
+      "nan_shuffled": 0.002934266331709401,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002934266331709401
+     },
+     "atc4": {
+      "nan_true": 0.02082973118662341,
+      "nan_shuffled": 0.02082973118662341,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02082973118662341
+     },
+     "atc5": {
+      "nan_true": 0.08244932415252082,
+      "nan_shuffled": 0.08244932415252082,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08244932415252082
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.15520075135008218,
+      "nan_shuffled": 0.14627846912420756,
+      "nan_pattern_equal": 0.9910777177741253,
+      "value_unchanged": 0.14627846912420756
+     },
+     "inn_nfc": {
+      "nan_true": 0.17539328480864053,
+      "nan_shuffled": 0.1620098614698286,
+      "nan_pattern_equal": 0.9866165766611881,
+      "value_unchanged": 0.1620098614698286
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0018783752054472881,
+      "nan_shuffled": 0.0018783752054472881,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018783752054472881
+     },
+     "atc3": {
+      "nan_true": 0.0023479690068091102,
+      "nan_shuffled": 0.0023479690068091102,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0023479690068091102
+     },
+     "atc4": {
+      "nan_true": 0.020896924160601082,
+      "nan_shuffled": 0.01831415825311106,
+      "nan_pattern_equal": 0.9974172340925099,
+      "value_unchanged": 0.01831415825311106
+     },
+     "atc5": {
+      "nan_true": 0.09063160366283166,
+      "nan_shuffled": 0.08405729044376614,
+      "nan_pattern_equal": 0.9934256867809345,
+      "value_unchanged": 0.08405729044376614
+     }
+    }
+   }
+  },
+  {
+   "scenario": "N",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 1,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 758,
+   "n_features": 59,
+   "train_rows": 196642,
+   "train_skus": 6588,
+   "donor_skus": 6881,
+   "eval_rows": 4259,
+   "eval_skus": 617,
+   "fit_seconds": 19.1,
+   "placebo_diagnostics": {
+    "train": {
+     "inn": {
+      "nan_true": 0.16989249499089717,
+      "nan_shuffled": 0.16989249499089717,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.16989249499089717
+     },
+     "inn_nfc": {
+      "nan_true": 0.20994497614955096,
+      "nan_shuffled": 0.20994497614955096,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.20994497614955096
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0006712706339439184,
+      "nan_shuffled": 0.0006712706339439184,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0006712706339439184
+     },
+     "atc3": {
+      "nan_true": 0.002934266331709401,
+      "nan_shuffled": 0.002934266331709401,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.002934266331709401
+     },
+     "atc4": {
+      "nan_true": 0.02082973118662341,
+      "nan_shuffled": 0.02082973118662341,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.02082973118662341
+     },
+     "atc5": {
+      "nan_true": 0.08244932415252082,
+      "nan_shuffled": 0.08244932415252082,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.08244932415252082
+     }
+    },
+    "eval": {
+     "inn": {
+      "nan_true": 0.15520075135008218,
+      "nan_shuffled": 0.14627846912420756,
+      "nan_pattern_equal": 0.9910777177741253,
+      "value_unchanged": 0.14627846912420756
+     },
+     "inn_nfc": {
+      "nan_true": 0.17539328480864053,
+      "nan_shuffled": 0.1620098614698286,
+      "nan_pattern_equal": 0.9866165766611881,
+      "value_unchanged": 0.1620098614698286
+     },
+     "atc1": {
+      "nan_true": 0.0,
+      "nan_shuffled": 0.0,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0
+     },
+     "atc2": {
+      "nan_true": 0.0018783752054472881,
+      "nan_shuffled": 0.0018783752054472881,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0018783752054472881
+     },
+     "atc3": {
+      "nan_true": 0.0023479690068091102,
+      "nan_shuffled": 0.0023479690068091102,
+      "nan_pattern_equal": 1.0,
+      "value_unchanged": 0.0023479690068091102
+     },
+     "atc4": {
+      "nan_true": 0.020896924160601082,
+      "nan_shuffled": 0.01831415825311106,
+      "nan_pattern_equal": 0.9974172340925099,
+      "value_unchanged": 0.01831415825311106
+     },
+     "atc5": {
+      "nan_true": 0.09063160366283166,
+      "nan_shuffled": 0.08405729044376614,
+      "nan_pattern_equal": 0.9934256867809345,
+      "value_unchanged": 0.08405729044376614
+     }
+    }
+   }
+  }
+ ],
+ "loss_selection": [
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "36",
+   "n": 124464,
+   "MAE": 4255.830077865177,
+   "RMSE": 15008.220804242315,
+   "WAPE": 0.6305223715318865,
+   "bias": 0.2187680819061681,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "578",
+   "n": 124464,
+   "MAE": 3029.723924604676,
+   "RMSE": 14528.43824826101,
+   "WAPE": 0.4488686529014076,
+   "bias": 0.1509276233513701,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "362",
+   "n": 124464,
+   "MAE": 3140.6286459311423,
+   "RMSE": 21730.59559460735,
+   "WAPE": 0.4652997384065704,
+   "bias": 0.0922342036031513,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "2/14",
+   "n": 19380,
+   "MAE": 8755.30584775353,
+   "RMSE": 15323.300610677612,
+   "WAPE": 1.5699578993041587,
+   "bias": 0.5421370815138231,
+   "eligible": false
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "581/357",
+   "n": 19380,
+   "MAE": 7035.965652330089,
+   "RMSE": 15171.041248502346,
+   "WAPE": 1.26165436675666,
+   "bias": 0.1997021955789439,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "50/60",
+   "n": 19380,
+   "MAE": 5259.835083584903,
+   "RMSE": 15595.884603408897,
+   "WAPE": 0.9431674669172256,
+   "bias": -0.6728397547334839,
+   "eligible": false
+  }
+ ],
+ "fingerprint": {
+  "loss": "Tweedie:variance_power=1.5",
+  "arms": [
+   "atc",
+   "both"
+  ],
+  "catboost_params": {
+   "iterations": 3000,
+   "learning_rate": 0.05,
+   "depth": 6,
+   "l2_leaf_reg": 3.0,
+   "max_ctr_complexity": 1,
+   "random_seed": 42,
+   "thread_count": -1,
+   "allow_writing_files": false
+  },
+  "early_stopping_rounds": 200,
+  "n_folds": 5,
+  "model_seed": 42,
+  "fold_seed": 42,
+  "fold_method": "balanced",
+  "placebo_seed": 5,
+  "dataset": {
+   "n_skus": 13762,
+   "sha256": "67f6dc7acf7c443c6f74a67b26528a0104c53bc245e03af3148bbffa270dd22f"
+  }
+ }
+}

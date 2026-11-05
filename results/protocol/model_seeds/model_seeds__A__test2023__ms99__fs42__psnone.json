@@ -1,0 +1,384 @@
+{
+ "run_id": "model_seeds__A__test2023__ms99__fs42__psnone",
+ "stage": "model_seeds",
+ "scenario": "A",
+ "started": "2026-11-05T01:25:42+0500",
+ "finished": "2026-11-05T01:28:06+0500",
+ "seconds": 144.8,
+ "git_commit": "ef97ad7a34ed2ab003a4bcb59454a526998f582c",
+ "git_dirty": false,
+ "source_sha256": "c1506b8af7dbe306f871c88146f90196caf7c1e97447d95b876c6ce7bb13630a",
+ "python": "3.12.10",
+ "platform": "macOS-26.5.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.5.4",
+  "pandas": "2.2.3",
+  "catboost": "1.2.8",
+  "scipy": "1.18.1",
+  "pyarrow": "26.0.0",
+  "matplotlib": "3.11.2"
+ },
+ "catboost_params": {
+  "iterations": 3000,
+  "learning_rate": 0.05,
+  "depth": 6,
+  "l2_leaf_reg": 3.0,
+  "max_ctr_complexity": 1,
+  "random_seed": 99,
+  "thread_count": -1,
+  "allow_writing_files": false
+ },
+ "early_stopping_rounds": 200,
+ "loss": "Tweedie:variance_power=1.5",
+ "model_seed": 99,
+ "fold_seed": 42,
+ "fold_method": "balanced",
+ "placebo_seed": null,
+ "placebo_arms": null,
+ "n_folds": 5,
+ "half_seed": 43,
+ "validation_years": {
+  "train_years": [
+   2020,
+   2021
+  ],
+  "eval_year": 2022
+ },
+ "test_years": {
+  "train_years": [
+   2020,
+   2021,
+   2022
+  ],
+  "eval_year": 2023
+ },
+ "selection_year": 2022,
+ "test_year": 2023,
+ "arms": [
+  "none",
+  "inn",
+  "atc",
+  "both"
+ ],
+ "selected_arm": "atc",
+ "selected_arm_by_fold": {
+  "0": "atc"
+ },
+ "calibration_factor": 1.587908792363484,
+ "calibration_factor_by_fold": {
+  "0": 1.587908792363484
+ },
+ "calibration_factor_validation_folds": 1.587908792363484,
+ "validation_baseline_totals": [
+  {
+   "fold": 0,
+   "actual": 840093323.7697558,
+   "median": 529056409.1652515
+  }
+ ],
+ "validation_metrics": [
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "none",
+   "n": 124464,
+   "MAE": 3026.7714314218683,
+   "RMSE": 15452.064207139441,
+   "WAPE": 0.44843122636663174,
+   "bias": 0.09269264185892756,
+   "WAPE_annual": 0.3067689257896857,
+   "spearman": 0.9668768984914301,
+   "skus": 10372
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "inn",
+   "n": 124464,
+   "MAE": 3012.275677074322,
+   "RMSE": 14490.911875985366,
+   "WAPE": 0.44628360833650976,
+   "bias": 0.11501561254576886,
+   "WAPE_annual": 0.302141876390022,
+   "spearman": 0.9674168528159345,
+   "skus": 10372
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "atc",
+   "n": 124464,
+   "MAE": 2950.970326540277,
+   "RMSE": 14046.223272826437,
+   "WAPE": 0.4372009160534312,
+   "bias": 0.11451840816567938,
+   "WAPE_annual": 0.29791944231942236,
+   "spearman": 0.9679422631563297,
+   "skus": 10372
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "eval_year": 2022,
+   "arm": "both",
+   "n": 124464,
+   "MAE": 3097.563814565271,
+   "RMSE": 15106.290806510497,
+   "WAPE": 0.45891946966800967,
+   "bias": 0.17710664767279538,
+   "WAPE_annual": 0.332324940938208,
+   "spearman": 0.9683761252977304,
+   "skus": 10372
+  }
+ ],
+ "validation_iterations": {
+  "0": {
+   "none|0": 322,
+   "inn|0": 407,
+   "atc|0": 344,
+   "both|0": 323
+  }
+ },
+ "fits": [
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "none",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 322,
+   "n_features": 34,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 14.8
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 407,
+   "n_features": 45,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 18.8
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 344,
+   "n_features": 59,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 18.5
+  },
+  {
+   "scenario": "A",
+   "split": "validation",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 323,
+   "n_features": 70,
+   "train_rows": 256056,
+   "train_skus": 11725,
+   "donor_skus": 13762,
+   "eval_rows": 124464,
+   "eval_skus": 10372,
+   "fit_seconds": 18.7
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "none",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 322,
+   "n_features": 34,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 12.4
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "inn",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 407,
+   "n_features": 45,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 16.8
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "atc",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 344,
+   "n_features": 59,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 15.3
+  },
+  {
+   "scenario": "A",
+   "split": "test",
+   "fold": 0,
+   "arm": "both",
+   "half": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "iterations": 323,
+   "n_features": 70,
+   "train_rows": 380520,
+   "train_skus": 12522,
+   "donor_skus": 13762,
+   "eval_rows": 124572,
+   "eval_skus": 10381,
+   "fit_seconds": 16.8
+  }
+ ],
+ "loss_selection": [
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "36",
+   "n": 124464,
+   "MAE": 4255.830077865177,
+   "RMSE": 15008.220804242315,
+   "WAPE": 0.6305223715318865,
+   "bias": 0.2187680819061681,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "578",
+   "n": 124464,
+   "MAE": 3029.723924604676,
+   "RMSE": 14528.43824826101,
+   "WAPE": 0.4488686529014076,
+   "bias": 0.1509276233513701,
+   "eligible": true
+  },
+  {
+   "scenario": "A",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "362",
+   "n": 124464,
+   "MAE": 3140.6286459311423,
+   "RMSE": 21730.59559460735,
+   "WAPE": 0.4652997384065704,
+   "bias": 0.0922342036031513,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "RMSE",
+   "eval_year": 2022,
+   "iterations": "2/14",
+   "n": 19380,
+   "MAE": 8755.30584775353,
+   "RMSE": 15323.300610677612,
+   "WAPE": 1.5699578993041587,
+   "bias": 0.5421370815138231,
+   "eligible": false
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "Tweedie:variance_power=1.5",
+   "eval_year": 2022,
+   "iterations": "581/357",
+   "n": 19380,
+   "MAE": 7035.965652330089,
+   "RMSE": 15171.041248502346,
+   "WAPE": 1.26165436675666,
+   "bias": 0.1997021955789439,
+   "eligible": true
+  },
+  {
+   "scenario": "B",
+   "fold": 0,
+   "loss": "MAE",
+   "eval_year": 2022,
+   "iterations": "50/60",
+   "n": 19380,
+   "MAE": 5259.835083584903,
+   "RMSE": 15595.884603408897,
+   "WAPE": 0.9431674669172256,
+   "bias": -0.6728397547334839,
+   "eligible": false
+  }
+ ],
+ "fingerprint": {
+  "loss": "Tweedie:variance_power=1.5",
+  "arms": [
+   "none",
+   "inn",
+   "atc",
+   "both"
+  ],
+  "catboost_params": {
+   "iterations": 3000,
+   "learning_rate": 0.05,
+   "depth": 6,
+   "l2_leaf_reg": 3.0,
+   "max_ctr_complexity": 1,
+   "random_seed": 99,
+   "thread_count": -1,
+   "allow_writing_files": false
+  },
+  "early_stopping_rounds": 200,
+  "n_folds": 5,
+  "model_seed": 99,
+  "fold_seed": 42,
+  "fold_method": "balanced",
+  "placebo_seed": null,
+  "dataset": {
+   "n_skus": 13762,
+   "sha256": "67f6dc7acf7c443c6f74a67b26528a0104c53bc245e03af3148bbffa270dd22f"
+  }
+ }
+}

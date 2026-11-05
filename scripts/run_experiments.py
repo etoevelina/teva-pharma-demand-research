@@ -1,7 +1,9 @@
-"""Run the loss selection and all scenario experiments; write predictions, run logs and models.
+"""Run the loss selection and all scenario experiments of the original single split (validation 2022,
+test 2023); write predictions, run logs and models. The rolling, validation-selected protocol is
+scripts/run_rolling.py.
 
 Usage:
-    python scripts/run_experiments.py                    # everything (about 1.5 h on 8 free CPU cores)
+    python scripts/run_experiments.py                    # everything (about 40 min on an Apple M2)
     python scripts/run_experiments.py --scenarios A B    # a subset
     python scripts/run_experiments.py --loss "Tweedie:variance_power=1.5"   # skip loss selection
 """
@@ -17,6 +19,7 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
 from teva_forecast import config, data, experiments as E, metrics  # noqa: E402
+from teva_forecast.protocol import choose_loss  # noqa: E402
 
 LOSS_FILE = config.TABLES_DIR / "loss_selection.csv"
 RUNS_FILE = config.TABLES_DIR / "runs.csv"
@@ -30,16 +33,6 @@ def log(msg):
     print(line, flush=True)
     with open(LOG_FILE, "a") as fh:
         fh.write(line + "\n")
-
-
-def choose_loss(table):
-    """Lowest mean validation WAPE among losses whose total-volume bias stays within the limit in every scenario."""
-    table = table.copy()
-    table["eligible"] = table["bias"].abs() <= config.MAX_ABS_VALIDATION_BIAS
-    ok = table.groupby("loss")["eligible"].all()
-    mean_wape = table.groupby("loss")["WAPE"].mean()
-    candidates = mean_wape[ok[ok].index] if ok.any() else mean_wape
-    return candidates.idxmin(), table
 
 
 def select_loss(ds):

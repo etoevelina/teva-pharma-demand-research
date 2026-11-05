@@ -6,7 +6,19 @@ Reproducible experiments on forecasting monthly pharmaceutical sales with CatBoo
 
 The study uses the public Teva sales dataset (13,762 SKUs, 1,776 INNs plus 931 SKUs without an INN, monthly packs sold 2019-01 … 2023-12) and compares baselines with CatBoost models with and without INN/ATC features in six scenarios: an existing drug, simulated cold starts at the SKU, INN and ATC-group level, and the real product launches of 2023.
 
-## Key results (test year 2023)
+## Validation-selected rolling protocol (primary analysis for review)
+
+The INN/ATC configuration, the loss, the tree counts and the median calibration are chosen only on the year before each test year: 2021 for test 2022, and 2022 for test 2023. The validation-selected metadata arm is compared with the CatBoost control without INN/ATC. The study also includes:
+- robustness to five CatBoost seeds and five grouped-fold assignments;
+- a shuffled-peer placebo;
+- a validation-calibrated hierarchical median;
+- scenario N0, the launch cohort forecast without knowledge of the launch month.
+
+Method: [reports/evaluation_protocol.md](reports/evaluation_protocol.md). Results, generated from the saved predictions and run records: [reports/evaluation_protocol_results.md](reports/evaluation_protocol_results.md) and [results/tables/paper_results_table.md](results/tables/paper_results_table.md).
+
+## Original single-split results (test year 2023)
+
+The table below is the original analysis. Its arms are compared on the test year itself, so the best arm in it is a post hoc choice; the primary results are those of the validation-selected protocol above.
 
 Test-year WAPE of CatBoost without and with INN + ATC peer statistics, with the 95% cluster-bootstrap interval of the relative change ([full tables](results/tables/), [report](reports/report.md)):
 
@@ -57,14 +69,18 @@ pytest -q tests/test_who_seasonality.py
 │   ├── 01_dataset_description_eda.ipynb    # dataset description and EDA
 │   └── 02_experiments_and_results.ipynb    # protocol, results, error analysis
 ├── reports/
-│   ├── report.md                # methodology, results and limitations
+│   ├── report.md                # methodology, results and limitations (original single split)
+│   ├── evaluation_protocol.md   # validation-selected rolling protocol, robustness, placebo, N0
+│   ├── evaluation_protocol_results.md  # generated results of that protocol
 │   ├── who_seasonality_comparison.md   # WHO epidemiological validation of seasonality
 │   └── data_dictionary.md       # fields, derived fields and model features
 ├── results/
 │   ├── figures/                 # EDA (eda_*) and result (res_*) figures
 │   ├── tables/                  # every table in the report as CSV + Markdown
-│   ├── predictions/             # validation and test predictions of every model
-│   └── run_log.txt              # log of the experiment run
+│   ├── predictions/             # validation and test predictions of every model (original split)
+│   ├── protocol/                # rolling protocol and robustness runs: predictions, run records, log
+│   ├── regression/              # committed metrics before the changes and the rebuilt-vs-committed check
+│   └── run_log.txt              # log of the original experiment run
 ├── models/                      # trained CatBoost models (.cbm) and training_parameters.json
 ├── scripts/                     # command-line entry points (see below)
 ├── src/teva_forecast/           # data, features, baselines, models, experiments, analysis
@@ -93,7 +109,7 @@ pip install -r requirements.txt
    python scripts/make_eda.py
    ```
 
-3. Train all models (loss selection, 6 scenarios × 4–5 ablation arms, cross-fitting, validation and test). About 40 minutes on an Apple M2:
+3. Original single split (loss selection, 6 scenarios × 4–5 ablation arms, cross-fitting, validation 2022 and test 2023). About 40 minutes on an Apple M2:
 
    ```bash
    python scripts/run_experiments.py
@@ -101,25 +117,53 @@ pip install -r requirements.txt
 
    A subset can be rerun with, for example, `--scenarios A B`.
 
-4. Robustness to the number of trees and the seed (optional; about 60 minutes on an Apple M2):
+4. Validation-selected rolling protocol: test 2022 with every choice made on 2021, and test 2023 with every choice made on 2022. Scenarios A, B, C, D, D1, N and N0 (46 minutes on an Apple M2 with 8 GB RAM, including the loss selection of both cycles):
+
+   ```bash
+   python scripts/run_rolling.py
+   ```
+
+5. Robustness studies on test 2023 (4 h 15 min on the same machine: CatBoost seeds 118 min, fold seeds 67 min, placebo 70 min):
+   - five CatBoost seeds;
+   - five grouped-fold assignments;
+   - the shuffled-peer placebo.
 
    ```bash
    python scripts/run_robustness.py
    ```
 
-5. Result tables, ablation statistics and figures:
+   `--studies model_seeds fold_seeds placebo` selects studies, and `--scenarios` restricts the scenarios. `--studies trees` reruns the original tree-count study, about 60 minutes. Finished runs are skipped when their record matches the requested run, so an interrupted job can be restarted with the same command.
+
+6. All result tables, statistics and figures, for the original split and for the protocol, plus the generated results summary `reports/evaluation_protocol_results.md` and the check of the rebuilt 2023 cycle against the committed predictions (`results/regression/rolling2023_vs_committed.csv`). About 3 minutes:
 
    ```bash
    python scripts/analyze_results.py
    ```
 
-6. Leakage and split-integrity tests:
+7. Leakage, split-integrity and protocol tests:
 
    ```bash
    pytest -q
    ```
 
-Notebooks 01 and 02 call the same package code: 01 recomputes the dataset description from the processed data, and 02 displays the saved experiment results. Notebook 00 is the original standalone prototype on the 20-INN sample. Splits and models use the fixed seed in `src/teva_forecast/config.py`; the parsing audit sample uses seed 7, and the robustness study the seeds 42, 7 and 2024.
+Notebooks 01 and 02 call the same package code: 01 recomputes the dataset description from the processed data, and 02 displays the saved experiment results. Notebook 00 is the original standalone prototype on the 20-INN sample.
+
+**Seeds.**
+* Splits and models of the original study use seed 42 (`src/teva_forecast/config.py`), and the cross-fitting halves use seed 43.
+* The parsing audit sample uses seed 7, and the tree-count study seeds 42, 7 and 2024.
+* The protocol uses CatBoost seeds 42, 7, 2024, 11 and 99, fold-assignment seeds 42, 7, 2024, 11 and 99 (random-order assignment), and permutation seeds 1–5 (`src/teva_forecast/protocol.py`).
+
+**Protocol in brief.**
+
+| | |
+|---|---|
+| Rolling selection | for test year Y: validation models trained on 2020 … Y−2 and evaluated on Y−1. The loss, tree counts, metadata arm (lowest validation WAPE among INN, ATC, INN + ATC) and median calibration factor are chosen there. Test models are retrained on 2020 … Y−1. In the cold-start scenarios a test fold only uses the choices made on other folds |
+| First cycle | test 2022 trains its validation models on 2020 only, the first year whose December-2019 origin has 12 months of history |
+| Primary result | validation-selected metadata arm vs CatBoost control; all other arms are exploratory |
+| Calibrated median | hierarchical median × (Σ actual / Σ median on the validation year, over the other folds) |
+| Placebo | each product reads the INN/ATC peer statistics of another active group: a seeded single-cycle permutation per grouping, model and origin. Same donors, windows and missingness; targets are never permuted |
+| N vs N0 | N: launches of the test year from their first sale, with the months since launch known (retrospective). N0: the same cohort, all 12 months, without the launch month or launch age (cohort still defined by the outcome) |
+| Outputs | `results/protocol/` (predictions and one JSON record per run with git commit, source hash, package versions, CatBoost parameters, seeds, years, selected arm, iterations and run time), `results/tables/` (including `paper_results_table_compact.md` for the paper), `results/figures/res_wape_variability.png`, `res_placebo_true_vs_shuffled.png`, `res_selected_vs_calibrated_median.png` |
 
 ## Experimental design in brief
 

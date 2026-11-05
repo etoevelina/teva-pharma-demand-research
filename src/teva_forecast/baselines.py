@@ -64,6 +64,19 @@ def cold_start_baselines(ds, frame, pool_mask):
     return out
 
 
+def launch_cohort_baseline(ds, train_rows, eval_rows):
+    """Average sales of past launch cohorts by calendar month of their launch year (scenario N0).
+
+    `train_rows` hold all 12 months of the launch year of SKUs launched in the training years
+    (months before the first sale included, with sales 0). The forecast for an evaluated SKU
+    depends only on the calendar month, so it uses neither the SKU's launch month nor its sales.
+    """
+    sales = ds.sales0[train_rows["i"].to_numpy(), train_rows["t"].to_numpy()]
+    month = train_rows["t"].to_numpy() % 12
+    curve = pd.Series(sales).groupby(month).mean()
+    return pd.Series(eval_rows["t"].to_numpy() % 12).map(curve).fillna(0.0).to_numpy()
+
+
 def launch_age_baseline(ds, train_rows, eval_rows):
     """Average sales of past launches (training years) at the same number of months since launch."""
     age = age_at_target(ds, train_rows).to_numpy()
